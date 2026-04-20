@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://silmoontravis.github.io/demos/slotlab/sitemap.xml

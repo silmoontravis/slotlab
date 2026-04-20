@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>關於我們 | SlotLab 虎機研究所</title>
+  <meta name="description" content="了解 SlotLab 虎機研究所的創立理念、團隊背景與評測方法論。我們是台灣首個數據驅動的老虎機獨立評測媒體。">
+  <meta property="og:title" content="關於我們 | SlotLab 虎機研究所">
+  <meta property="og:description" content="了解我們的創立理念、團隊背景與評測方法論。">
+  <link rel="canonical" href="https://silmoontravis.github.io/demos/slotlab/about.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <div id="breadcrumb"></div>
+
+  <article class="article-header">
+    <h1>關於 SlotLab 虎機研究所</h1>
+    <div class="article-meta">
+      <span>獨立評測媒體</span>
+      <span>|</span>
+      <span>數據驅動</span>
+      <span>|</span>
+      <span>不收業配</span>
+    </div>
+  </article>
+
+  <div class="article-content">
+    <h2>我們是誰</h2>
+    <p>SlotLab 虎機研究所成立於 2026 年，是台灣首個以數據科學角度深度解析老虎機與線上娛樂城的獨立評測媒體。我們的團隊由遊戲數學家、資深玩家與科技人組成，致力於用最嚴謹的方法論，為台灣的老虎機愛好者提供最客觀、最有價值的資訊。</p>
+
+    <h2>為什麼創立這個網站</h2>
+    <p>台灣市場上充斥著大量的娛樂城推廣文章，多數都是收了業配費的置入行銷。玩家很難找到真正客觀、以數據為基礎的評測內容。我們看到了這個缺口，決定建立一個完全獨立的平台。</p>
+    <p>我們相信：<strong>數據不會說謊</strong>。當你了解一台老虎機的 RTP 結構、波動率特性、獎金觸發機率之後，你就能做出更明智的選擇 — 不是為了保證贏錢，而是為了享受更好的遊戲體驗。</p>
+
+    <h2>我們的評測方法論</h2>
+    <div class="info-box">
+      <h4>四層評測架構</h4>
+      <ul>
+        <li><strong>第一層：數學分析</strong> — 解讀官方公布的 RTP 數據，計算理論波動率與 Hit Rate</li>
+        <li><strong>第二層：機制拆解</strong> — 分析免費旋轉觸發機率、乘數結構、獎金遊戲期望值</li>
+        <li><strong>第三層：實機測試</strong> — 以標準化注額進行 1,000~10,000 次旋轉，記錄實際表現</li>
+        <li><strong>第四層：玩家體驗</strong> — 評估視覺設計、音效品質、流暢度與整體娛樂性</li>
+      </ul>
+    </div>
+
+    <h2>我們的原則</h2>
+    <ul>
+      <li><strong>100% 獨立</strong> — 不接受任何娛樂城或遊戲商的付費推廣</li>
+      <li><strong>數據優先</strong> — 所有結論都必須有數據佐證，不靠「感覺」評分</li>
+      <li><strong>教育導向</strong> — 我們的目標是讓讀者變得更聰明，而不是鼓勵賭博</li>
+      <li><strong>透明公開</strong> — 評測方法論完全公開，讓讀者自行判斷</li>
+    </ul>
+
+    <h2 id="disclaimer">免責聲明</h2>
+    <p>SlotLab 虎機研究所是一個教育性質的內容平台。我們提供的所有資訊僅供參考與教育用途，不構成任何形式的投資建議或賭博鼓勵。</p>
+    <p>老虎機與所有博弈遊戲都存在風險。無論 RTP 多高、策略多好，長期來看莊家永遠有優勢。請務必理性娛樂、量力而為，絕不投入超過自己能承受損失的金額。</p>
+    <p>如果你或你認識的人有賭博成癮的問題，請尋求專業協助。</p>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="js/components.js"></script>
+  <script>
+    initPage('about');
+    document.getElementById('breadcrumb').innerHTML = renderBreadcrumb([
+      { href: BASE_URL + '/', label: '首頁' },
+      { href: '', label: '關於我們' }
+    ]);
+  </script>
+</body>
+</html>

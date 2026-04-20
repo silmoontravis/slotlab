@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>遊戲攻略 | SlotLab 虎機研究所</title>
+  <meta name="description" content="老虎機遊戲攻略與新手教學，從基礎術語到進階策略，系統化學習線上老虎機的一切知識。">
+  <meta property="og:title" content="遊戲攻略 | SlotLab 虎機研究所">
+  <meta property="og:description" content="系統化學習線上老虎機，從基礎術語到進階策略。">
+  <link rel="canonical" href="https://silmoontravis.github.io/demos/slotlab/guides/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <div class="category-hero">
+    <h1>📖 遊戲攻略</h1>
+    <p>從零開始的系統化學習路線，涵蓋基礎術語、資金管理、策略選擇到進階玩法。</p>
+  </div>
+
+  <div id="breadcrumb"></div>
+
+  <div class="content-grid">
+    <main class="main-content">
+      <div class="card-grid">
+        <a href="beginner-complete-guide.html" class="card">
+          <div class="card-thumb">📖</div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-category cat-guides">新手教學</span>
+              <span>閱讀 15 分鐘</span>
+            </div>
+            <h3 class="card-title">新手完整入門指南</h3>
+            <p class="card-excerpt">從零開始認識線上老虎機：遊戲機制、術語解說、資金管理到選擇平台，一篇搞懂所有基礎。</p>
+            <div class="card-footer">
+              <span>2026-04-08</span>
+              <span>👁️ 6,823</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </main>
+    <div id="sidebar"></div>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="../js/components.js"></script>
+  <script>
+    initPage('guides');
+    document.getElementById('breadcrumb').innerHTML = renderBreadcrumb([
+      { href: BASE_URL + '/', label: '首頁' },
+      { href: '', label: '遊戲攻略' }
+    ]);
+  </script>
+</body>
+</html>
