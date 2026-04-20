@@ -5,9 +5,9 @@ const BASE_URL = getBaseUrl();
 
 function getBaseUrl() {
   const path = window.location.pathname;
-  if (path.includes('/demos/slotlab')) {
-    const idx = path.indexOf('/demos/slotlab');
-    return path.substring(0, idx) + '/demos/slotlab';
+  if (path.includes('/slotlab')) {
+    const idx = path.indexOf('/slotlab');
+    return path.substring(0, idx) + '/slotlab';
   }
   return '';
 }
