@@ -32,7 +32,7 @@
   --radius-md: 12px;
   --radius-lg: 16px;
   --max-width: 1140px;
-  --header-height: 90px;
+  --header-height: 64px;
   --content-width: 720px;
   --transition: 0.2s ease;
   --font-body: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -78,7 +78,7 @@ img { max-width: 100%; height: auto; }
 }
 
 .site-logo { display: flex; align-items: center; gap: 12px; color: var(--text-primary); font-weight: 700; font-size: 1.1rem; }
-.site-logo img { height: 42px; width: auto; }
+.site-logo img { height: 80px; width: auto; margin: -10px 0; }
 .site-logo .logo-text { display: flex; flex-direction: column; line-height: 1.2; }
 .site-logo .logo-main { color: var(--text-primary); font-size: 1.05rem; font-weight: 800; }
 .site-logo .logo-sub { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-muted); font-weight: 400; }
