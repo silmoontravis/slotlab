@@ -46,10 +46,38 @@ function renderHeader(activePage) {
   </header>`;
 }
 
+function getPageCode() {
+  const path = window.location.pathname;
+  if (path.includes('what-is-rtp')) return 'RTP01';
+  if (path.includes('high-volatility')) return 'VOL01';
+  if (path.includes('top-10')) return 'TOP10';
+  if (path.includes('how-to-choose')) return 'CSN01';
+  if (path.includes('beginner')) return 'BEG01';
+  if (path.includes('rtp-myths')) return 'MTH01';
+  if (path.includes('/slots/') && !path.includes('.html')) return 'SLOT';
+  if (path.includes('/casinos/') && !path.includes('.html')) return 'CSNO';
+  if (path.includes('/guides/') && !path.includes('.html')) return 'GUID';
+  if (path.includes('/rtp/') && !path.includes('.html')) return 'RTPX';
+  return 'HOME';
+}
+
+function renderAdSlot(position, size) {
+  const page = getPageCode();
+  const id = `${position}-${page}-001`;
+  const sizeLabel = size === 'banner' ? '728×90' : size === 'sidebar' ? '300×250' : '728×90';
+  return `<div class="ad-banner" data-ad-id="${id}">
+    <div class="ad-placeholder">
+      <div class="ad-label">廣告版位 ${id}</div>
+      <div class="ad-size">${sizeLabel}</div>
+      <div class="ad-cta">歡迎洽詢合作 📩</div>
+    </div>
+  </div>`;
+}
+
 function renderFooter() {
   return `
   <div class="ad-footer" style="max-width:1100px;margin:0 auto 24px;padding:0 20px;height:90px;">
-    <div class="ad-banner" style="height:90px">/* ad: 728x90 */</div>
+    ${renderAdSlot('D', 'banner')}
   </div>
   <footer class="site-footer">
     <div class="footer-inner">
@@ -113,7 +141,7 @@ function renderSidebar() {
         <li><a href="${BASE_URL}/rtp/"><span class="cat-pill cat-rtp">RTP</span> 數據分析</a></li>
       </ul>
     </div>
-    <div class="ad-sidebar"><div class="ad-banner" style="height:250px;">/* ad: 300x250 */</div></div>
+    <div class="ad-sidebar">${renderAdSlot('B', 'sidebar')}</div>
     <div class="widget">
       <h3 class="widget-title">熱門文章</h3>
       <ul class="widget-list">
@@ -124,7 +152,7 @@ function renderSidebar() {
         <li><a href="${BASE_URL}/slots/high-volatility-guide.html">高波動 vs 低波動</a></li>
       </ul>
     </div>
-    <div class="ad-sidebar"><div class="ad-banner" style="height:250px;">/* ad: 300x250 */</div></div>
+    <div class="ad-sidebar">${renderAdSlot('B2', 'sidebar')}</div>
   </aside>`;
 }
 
@@ -150,4 +178,13 @@ function initPage(activePage) {
 
   const sidebarEl = document.getElementById('sidebar');
   if (sidebarEl) sidebarEl.innerHTML = renderSidebar();
+
+  // Header ad
+  const headerAdEl = document.getElementById('header-ad');
+  if (headerAdEl) headerAdEl.innerHTML = `<div class="ad-header"><div style="height:90px;">${renderAdSlot('A', 'banner')}</div></div>`;
+
+  // Inline ads
+  document.querySelectorAll('.ad-inline').forEach((el, i) => {
+    el.innerHTML = renderAdSlot(`C${i+1}`, 'banner');
+  });
 }
