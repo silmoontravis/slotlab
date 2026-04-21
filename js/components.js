@@ -30,7 +30,7 @@ function renderHeader(activePage) {
   <header class="site-header">
     <div class="header-inner">
       <a href="${BASE_URL}/" class="site-logo">
-        <img src="${BASE_URL}/images/logo.png" alt="RTP96" height="52">
+        <img src="${BASE_URL}/images/logo.png" alt="RTP96" height="80">
         <span class="logo-text">
           <span class="logo-main">大衛の電子攻略站</span>
           <span class="logo-sub">// rtp96.com</span>
