@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>什麼時候該停？用數學告訴你最佳離場時機 | 大衛の電子攻略站</title>
+  <meta name="description" content="用數學模型分析老虎機的最佳離場時機，從隨機漫步理論到破產機率計算，幫你建立理性的離場策略。">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="什麼時候該停？用數學告訴你最佳離場時機">
+  <meta property="og:description" content="用數學模型分析老虎機的最佳離場策略。">
+  <meta property="article:published_time" content="2026-06-09">
+  <meta property="article:section" content="攻略">
+  <link rel="canonical" href="https://www.rtp96.com/guides/when-to-stop.html">
+  <link rel="icon" type="image/png" href="../images/favicon-32.png">
+  <link rel="stylesheet" href="../style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "什麼時候該停？用數學告訴你最佳離場時機",
+    "datePublished": "2026-06-09",
+    "dateModified": "2026-06-09",
+    "author": { "@type": "Person", "name": "大衛 (David)" },
+    "publisher": { "@type": "Person", "name": "大衛 (David)" },
+    "description": "用數學模型分析老虎機的最佳離場策略。",
+    "mainEntityOfPage": "https://www.rtp96.com/guides/when-to-stop.html"
+  }
+  </script>
+</head>
+<body>
+  <div id="site-header"></div>
+  <div id="breadcrumb"></div>
+
+  <div id="header-ad"></div>
+
+  <div class="article-layout">
+    <article class="article-main">
+      <header class="article-header">
+        <div style="margin-bottom:10px;"><span class="cat-pill cat-guides">攻略</span></div>
+        <h1>什麼時候該停？用數學告訴你最佳離場時機</h1>
+      </header>
+      <div id="article-author"></div>
+
+      <div class="article-content">
+        <p>「如果我再多玩幾次說不定就中了」— 這大概是所有玩家最常對自己說的一句話，也是最危險的一句話。什麼時候該停？這個問題沒有完美的答案，但數學可以給你一個更好的框架。</p>
+
+        <h2 id="random-walk">隨機漫步與你的資金</h2>
+        <p>在數學上，你的資金曲線本質上是一個「帶有負漂移的隨機漫步」（Random Walk with Negative Drift）。「負漂移」是因為 RTP 永遠小於 100% — 每次旋轉的期望值都是負的。</p>
+        <p>這意味著什麼？<strong>你玩得越久，虧得越多是必然的。</strong>這是數學定律，不是運氣問題。</p>
+
+        <div class="info-box">
+          <h4>// expected_loss_formula</h4>
+          <p>預期損失 = 投注次數 x 每次投注額 x (1 - RTP)</p>
+          <p>範例：玩了 500 次 x 每次 20 元 x (1 - 0.96)</p>
+          <p>= 500 x 20 x 0.04 = 400 元</p>
+          <p>你在 RTP 96% 的遊戲上投注 10,000 元，預期損失是 400 元。</p>
+        </div>
+
+        <p>短期內，波動率會讓你的實際結果偏離這個預期值 — 你可能贏也可能虧更多。但長期一定會收斂到預期損失。</p>
+
+        <h2 id="optimal-stopping">最優停止理論</h2>
+        <p>數學上有一個分支叫「最優停止理論」（Optimal Stopping Theory），專門研究「在什麼時候做出決定最有利」。經典的例子是「秘書問題」。</p>
+        <p>但老虎機跟秘書問題不同 — 因為老虎機是負期望值的，所以嚴格來說「最優停止時間」是「還沒開始之前」。</p>
+        <p>但如果你已經開始了呢？那答案是：<strong>在你贏的時候停，而不是在你輸的時候追。</strong></p>
+
+        <div class="david-note">我曾經寫了一個 Python 模擬器，測試不同的離場策略在 10,000 個模擬玩家上的效果。結論是：「翻倍就走」的策略，在維持正報酬的比例上遠高於「一直玩到破產或時間到」的策略。不是因為翻倍走能打敗莊家優勢，而是因為它讓你在「運氣好的時刻」鎖住利潤。</div>
+
+        <h2 id="stop-signals">五個該停下的信號</h2>
+
+        <h3>信號 1：你的預算用了 60%</h3>
+        <p>當你帶來的預算已經虧損 60%，你的決策品質通常已經開始下降。情緒會影響判斷，導致你做出更差的選擇（例如加大投注額）。</p>
+
+        <h3>信號 2：你開始追加預算</h3>
+        <p>如果你原本預算 5,000 元，現在已經開始想「再存一筆」，這是最明確的停止信號。追加預算是通往失控的第一步。</p>
+
+        <h3>信號 3：你已經玩超過 2 小時</h3>
+        <p>專注力會隨時間下降。超過 2 小時，你對每次旋轉的結果已經不再有清醒的判斷。建議至少休息 30 分鐘再決定要不要繼續。</p>
+
+        <h3>信號 4：你贏了大獎</h3>
+        <p>中了 100 倍以上的大獎後，大部分人的心態會從「這是娛樂」轉變成「我手氣正旺」。但統計上，大獎之後的下一次旋轉跟任何其他旋轉沒有差別。贏了就走是最聰明的選擇。</p>
+
+        <h3>信號 5：你開始有負面情緒</h3>
+        <p>焦慮、憤怒、挫折 — 任何負面情緒出現時都應該立即停止。帶著情緒做的決定，幾乎不可能是好決定。</p>
+
+        <div class="ad-inline"></div>
+
+        <h2 id="ruin-probability">破產機率計算</h2>
+        <p>數學上可以估算你「在達到停利目標之前破產」的機率。以下是不同條件下的估計：</p>
+
+        <table>
+          <thead>
+            <tr><th>起始資金（倍投注額）</th><th>停利目標</th><th>RTP 96% 低波動</th><th>RTP 96% 高波動</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>200x</td><td>翻倍 (400x)</td><td>38%</td><td>52%</td></tr>
+            <tr><td>200x</td><td>1.5 倍 (300x)</td><td>28%</td><td>41%</td></tr>
+            <tr><td>500x</td><td>翻倍 (1,000x)</td><td>31%</td><td>45%</td></tr>
+            <tr><td>500x</td><td>1.5 倍 (750x)</td><td>22%</td><td>35%</td></tr>
+          </tbody>
+        </table>
+
+        <p>這個表格告訴你：即使帶了 500 倍投注額，在高波動遊戲中想要翻倍的破產機率仍高達 45%。風險比你想像的高得多。</p>
+
+        <div class="david-note">看完這些數字你可能會覺得很沮喪 — 怎麼不管怎樣都是虧的機率比較大？但這就是負期望值遊戲的本質。接受這個事實，反而能讓你做出更好的決定。不要把老虎機當作「賺錢的途徑」，把它當作「需要付費的娛樂」。這個心態轉換，是你能否健康地享受遊戲的關鍵。</div>
+
+        <h2 id="practical-rules">我的離場規則（實際在用的）</h2>
+        <ol>
+          <li>每個 Session 最多 1.5 小時</li>
+          <li>虧損 50% 強制停止</li>
+          <li>資金翻倍立刻提走 60% 的利潤</li>
+          <li>中了 200 倍以上大獎後，最多再玩 20 次就離場</li>
+          <li>一天最多 2 個 Session</li>
+        </ol>
+        <p>這些規則沒有什麼深奧的數學推導，就是根據我自己的經驗和模擬結果設定的。關鍵不在於規則的細節，而在於你有沒有紀律去執行。</p>
+
+        <h2 id="conclusion">結論</h2>
+        <p>數學告訴我們：在負期望值的遊戲中，時間永遠站在莊家那邊。你唯一的武器就是「知道什麼時候該停」。設好規則，嚴格執行，不要讓情緒覆蓋理性。這不是遊戲攻略，這是自我管理。</p>
+
+        <div class="ad-inline"><div class="ad-banner">/* ad: post-footer */</div></div>
+
+        <div class="related-posts">
+          <h3>相關文章</h3>
+          <div class="post-list">
+            <a href="bankroll-management.html" class="post-item">
+              <div class="post-accent post-accent-green"></div>
+              <div class="post-body">
+                <div class="post-title">資金管理完全指南</div>
+                <div class="post-meta"><span class="cat-pill cat-guides">攻略</span><span>10 min read</span></div>
+              </div>
+            </a>
+            <a href="responsible-gambling.html" class="post-item">
+              <div class="post-accent post-accent-green"></div>
+              <div class="post-body">
+                <div class="post-title">負責任博彩指南</div>
+                <div class="post-meta"><span class="cat-pill cat-guides">攻略</span><span>8 min read</span></div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <aside class="toc-sidebar">
+      <div class="toc">
+        <div class="toc-title">目錄</div>
+        <ul class="toc-list">
+          <li><a href="#random-walk">隨機漫步</a></li>
+          <li><a href="#optimal-stopping">最優停止理論</a></li>
+          <li><a href="#stop-signals">五個停止信號</a></li>
+          <li><a href="#ruin-probability">破產機率</a></li>
+          <li><a href="#practical-rules">我的離場規則</a></li>
+          <li><a href="#conclusion">結論</a></li>
+        </ul>
+      </div>
+      <div class="ad-article-sidebar" id="article-sidebar-ad"></div>
+    </aside>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="../js/components.js"></script>
+  <script>
+    initPage('guides');
+    document.getElementById('breadcrumb').innerHTML = renderBreadcrumb([
+      { href: BASE_URL + '/', label: '~' },
+      { href: BASE_URL + '/guides/', label: '攻略' },
+      { href: '', label: '最佳離場時機' }
+    ]);
+    document.getElementById('article-author').innerHTML = renderAuthor('2026-06-09', '9 min read');
+  </script>
+</body>
+</html>

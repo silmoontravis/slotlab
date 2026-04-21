@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>方差與標準差在老虎機中的應用：進階數據分析 | 大衛の電子攻略站</title>
+  <meta name="description" content="用統計學的方差與標準差概念，深入分析老虎機的波動特性，包含變異係數、信賴區間與實際應用案例。">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="方差與標準差在老虎機中的應用：進階數據分析">
+  <meta property="og:description" content="用方差與標準差深入分析老虎機的波動特性。">
+  <meta property="article:published_time" content="2026-06-17">
+  <meta property="article:section" content="RTP">
+  <link rel="canonical" href="https://www.rtp96.com/rtp/variance-explained.html">
+  <link rel="icon" type="image/png" href="../images/favicon-32.png">
+  <link rel="stylesheet" href="../style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "方差與標準差在老虎機中的應用：進階數據分析",
+    "datePublished": "2026-06-17",
+    "dateModified": "2026-06-17",
+    "author": { "@type": "Person", "name": "大衛 (David)" },
+    "publisher": { "@type": "Person", "name": "大衛 (David)" },
+    "description": "用方差與標準差深入分析老虎機的波動特性。",
+    "mainEntityOfPage": "https://www.rtp96.com/rtp/variance-explained.html"
+  }
+  </script>
+</head>
+<body>
+  <div id="site-header"></div>
+  <div id="breadcrumb"></div>
+
+  <div id="header-ad"></div>
+
+  <div class="article-layout">
+    <article class="article-main">
+      <header class="article-header">
+        <div style="margin-bottom:10px;"><span class="cat-pill cat-rtp">RTP</span></div>
+        <h1>方差與標準差在老虎機中的應用：進階數據分析</h1>
+      </header>
+      <div id="article-author"></div>
+
+      <div class="article-content">
+        <p>如果你讀過我之前的文章，你知道波動率分「低、中、高」。但這些標籤到底代表什麼？背後的數學定義是什麼？今天我要用統計學裡的兩個核心概念 — 方差和標準差 — 來給你更精確的答案。</p>
+
+        <p>這篇內容比較偏「硬核」，但如果你跟我一樣喜歡用數字理解世界，你會覺得很有收穫。</p>
+
+        <h2 id="basics">方差與標準差基礎</h2>
+        <p>先快速複習統計學的基礎：</p>
+        <ul>
+          <li><strong>平均值（Mean）</strong>：所有結果的加權平均。對老虎機來說就是 RTP。</li>
+          <li><strong>方差（Variance）</strong>：每個結果與平均值之間差異的平方的加權平均。衡量「離散程度」。</li>
+          <li><strong>標準差（Standard Deviation, SD）</strong>：方差的平方根。跟原始數據同單位，更直觀。</li>
+        </ul>
+
+        <div class="info-box">
+          <h4>// variance_formula</h4>
+          <p>Variance = sum(p_i * (x_i - mean)^2)</p>
+          <p>SD = sqrt(Variance)</p>
+          <p>其中 p_i = 結果 i 的機率，x_i = 結果 i 的回報，mean = RTP</p>
+          <p>例：一台 RTP 96% 的老虎機，如果 SD = 5.0，意味著單次旋轉的回報有約 68% 的機率落在 -4.04 到 +5.96 之間（以投注額為單位）。</p>
+        </div>
+
+        <h2 id="what-sd-means">標準差的直觀意義</h2>
+        <p>對玩家來說，標準差代表「你的實際體驗偏離預期值（RTP）的程度」。</p>
+        <p>SD = 3 的低波動機台：你每次旋轉的結果大部分集中在「小贏小輸」。</p>
+        <p>SD = 15 的高波動機台：你每次旋轉的結果可能從「完全沒中」到「贏了 500 倍」都有。</p>
+
+        <h3>關鍵：累積 N 次後的標準差</h3>
+        <p>這是最實用的概念。如果你玩了 N 次旋轉，你的總回報的標準差是：</p>
+        <p><strong>SD(total) = SD(single) x sqrt(N) x bet</strong></p>
+        <p>而你的期望損失是：</p>
+        <p><strong>Expected Loss = N x bet x (1 - RTP)</strong></p>
+
+        <div class="david-note">這個公式告訴你一個深刻的事實：你的期望損失跟旋轉次數成正比（線性增長），但波動帶來的不確定性只跟旋轉次數的平方根成正比。這意味著玩得越久，莊家優勢的「確定性」就越壓過波動帶來的「不確定性」。用白話說就是：短期靠運氣，長期靠數學。而數學站在莊家那邊。</div>
+
+        <h2 id="cv">變異係數（CV）</h2>
+        <p>變異係數 = SD / Mean。它衡量的是「相對於預期回報，波動有多大」。</p>
+        <p>對老虎機來說，因為 Mean（RTP）通常在 0.94~0.97 之間（接近 1），所以 CV 基本上就約等於 SD。但在比較不同投注額的遊戲時，CV 是更好的指標。</p>
+
+        <h2 id="confidence-intervals">信賴區間應用</h2>
+        <p>用標準差我們可以計算：在 N 次旋轉後，你的實際 RTP 會落在什麼範圍。</p>
+
+        <table>
+          <thead>
+            <tr><th>旋轉次數</th><th>低波動（SD=3）</th><th>中波動（SD=7）</th><th>高波動（SD=13）</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>100 次</td><td>96% ± 30%</td><td>96% ± 70%</td><td>96% ± 130%</td></tr>
+            <tr><td>1,000 次</td><td>96% ± 9.5%</td><td>96% ± 22%</td><td>96% ± 41%</td></tr>
+            <tr><td>10,000 次</td><td>96% ± 3%</td><td>96% ± 7%</td><td>96% ± 13%</td></tr>
+            <tr><td>100,000 次</td><td>96% ± 0.95%</td><td>96% ± 2.2%</td><td>96% ± 4.1%</td></tr>
+          </tbody>
+        </table>
+        <p><small>以上為 95% 信賴區間（約 2 個標準差）</small></p>
+
+        <p>高波動機台（SD=13）在 100 次旋轉後，你的實際 RTP 可能從 -34% 到 226%。是的，你沒看錯 — 短期內幾乎什麼都可能發生。</p>
+
+        <div class="ad-inline"></div>
+
+        <h2 id="practical-use">實際應用場景</h2>
+
+        <h3>場景 1：判斷「這台是不是被調低了」</h3>
+        <p>你玩了 500 次旋轉，實際 RTP 只有 82%。這台是不是有問題？</p>
+        <p>如果是中波動（SD=7）的遊戲：500 次後的標準差 = 7 / sqrt(500) ≈ 0.31。95% 信賴區間 = 96% ± 62%。82% 落在這個範圍內，所以這是正常的波動。</p>
+        <p>結論：500 次旋轉完全不夠判斷一台機的「真實 RTP」。</p>
+
+        <h3>場景 2：需要多少次旋轉才能「驗證」RTP</h3>
+        <p>如果你想把實際 RTP 的誤差控制在 ±1% 以內（95% 信心水準），需要的旋轉次數：</p>
+        <ul>
+          <li>低波動（SD=3）：約 360,000 次</li>
+          <li>中波動（SD=7）：約 1,960,000 次</li>
+          <li>高波動（SD=13）：約 6,760,000 次</li>
+        </ul>
+
+        <div class="david-note">看到這個數字你就明白了 — 個人玩家不可能靠自己的遊戲經驗「驗證」一台機的 RTP。即使你每天玩 8 小時、每小時 300 次旋轉，你需要連續玩 94 天才能驗證一台高波動機的 RTP。這就是為什麼我們需要依賴第三方審計機構的認證，而不是自己的「感覺」。</div>
+
+        <h2 id="takeaway">關鍵結論</h2>
+        <ol>
+          <li>方差和標準差是波動率的數學定義，不只是「高、中、低」的標籤</li>
+          <li>短期結果偏離 RTP 是正常的，偏離程度取決於標準差</li>
+          <li>你需要的旋轉次數遠超想像才能看到「真實 RTP」</li>
+          <li>不要用個人經驗判斷機台好壞，那是統計上不可靠的</li>
+        </ol>
+
+        <h2 id="conclusion">結論</h2>
+        <p>方差和標準差不是學術上的抽象概念 — 它們直接決定了你每次走進（或登入）娛樂城時的體驗。理解這些數學，你就能用更理性的態度面對贏和輸。數字不會騙你，但你的直覺會。</p>
+
+        <div class="ad-inline"><div class="ad-banner">/* ad: post-footer */</div></div>
+
+        <div class="related-posts">
+          <h3>相關文章</h3>
+          <div class="post-list">
+            <a href="slot-volatility-math.html" class="post-item">
+              <div class="post-accent post-accent-purple"></div>
+              <div class="post-body">
+                <div class="post-title">老虎機波動率的數學模型</div>
+                <div class="post-meta"><span class="cat-pill cat-rtp">RTP</span><span>11 min read</span></div>
+              </div>
+            </a>
+            <a href="rtp-vs-hit-frequency.html" class="post-item">
+              <div class="post-accent post-accent-purple"></div>
+              <div class="post-body">
+                <div class="post-title">RTP vs 命中率</div>
+                <div class="post-meta"><span class="cat-pill cat-rtp">RTP</span><span>9 min read</span></div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <aside class="toc-sidebar">
+      <div class="toc">
+        <div class="toc-title">目錄</div>
+        <ul class="toc-list">
+          <li><a href="#basics">基礎概念</a></li>
+          <li><a href="#what-sd-means">標準差的意義</a></li>
+          <li><a href="#cv">變異係數</a></li>
+          <li><a href="#confidence-intervals">信賴區間</a></li>
+          <li><a href="#practical-use">實際應用</a></li>
+          <li><a href="#takeaway">關鍵結論</a></li>
+          <li><a href="#conclusion">結論</a></li>
+        </ul>
+      </div>
+      <div class="ad-article-sidebar" id="article-sidebar-ad"></div>
+    </aside>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="../js/components.js"></script>
+  <script>
+    initPage('rtp');
+    document.getElementById('breadcrumb').innerHTML = renderBreadcrumb([
+      { href: BASE_URL + '/', label: '~' },
+      { href: BASE_URL + '/rtp/', label: 'RTP' },
+      { href: '', label: '方差與標準差' }
+    ]);
+    document.getElementById('article-author').innerHTML = renderAuthor('2026-06-17', '11 min read');
+  </script>
+</body>
+</html>

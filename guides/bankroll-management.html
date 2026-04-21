@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>資金管理完全指南：用工程師思維控制風險 | 大衛の電子攻略站</title>
+  <meta name="description" content="用工程師的系統化思維建立資金管理策略，包含預算分配、停損機制、波動率匹配與凱利公式的實際應用。">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="資金管理完全指南：用工程師思維控制風險">
+  <meta property="og:description" content="系統化的資金管理策略與風險控制方法。">
+  <meta property="article:published_time" content="2026-06-05">
+  <meta property="article:section" content="攻略">
+  <link rel="canonical" href="https://www.rtp96.com/guides/bankroll-management.html">
+  <link rel="icon" type="image/png" href="../images/favicon-32.png">
+  <link rel="stylesheet" href="../style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "資金管理完全指南：用工程師思維控制風險",
+    "datePublished": "2026-06-05",
+    "dateModified": "2026-06-05",
+    "author": { "@type": "Person", "name": "大衛 (David)" },
+    "publisher": { "@type": "Person", "name": "大衛 (David)" },
+    "description": "系統化的資金管理策略與風險控制方法。",
+    "mainEntityOfPage": "https://www.rtp96.com/guides/bankroll-management.html"
+  }
+  </script>
+</head>
+<body>
+  <div id="site-header"></div>
+  <div id="breadcrumb"></div>
+
+  <div id="header-ad"></div>
+
+  <div class="article-layout">
+    <article class="article-main">
+      <header class="article-header">
+        <div style="margin-bottom:10px;"><span class="cat-pill cat-guides">攻略</span></div>
+        <h1>資金管理完全指南：用工程師思維控制風險</h1>
+      </header>
+      <div id="article-author"></div>
+
+      <div class="article-content">
+        <p>在老虎機的世界裡，RTP 決定了你的長期預期回報，波動率決定了你的短期體驗，但真正決定你能不能「活著離開」的，是資金管理。</p>
+
+        <p>我把程式開發中的「風險管控」概念搬過來，建立了一套系統化的資金管理框架。這不是什麼秘訣，就是紀律和數學。</p>
+
+        <h2 id="mindset">正確的心態設定</h2>
+        <p>首先要建立一個核心觀念：<strong>你帶去玩的錢，是「娛樂預算」而不是「投資本金」</strong>。</p>
+        <p>這筆錢跟你買電影票、吃大餐的錢一樣，是花出去就不期望回來的。如果你帶了 5,000 元去玩，心理預期就是這 5,000 元可能全部輸光。能帶走任何金額都是 bonus。</p>
+
+        <div class="david-note">我自己的做法是：每個月設定一個固定的「娛樂預算」，這筆錢完全獨立於生活費、儲蓄和投資。如果這個月的預算用完了，就等下個月。聽起來很無聊對吧？但這個方法讓我在過去一年裡從來沒有因為玩老虎機而產生任何財務壓力。</div>
+
+        <h2 id="budget-allocation">預算分配法</h2>
+        <p>假設你這個月的娛樂預算是 10,000 元。我的建議是這樣分配：</p>
+
+        <div class="info-box">
+          <h4>// bankroll_allocation</h4>
+          <p>總預算：10,000 元</p>
+          <p>分成 4 個 Session（每次玩的單位）：每 Session 2,500 元</p>
+          <p>每 Session 的投注額上限 = Session 預算 / 200</p>
+          <p>= 2,500 / 200 = 12.5 元 → 取整為 10 元/次</p>
+          <p>也就是說，每次旋轉最多投注 10 元，確保每個 Session 至少能玩 250 次。</p>
+        </div>
+
+        <p>為什麼是 200 次？因為對中高波動的老虎機來說，200 次旋轉大約是「可能觸發 1~2 次 Free Spin」的最低門檻。如果你的預算連 200 次都撐不到，你很可能在觸發 Bonus 之前就破產了。</p>
+
+        <h2 id="stop-loss">停損與停利機制</h2>
+
+        <h3>停損線</h3>
+        <p>每個 Session 虧損 60% 時強制停止。以 2,500 元的 Session 來說，就是虧到剩 1,000 元時停。</p>
+        <p>為什麼不是 100%？因為留下最後 40% 的預算可以讓你下次玩時有更好的起點。而且當你已經虧了 60%，心態通常已經不穩定了，繼續玩只會做出更差的決策。</p>
+
+        <h3>停利線</h3>
+        <p>當你的資金翻倍時（從 2,500 變成 5,000），至少提走 50% 的利潤（1,250 元）。剩下的可以繼續玩，但心態上你已經「回本 + 賺了」。</p>
+
+        <div class="david-note">停損容易，停利難。我自己也曾經犯過這個錯誤 — 贏了 3,000 元不走，想著「手氣正順」繼續加碼，結果一小時後不但利潤沒了，連本金都賠進去。後來我給自己設了一個規則：翻倍就強制提走一半，不管多不想走。規則就是規則，不允許例外。</div>
+
+        <h2 id="volatility-matching">波動率匹配</h2>
+        <p>你的預算大小應該跟遊戲的波動率匹配：</p>
+
+        <table>
+          <thead>
+            <tr><th>波動率</th><th>建議最低預算</th><th>適合的投注頻率</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>低</td><td>100x 投注額</td><td>每小時 200~400 次</td></tr>
+            <tr><td>中</td><td>200x 投注額</td><td>每小時 150~300 次</td></tr>
+            <tr><td>中高</td><td>300x 投注額</td><td>每小時 100~200 次</td></tr>
+            <tr><td>高</td><td>500x 投注額</td><td>每小時 80~150 次</td></tr>
+            <tr><td>極高</td><td>1,000x 投注額</td><td>每小時 50~100 次</td></tr>
+          </tbody>
+        </table>
+
+        <p>如果你只有 3,000 元，卻想玩極高波動的機台，那你的單次投注額不應該超過 3 元。否則你的破產機率會高到不合理。</p>
+
+        <div class="ad-inline"></div>
+
+        <h2 id="kelly-criterion">凱利公式的簡化應用</h2>
+        <p>凱利公式（Kelly Criterion）是投資界用來計算最佳投注比例的數學工具。原版公式是：</p>
+        <p><strong>f* = (bp - q) / b</strong></p>
+        <p>其中 f* = 最佳投注比例，b = 賠率，p = 獲勝機率，q = 失敗機率。</p>
+        <p>但對老虎機來說，因為長期期望值是負的（RTP < 100%），凱利公式的結果會是負數 — 意思是「最佳策略是不要下注」。</p>
+        <p>所以凱利公式在老虎機中的實際應用不是告訴你「該下多少」，而是提醒你：<strong>從純數學角度看，老虎機是一個負期望值的遊戲，你付出的是娛樂的代價。</strong></p>
+
+        <h2 id="tracking">記錄與追蹤</h2>
+        <p>最後一個建議：記錄你的每次遊戲。我自己用一個簡單的試算表追蹤：</p>
+        <ul>
+          <li>日期</li>
+          <li>遊戲名稱</li>
+          <li>起始金額</li>
+          <li>結束金額</li>
+          <li>遊玩時間</li>
+          <li>備註（是否觸發 Bonus、特殊事件等）</li>
+        </ul>
+        <p>累積一段時間之後，你就能看出自己的模式 — 哪些遊戲你的表現比較好、你通常在什麼時候開始做出不理性的決定。數據是最好的鏡子。</p>
+
+        <h2 id="conclusion">結論</h2>
+        <p>資金管理不性感，但它是你在老虎機世界裡存活的基礎。設定預算、分配 Session、執行停損停利、匹配波動率。這四件事做好了，你就已經比 90% 的玩家更有紀律。記住：贏錢的人不一定有好運，但他們一定有好的紀律。</p>
+
+        <div class="ad-inline"><div class="ad-banner">/* ad: post-footer */</div></div>
+
+        <div class="related-posts">
+          <h3>相關文章</h3>
+          <div class="post-list">
+            <a href="when-to-stop.html" class="post-item">
+              <div class="post-accent post-accent-green"></div>
+              <div class="post-body">
+                <div class="post-title">什麼時候該停？最佳離場時機</div>
+                <div class="post-meta"><span class="cat-pill cat-guides">攻略</span><span>9 min read</span></div>
+              </div>
+            </a>
+            <a href="responsible-gambling.html" class="post-item">
+              <div class="post-accent post-accent-green"></div>
+              <div class="post-body">
+                <div class="post-title">負責任博彩指南</div>
+                <div class="post-meta"><span class="cat-pill cat-guides">攻略</span><span>8 min read</span></div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <aside class="toc-sidebar">
+      <div class="toc">
+        <div class="toc-title">目錄</div>
+        <ul class="toc-list">
+          <li><a href="#mindset">正確心態</a></li>
+          <li><a href="#budget-allocation">預算分配法</a></li>
+          <li><a href="#stop-loss">停損與停利</a></li>
+          <li><a href="#volatility-matching">波動率匹配</a></li>
+          <li><a href="#kelly-criterion">凱利公式</a></li>
+          <li><a href="#tracking">記錄追蹤</a></li>
+          <li><a href="#conclusion">結論</a></li>
+        </ul>
+      </div>
+      <div class="ad-article-sidebar" id="article-sidebar-ad"></div>
+    </aside>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="../js/components.js"></script>
+  <script>
+    initPage('guides');
+    document.getElementById('breadcrumb').innerHTML = renderBreadcrumb([
+      { href: BASE_URL + '/', label: '~' },
+      { href: BASE_URL + '/guides/', label: '攻略' },
+      { href: '', label: '資金管理指南' }
+    ]);
+    document.getElementById('article-author').innerHTML = renderAuthor('2026-06-05', '10 min read');
+  </script>
+</body>
+</html>

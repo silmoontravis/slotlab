@@ -1,0 +1,22 @@
+name: Auto Publish to Cloudflare Pages
+
+on:
+  schedule:
+    # Every 2 days at 09:00 UTC (17:00 Taiwan time)
+    - cron: '0 9 */2 * *'
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          command: pages deploy . --project-name=rtp96 --branch=main
