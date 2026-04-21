@@ -170,8 +170,23 @@ function renderAuthor(date, readTime) {
   </div>`;
 }
 
+// GA4 Tracking
+function initGA() {
+  if (document.querySelector('script[src*="gtag"]')) return;
+  const s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-WD5D746KC6';
+  document.head.appendChild(s);
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.gtag = gtag;
+  gtag('js', new Date());
+  gtag('config', 'G-WD5D746KC6');
+}
+
 // Initialize page
 function initPage(activePage) {
+  initGA();
   const headerEl = document.getElementById('site-header');
   if (headerEl) headerEl.innerHTML = renderHeader(activePage);
 
