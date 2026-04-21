@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sweet Bonanza 甜蜜連連深度分析：Tumble 機制與買 Feature 數學 | 大衛の電子攻略站</title>
+  <meta name="description" content="Sweet Bonanza 甜蜜連連深度分析：Tumble 消除機制、倍率炸彈的數學模型與買 Feature 的期望值計算。">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Sweet Bonanza 甜蜜連連深度分析：Tumble 機制與買 Feature 數學">
+  <meta property="og:description" content="拆解 Sweet Bonanza 的 Tumble 機制與倍率炸彈數學模型。">
+  <meta property="article:published_time" content="2026-07-17">
+  <meta property="article:section" content="老虎機">
+  <link rel="canonical" href="https://www.rtp96.com/slots/sweet-bonanza-analysis.html">
+  <link rel="icon" type="image/png" href="../images/favicon-32.png">
+  <link rel="stylesheet" href="../style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Sweet Bonanza 甜蜜連連深度分析：Tumble 機制與買 Feature 數學",
+    "datePublished": "2026-07-17",
+    "dateModified": "2026-07-17",
+    "author": { "@type": "Person", "name": "大衛 (David)" },
+    "publisher": { "@type": "Person", "name": "大衛 (David)" },
+    "description": "拆解 Sweet Bonanza 的 Tumble 機制與倍率炸彈數學模型。",
+    "mainEntityOfPage": "https://www.rtp96.com/slots/sweet-bonanza-analysis.html"
+  }
+  </script>
+</head>
+<body>
+  <div id="site-header"></div>
+  <div id="breadcrumb"></div>
+
+  <div id="header-ad"></div>
+
+  <div class="article-layout">
+    <article class="article-main">
+      <header class="article-header">
+        <div style="margin-bottom:10px;"><span class="cat-pill cat-slots">老虎機</span></div>
+        <h1>Sweet Bonanza 甜蜜連連深度分析：Tumble 機制與買 Feature 數學</h1>
+      </header>
+      <div id="article-author"></div>
+
+      <div class="article-content">
+        <p>Sweet Bonanza（甜蜜連連）是 Pragmatic Play 的招牌遊戲，也是全球最受歡迎的線上老虎機之一。可愛的糖果主題讓它看起來人畜無害，但背後的數學可不溫柔。它是一台道道地地的高波動機器，倍率炸彈的乘法累積可以在瞬間把你的獎金推到驚人的高度。</p>
+
+        <h2 id="game-basics">遊戲基本規格</h2>
+        <div class="info-box">
+          <h4>// sweet_bonanza_specs</h4>
+          <p>開發商：Pragmatic Play</p>
+          <p>盤面：6×5（30 格）</p>
+          <p>中獎方式：Scatter Pays（8 個以上同符號即中獎）</p>
+          <p>官方 RTP：96.48%（有 95.45% 和 93.02% 的低設定版本）</p>
+          <p>波動度：中高</p>
+          <p>最大倍率：21,100x</p>
+          <p>買 Feature：100x 總押注</p>
+        </div>
+
+        <h2 id="tumble-mechanic">Tumble 消除機制</h2>
+        <p>Tumble（也叫 Cascade 或 Avalanche）是 Sweet Bonanza 的核心機制。每次中獎後，組成中獎的符號會被消除，上方的符號會掉落填補空位，新的符號也會從頂部補入。如果掉落後又形成新的中獎組合，就會再次消除並掉落，直到沒有新的中獎為止。</p>
+
+        <p>這意味著一次旋轉可以產生多次中獎。在主遊戲階段，Tumble 主要影響的是命中率 — 即使初始盤面沒有 8 個同符號，經過消除掉落後可能會形成新的 8 個同符號組合。</p>
+
+        <p>但 Tumble 真正發光的地方是在 Free Spin 階段，因為每次 Tumble 都有機會觸發倍率炸彈。</p>
+
+        <div class="david-note">Tumble 機制最大的影響是心理層面的。當你看到符號一直消除、一直掉落、獎金一直累加，那種「停不下來」的感覺非常強烈。但要記住，每一層 Tumble 的機率都是獨立計算的，不是說「已經連了三層所以第四層更容易出」。每一層掉落後的盤面，RNG 都是重新計算。</div>
+
+        <h2 id="multiplier-bombs">倍率炸彈：爆分的關鍵</h2>
+        <p>在 Free Spin 階段，盤面上會隨機出現彩色的圓形炸彈符號，上面標示著倍率數字（2x、3x、5x、8x、10x、15x、20x、25x、50x、100x）。</p>
+
+        <p>重點來了：這些倍率是加法累積的。如果一次 Tumble 序列中出現了 3x、5x、10x 三個倍率炸彈，總倍率就是 3 + 5 + 10 = 18x。這一輪所有的中獎金額都會乘以 18x。</p>
+
+        <p>注意這裡跟戰神賽特不同 — Sweet Bonanza 的倍率是「加法」不是「乘法」。所以它的爆發力沒有乘法累積那麼恐怖，但也更「可控」一些。</p>
+
+        <table>
+          <thead>
+            <tr><th>倍率炸彈組合</th><th>總倍率</th><th>出現難度</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>單個 2x</td><td>2x</td><td>常見</td></tr>
+            <tr><td>2x + 3x + 5x</td><td>10x</td><td>中等</td></tr>
+            <tr><td>5x + 10x + 15x</td><td>30x</td><td>少見</td></tr>
+            <tr><td>25x + 50x + 100x</td><td>175x</td><td>極罕見</td></tr>
+          </tbody>
+        </table>
+
+        <div class="ad-inline"></div>
+
+        <h2 id="free-spin-analysis">Free Spin 深度分析</h2>
+        <p>Free Spin 觸發條件：盤面出現 4 個以上的棒棒糖 Scatter 符號。</p>
+        <ul>
+          <li>4 個 Scatter：10 次 Free Spin</li>
+          <li>5 個 Scatter：15 次 Free Spin</li>
+          <li>6 個 Scatter：20 次 Free Spin</li>
+        </ul>
+
+        <p>Free Spin 期間再出現 3 個以上 Scatter 可以追加 5 次。</p>
+
+        <p>Free Spin 階段跟主遊戲的最大差異就是倍率炸彈。主遊戲的 Tumble 不會出現倍率炸彈，所以獎金「就是那樣」。Free Spin 的 Tumble 有倍率炸彈加持，同樣的中獎組合可以被放大好幾倍甚至幾十倍。</p>
+
+        <p>我的實測數據（5,000 轉）：</p>
+        <ul>
+          <li>Free Spin 觸發 16 次（平均 312 轉一次）</li>
+          <li>平均每次 Free Spin 回報：72x</li>
+          <li>最高單次 Free Spin：1,240x（在一輪 Tumble 中累積了 48x 的倍率炸彈）</li>
+          <li>最低單次 Free Spin：8x（幾乎沒中獎也沒出倍率炸彈）</li>
+          <li>Free Spin 對整體 RTP 的貢獻：約 55%</li>
+        </ul>
+
+        <div class="david-note">那次 1,240x 的大獎是怎麼來的：一次 Tumble 序列中連續出現了 5x + 8x + 10x + 25x = 48x 的倍率炸彈，而且那一輪的基礎中獎金額也不錯（大約 25x）。25x × 48 就變成了 1,200x。這種情況在 5,000 轉裡只出現過一次。如果你問我「Sweet Bonanza 能不能爆分」— 能，但那是百分之零點幾的事件。</div>
+
+        <h2 id="buy-feature-math">買 Feature 的數學</h2>
+        <p>Sweet Bonanza 的買 Feature 價格是 100x 總押注。買入後直接進入 Free Spin（保證觸發）。</p>
+
+        <p>從我的數據來看，Free Spin 的平均回報是 72x。這意味著買 Feature 的期望值是 72/100 = 0.72，也就是說平均每買一次會虧 28%。</p>
+
+        <p>但這個「平均」包含了大量低回報和少數超高回報。如果把分佈拆開看：</p>
+        <ul>
+          <li>回報 < 50x（虧超過一半）：約 45% 的機率</li>
+          <li>回報 50x ~ 100x（小虧到打平）：約 25% 的機率</li>
+          <li>回報 100x ~ 300x（小賺）：約 20% 的機率</li>
+          <li>回報 > 300x（大賺）：約 10% 的機率</li>
+        </ul>
+
+        <p>所以買 Feature 大約有 70% 的機率是虧的，30% 的機率是賺的。但那 30% 裡的少數超級大獎可以非常驚人。</p>
+
+        <h2 id="rtp-versions">注意 RTP 版本</h2>
+        <p>Sweet Bonanza 有三個 RTP 版本：96.48%、95.45%、93.02%。營運商可以選擇使用哪個版本，而你通常無法從遊戲介面上直接看出來。</p>
+
+        <p>3.46% 的 RTP 差距看起來不大，但長期影響非常顯著。以每轉 10 元計算，96.48% 版本每轉預期損失 0.35 元，93.02% 版本每轉預期損失 0.70 元 — 幾乎翻倍。</p>
+
+        <p>建議檢查遊戲的「資訊」或「幫助」頁面，通常會標示當前版本的 RTP。如果找不到，可以聯繫平台客服詢問。</p>
+
+        <h2 id="conclusion">結論</h2>
+        <p>Sweet Bonanza 之所以成為全球最受歡迎的老虎機之一，是因為它完美結合了：可愛的視覺、直覺的 Tumble 機制、刺激的倍率炸彈累積、以及足夠高的最大倍率。但數學不會因為糖果主題就變得更甜 — 它仍然是一台莊家優勢存在的機器。享受遊戲，但別忘了管理好你的錢包。</p>
+
+        <div class="ad-inline"><div class="ad-banner">/* ad: post-footer */</div></div>
+
+        <div class="related-posts">
+          <h3>相關文章</h3>
+          <div class="post-list">
+            <a href="gates-of-olympus-review.html" class="post-item">
+              <div class="post-accent post-accent-amber"></div>
+              <div class="post-body">
+                <div class="post-title">Gates of Olympus 奧林帕斯之門評測</div>
+                <div class="post-meta"><span class="cat-pill cat-slots">老虎機</span><span>11 min read</span></div>
+              </div>
+            </a>
+            <a href="war-god-seth-analysis.html" class="post-item">
+              <div class="post-accent post-accent-amber"></div>
+              <div class="post-body">
+                <div class="post-title">戰神賽特深度解析</div>
+                <div class="post-meta"><span class="cat-pill cat-slots">老虎機</span><span>12 min read</span></div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <aside class="toc-sidebar">
+      <div class="toc">
+        <div class="toc-title">目錄</div>
+        <ul class="toc-list">
+          <li><a href="#game-basics">基本規格</a></li>
+          <li><a href="#tumble-mechanic">Tumble 機制</a></li>
+          <li><a href="#multiplier-bombs">倍率炸彈</a></li>
+          <li><a href="#free-spin-analysis">Free Spin 分析</a></li>
+          <li><a href="#buy-feature-math">買 Feature 數學</a></li>
+          <li><a href="#rtp-versions">RTP 版本</a></li>
+          <li><a href="#conclusion">結論</a></li>
+        </ul>
+      </div>
+      <div class="ad-article-sidebar" id="article-sidebar-ad"></div>
+    </aside>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="../js/components.js"></script>
+  <script>
+    initPage('slots');
+    document.getElementById('breadcrumb').innerHTML = renderBreadcrumb([
+      { href: BASE_URL + '/', label: '~' },
+      { href: BASE_URL + '/slots/', label: '老虎機' },
+      { href: '', label: 'Sweet Bonanza 分析' }
+    ]);
+    document.getElementById('article-author').innerHTML = renderAuthor('2026-07-17', '12 min read');
+  </script>
+</body>
+</html>

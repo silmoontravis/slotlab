@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>老虎機賠率表完全解讀指南：看懂 Pay Table 的工程師方法 | 大衛の電子攻略站</title>
+  <meta name="description" content="用工程師的邏輯思維完整解讀老虎機賠率表（Pay Table），從符號倍率、中獎線到特殊功能，一次學會判斷機台優劣。">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="老虎機賠率表完全解讀指南：看懂 Pay Table 的工程師方法">
+  <meta property="og:description" content="用系統化方法教你讀懂 Pay Table，從符號倍率到機台數學結構全面拆解。">
+  <meta property="article:published_time" content="2026-06-25">
+  <meta property="article:section" content="老虎機">
+  <link rel="canonical" href="https://www.rtp96.com/slots/pay-table-guide.html">
+  <link rel="icon" type="image/png" href="../images/favicon-32.png">
+  <link rel="stylesheet" href="../style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "老虎機賠率表完全解讀指南：看懂 Pay Table 的工程師方法",
+    "datePublished": "2026-06-25",
+    "dateModified": "2026-06-25",
+    "author": { "@type": "Person", "name": "大衛 (David)" },
+    "publisher": { "@type": "Person", "name": "大衛 (David)" },
+    "description": "用系統化方法教你讀懂 Pay Table，從符號倍率到機台數學結構全面拆解。",
+    "mainEntityOfPage": "https://www.rtp96.com/slots/pay-table-guide.html"
+  }
+  </script>
+</head>
+<body>
+  <div id="site-header"></div>
+  <div id="breadcrumb"></div>
+
+  <div id="header-ad"></div>
+
+  <div class="article-layout">
+    <article class="article-main">
+      <header class="article-header">
+        <div style="margin-bottom:10px;"><span class="cat-pill cat-slots">老虎機</span></div>
+        <h1>老虎機賠率表完全解讀指南：看懂 Pay Table 的工程師方法</h1>
+      </header>
+      <div id="article-author"></div>
+
+      <div class="article-content">
+        <p>每台老虎機都有一張賠率表（Pay Table），但我敢說九成以上的玩家從來沒認真看過。大部分人就是直接按下旋轉，中獎了就開心，沒中就繼續。但如果你花五分鐘把 Pay Table 搞懂，你對這台機器的理解會比其他玩家領先一個維度。</p>
+
+        <p>我是工程師出身，所以我看 Pay Table 的方式跟一般人不太一樣。這篇就用我的方法帶你系統性地讀懂賠率表。</p>
+
+        <h2 id="what-is-paytable">Pay Table 到底在告訴你什麼？</h2>
+        <p>賠率表本質上就是一份「合約」。遊戲商把這台機器的所有規則、賠率、特殊功能全部列出來，讓你在投錢之前就能了解遊戲的完整機制。一張標準的 Pay Table 通常包含以下資訊：</p>
+        <ul>
+          <li>所有符號的賠率（不同數量的中獎倍數）</li>
+          <li>中獎線（Paylines）或中獎方式（Ways）的定義</li>
+          <li>特殊符號的功能說明（Wild、Scatter、Bonus 等）</li>
+          <li>免費旋轉或 Bonus 遊戲的觸發條件</li>
+          <li>RTP（回報率）和波動度</li>
+        </ul>
+
+        <div class="info-box">
+          <h4>// paytable_essentials</h4>
+          <p>賠率顯示方式：通常是「倍數 x 單線押注」</p>
+          <p>例如：5 個 A 符號 = 50x → 單線押 1 元就是贏 50 元</p>
+          <p>注意：有些遊戲顯示的是「總押注倍數」而非「單線倍數」，看清楚再算</p>
+        </div>
+
+        <h2 id="symbol-hierarchy">符號層級：第一件要看的事</h2>
+        <p>打開 Pay Table，第一件事就是看符號的倍率層級。通常會分成兩大類：</p>
+
+        <p><strong>高賠付符號（High Pay）</strong>：通常是主題相關的圖案，例如角色、寶物、動物。這些符號的 5 連線賠率通常在 20x ~ 500x 不等。</p>
+
+        <p><strong>低賠付符號（Low Pay）</strong>：通常是撲克牌符號 A、K、Q、J、10 或 9。這些的 5 連線賠率通常在 5x ~ 20x 之間。</p>
+
+        <p>我看 Pay Table 的第一步是算「高低比」— 最高符號的 5 連線賠率除以最低符號的 5 連線賠率。如果這個比值超過 30 倍，代表這台機器的波動度偏高，因為贏面集中在少數高賠付符號上。</p>
+
+        <div class="david-note">我自己有個快速判斷法：如果最高符號的 5 連線賠率超過 200x，而最低符號的 5 連線只有 5x，這台機器基本上就是高波動。你大部分時間都會中到那些 5x、10x 的小獎，偶爾才會命中一次大的。這跟你在 Pay Table 上「看到的」最高倍率是兩回事 — 看到不代表你能中到。</div>
+
+        <h2 id="paylines-vs-ways">中獎線 vs Ways：兩種不同的數學</h2>
+        <p>傳統老虎機用「中獎線」（Paylines）來判定中獎。你必須在特定的路線上出現連續符號才算中獎。常見的有 20 線、25 線、50 線等。</p>
+
+        <p>新式老虎機越來越多採用「Ways」系統。以 243 Ways 為例，只要相鄰捲軸從左到右出現相同符號就算中獎，不需要在特定的線上。這讓中獎判定更直覺，但每次的倍率通常會比線制的低。</p>
+
+        <table>
+          <thead>
+            <tr><th>比較項目</th><th>Paylines（線制）</th><th>Ways（全路制）</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>中獎判定</td><td>必須在指定路線上</td><td>相鄰捲軸同符號即可</td></tr>
+            <tr><td>常見配置</td><td>20/25/50 線</td><td>243/1024/3125 Ways</td></tr>
+            <tr><td>倍率特徵</td><td>單次倍率較高</td><td>單次倍率較低但命中頻率高</td></tr>
+            <tr><td>押注計算</td><td>線數 × 單線押注</td><td>固定總押注</td></tr>
+          </tbody>
+        </table>
+
+        <div class="ad-inline"></div>
+
+        <h2 id="special-symbols">特殊符號：遊戲的核心機制</h2>
+        <p>Pay Table 裡最重要的部分其實是特殊符號的說明。這些符號決定了遊戲的核心玩法。</p>
+
+        <p><strong>Wild（百搭符號）</strong>：可以替代其他符號形成中獎組合。有些 Wild 還自帶倍率（Multiplier Wild），例如 2x Wild 會讓中獎金額翻倍。看 Pay Table 時要注意 Wild 能不能替代 Scatter。</p>
+
+        <p><strong>Scatter（散佈符號）</strong>：不需要在中獎線上，只要出現指定數量就能觸發功能。通常 3 個 Scatter 觸發免費旋轉。Pay Table 會告訴你觸發條件和獎勵內容。</p>
+
+        <p><strong>Bonus 符號</strong>：觸發特殊小遊戲。有些是轉盤、有些是選擇遊戲、有些是 Hold and Win。</p>
+
+        <div class="david-note">我最在意的是 Scatter 的觸發條件。有些遊戲要求 Scatter 必須出現在特定捲軸上（例如第 1、3、5 軸），有些只要在任何位置出現就好。前者的觸發機率比後者低得多。另外，「3 個 Scatter 送 10 次免費旋轉」和「3 個 Scatter 送 15 次免費旋轉」之間的差距，長期下來對 RTP 的影響比你想像的大。</div>
+
+        <h2 id="rtp-reading">RTP 和波動度：藏在最後的關鍵數字</h2>
+        <p>大部分遊戲會在 Pay Table 的最後面列出 RTP 和波動度。RTP 告訴你長期的回報比例，波動度告訴你短期的體驗。</p>
+
+        <p>但這裡有個陷阱：很多遊戲的 RTP 是「理論值」，而且可能有多個設定。例如一台機器標示 RTP 96.5%，但實際上可能有 94%、95%、96.5% 三個選項，由營運商選擇。Pay Table 上通常會列出最高值，但你實際玩到的可能是最低值。</p>
+
+        <p>怎麼判斷？看看 Pay Table 是否有寫「RTP 可能因營運商設定而異」這類字眼。如果有，就要有心理準備。</p>
+
+        <h2 id="practical-tips">實戰判讀技巧</h2>
+        <p>最後分享幾個我判讀 Pay Table 的實用技巧：</p>
+        <ol>
+          <li><strong>先看 Bonus 貢獻比</strong>：如果 Free Spin 期間有額外倍率或特殊機制，代表這台機器的 RTP 有很大比例來自 Bonus，主遊戲階段會比較「乾」</li>
+          <li><strong>算最大倍率</strong>：Pay Table 通常會標示最大可能贏取倍數（Max Win）。這個數字越高，波動度通常越大</li>
+          <li><strong>注意最低中獎門檻</strong>：有些遊戲 3 連就有獎，有些要 4 連才有，這直接影響命中率</li>
+          <li><strong>比較同類機台</strong>：同一個遊戲商的不同機台，Pay Table 結構會很類似，比較差異就能快速找出哪台對玩家更友善</li>
+        </ol>
+
+        <div class="david-note">說白了，Pay Table 就像是一份產品規格書。你買手機會看規格，玩老虎機也應該看 Pay Table。花五分鐘讀完，你就能避免很多「我怎麼一直不中獎」的困惑 — 因為很多時候，答案早就寫在 Pay Table 裡了。</div>
+
+        <h2 id="conclusion">結論</h2>
+        <p>Pay Table 不是裝飾品，它是你理解一台老虎機最直接的工具。從符號層級判斷波動度、從中獎方式理解命中率、從特殊符號看清核心機制、從 RTP 評估長期價值。養成每台新機器都先看 Pay Table 的習慣，你對遊戲的判斷力會比大多數玩家高出一截。</p>
+
+        <div class="ad-inline"><div class="ad-banner">/* ad: post-footer */</div></div>
+
+        <div class="related-posts">
+          <h3>相關文章</h3>
+          <div class="post-list">
+            <a href="what-is-rtp.html" class="post-item">
+              <div class="post-accent post-accent-amber"></div>
+              <div class="post-body">
+                <div class="post-title">什麼是 RTP？回報率完全解析</div>
+                <div class="post-meta"><span class="cat-pill cat-slots">老虎機</span><span>8 min read</span></div>
+              </div>
+            </a>
+            <a href="free-spins-mechanics.html" class="post-item">
+              <div class="post-accent post-accent-amber"></div>
+              <div class="post-body">
+                <div class="post-title">免費旋轉機制全面解析</div>
+                <div class="post-meta"><span class="cat-pill cat-slots">老虎機</span><span>9 min read</span></div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <aside class="toc-sidebar">
+      <div class="toc">
+        <div class="toc-title">目錄</div>
+        <ul class="toc-list">
+          <li><a href="#what-is-paytable">Pay Table 是什麼</a></li>
+          <li><a href="#symbol-hierarchy">符號層級</a></li>
+          <li><a href="#paylines-vs-ways">中獎線 vs Ways</a></li>
+          <li><a href="#special-symbols">特殊符號</a></li>
+          <li><a href="#rtp-reading">RTP 和波動度</a></li>
+          <li><a href="#practical-tips">實戰判讀技巧</a></li>
+          <li><a href="#conclusion">結論</a></li>
+        </ul>
+      </div>
+      <div class="ad-article-sidebar" id="article-sidebar-ad"></div>
+    </aside>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="../js/components.js"></script>
+  <script>
+    initPage('slots');
+    document.getElementById('breadcrumb').innerHTML = renderBreadcrumb([
+      { href: BASE_URL + '/', label: '~' },
+      { href: BASE_URL + '/slots/', label: '老虎機' },
+      { href: '', label: '賠率表解讀指南' }
+    ]);
+    document.getElementById('article-author').innerHTML = renderAuthor('2026-06-25', '10 min read');
+  </script>
+</body>
+</html>

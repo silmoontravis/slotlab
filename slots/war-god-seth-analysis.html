@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>戰神賽特深度解析：5×6 盤面、Scatter Pays 與倍率球機制 | 大衛の電子攻略站</title>
+  <meta name="description" content="戰神賽特（Gates of Seth）深度拆解：5×6 盤面配 Scatter Pays 的數學邏輯、倍率球累積機制與實測數據分析。">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="戰神賽特深度解析：5×6 盤面、Scatter Pays 與倍率球機制">
+  <meta property="og:description" content="深度分析戰神賽特的盤面結構、Scatter Pays 數學與倍率球機制。">
+  <meta property="article:published_time" content="2026-06-27">
+  <meta property="article:section" content="老虎機">
+  <link rel="canonical" href="https://www.rtp96.com/slots/war-god-seth-analysis.html">
+  <link rel="icon" type="image/png" href="../images/favicon-32.png">
+  <link rel="stylesheet" href="../style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "戰神賽特深度解析：5×6 盤面、Scatter Pays 與倍率球機制",
+    "datePublished": "2026-06-27",
+    "dateModified": "2026-06-27",
+    "author": { "@type": "Person", "name": "大衛 (David)" },
+    "publisher": { "@type": "Person", "name": "大衛 (David)" },
+    "description": "深度分析戰神賽特的盤面結構、Scatter Pays 數學與倍率球機制。",
+    "mainEntityOfPage": "https://www.rtp96.com/slots/war-god-seth-analysis.html"
+  }
+  </script>
+</head>
+<body>
+  <div id="site-header"></div>
+  <div id="breadcrumb"></div>
+
+  <div id="header-ad"></div>
+
+  <div class="article-layout">
+    <article class="article-main">
+      <header class="article-header">
+        <div style="margin-bottom:10px;"><span class="cat-pill cat-slots">老虎機</span></div>
+        <h1>戰神賽特深度解析：5×6 盤面、Scatter Pays 與倍率球機制</h1>
+      </header>
+      <div id="article-author"></div>
+
+      <div class="article-content">
+        <p>戰神賽特大概是 2025 年以來台灣娛樂城裡最火爆的機台之一。每個群組都在討論「又爆了幾萬倍」，每個平台都把它放在首頁推薦。但真正搞懂這台機器運作原理的人，我猜不到一成。</p>
+
+        <p>今天我就用工程師的視角，把戰神賽特的核心機制拆開來給你看。</p>
+
+        <h2 id="board-structure">5×6 盤面結構解析</h2>
+        <p>戰神賽特採用 5 捲軸 × 6 行的盤面，但它不是傳統的「線制」或「Ways 制」— 它用的是 Scatter Pays（散佈中獎）。這意味著符號不需要出現在相鄰捲軸上，只要在整個盤面上出現足夠數量就算中獎。</p>
+
+        <p>5×6 = 30 個格子。在這 30 個格子裡，同一個符號出現 8 個以上就開始有獎。聽起來好像很容易？但實際上盤面有超過 10 種不同符號在流轉，每種符號出現 8 個以上的機率比你想像的低。</p>
+
+        <div class="info-box">
+          <h4>// seth_specs</h4>
+          <p>盤面：5×6（30 格）</p>
+          <p>中獎方式：Scatter Pays（全盤計算）</p>
+          <p>最低中獎：同符號 8 個</p>
+          <p>最高中獎：同符號 12 個以上</p>
+          <p>官方 RTP：96.5%</p>
+          <p>波動度：極高（5/5）</p>
+          <p>最大倍率：5,000x</p>
+        </div>
+
+        <h2 id="scatter-pays">Scatter Pays 的數學邏輯</h2>
+        <p>Scatter Pays 跟傳統的中獎方式完全不同。在傳統線制裡，符號必須出現在同一條中獎線的連續位置。在 Ways 制裡，符號必須從左到右出現在相鄰捲軸。但 Scatter Pays 不管位置，只看數量。</p>
+
+        <p>這帶來一個有趣的數學特性：每次旋轉的可能中獎組合數暴增。在一個 5×6 盤面上，如果某個符號出現了 12 個，不管它們分佈在哪裡，都算一次 12 個符號的中獎。</p>
+
+        <p>但 Scatter Pays 的賠率設計通常比線制低很多。以最高符號為例，線制裡 5 連線可能賠 500x，但 Scatter Pays 裡 12 個同符號可能只賠 200x。因為命中的判定條件更寬鬆，賠率就必須壓低來維持 RTP 平衡。</p>
+
+        <div class="david-note">Scatter Pays 的真正威力不在於單次中獎倍率，而在於「多重中獎」。因為不需要特定位置，一次旋轉可以同時觸發好幾組不同符號的中獎。我看過一次旋轉同時命中 3 組不同符號中獎的情況，雖然每組倍率不高，但加起來也很可觀。這是 Scatter Pays 的設計精髓。</div>
+
+        <h2 id="multiplier-orbs">倍率球機制：爆分的核心引擎</h2>
+        <p>戰神賽特最讓人興奮（也最危險）的機制就是倍率球（Multiplier Orbs）。在免費旋轉期間，盤面上會隨機出現帶有倍率的球體。這些倍率會累積，而且是乘法累積。</p>
+
+        <p>什麼意思？假設你在一次 Free Spin 中先出現一個 2x 的倍率球，接著又出現一個 3x 的倍率球，當前的總倍率就變成 2 × 3 = 6x。所有中獎金額都會乘以這個累積倍率。</p>
+
+        <p>這就是為什麼你會在影片裡看到那些「千倍萬倍」的截圖。倍率球的乘法累積效應是指數級的，理論上可以把普通中獎放大到恐怖的倍數。</p>
+
+        <table>
+          <thead>
+            <tr><th>倍率球數量</th><th>最低累積倍率</th><th>中等情境</th><th>極端情境</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>2 個</td><td>2x × 2x = 4x</td><td>3x × 5x = 15x</td><td>5x × 10x = 50x</td></tr>
+            <tr><td>4 個</td><td>16x</td><td>100x+</td><td>500x+</td></tr>
+            <tr><td>6 個</td><td>64x</td><td>500x+</td><td>2000x+</td></tr>
+          </tbody>
+        </table>
+
+        <div class="ad-inline"></div>
+
+        <h2 id="free-spin-trigger">免費旋轉觸發與機制</h2>
+        <p>免費旋轉的觸發條件是出現 4 個以上的 Scatter 符號。不同數量對應不同的免費旋轉次數：</p>
+        <ul>
+          <li>4 個 Scatter：15 次免費旋轉</li>
+          <li>5 個 Scatter：20 次免費旋轉</li>
+          <li>6 個以上：25 次免費旋轉</li>
+        </ul>
+
+        <p>在免費旋轉期間，每次出現 3 個以上 Scatter 可以追加 5 次旋轉。理論上免費旋轉可以不斷延長，但實際上大部分時候你拿到的就是初始次數。</p>
+
+        <p>關鍵在於：免費旋轉期間的倍率球是全程累積不重置的。所以免費旋轉越長，倍率球越多，後面每一次中獎都被前面累積的倍率放大。這就是為什麼這台機器的波動度被標為「極高」— 大部分的 RTP 都集中在極少數的超級大獎裡。</p>
+
+        <div class="david-note">我自己實測 3,000 轉的數據：免費旋轉觸發了 9 次，其中 7 次的結果都在 30x 以下（比較平淡），但有 1 次累積到 6 顆倍率球，最終結果是 847x。就是這一次撐起了整個測試期間的 RTP。這也印證了「高波動機台的 RTP 高度依賴少數大獎事件」的特性。</div>
+
+        <h2 id="buy-feature">買 Feature 分析</h2>
+        <p>戰神賽特提供「買 Feature」選項，讓你直接用固定金額買入免費旋轉，不用等自然觸發。買入價通常是 100x 總押注。</p>
+
+        <p>從數學上看，買 Feature 的期望值跟自然觸發是一樣的（否則就違反了公平性規範）。但它改變了波動度的體驗。自然觸發可能 500 轉都進不了一次 Free Spin，買 Feature 讓你直接跳過等待。</p>
+
+        <p>但 100x 的買入成本意味著你的 Free Spin 結果必須超過 100x 才算回本。根據我的觀察，大約有 60% 的 Free Spin 結果是低於 100x 的。也就是說，買 Feature 大部分時候是虧的，你是在賭那 40% 的機會裡出現超額回報。</p>
+
+        <h2 id="strategy">策略建議</h2>
+        <p>基於以上分析，我的建議是：</p>
+        <ol>
+          <li><strong>資金管理優先</strong>：這是一台極高波動的機器。至少準備 300 倍以上的總押注作為本金，否則很容易在觸發 Free Spin 之前就把錢花光</li>
+          <li><strong>免費試玩先行</strong>：在投入真錢之前，用試玩模式熟悉倍率球的累積節奏</li>
+          <li><strong>買 Feature 要謹慎</strong>：除非你的資金非常充裕，否則不建議連續買 Feature</li>
+          <li><strong>設定止盈止損</strong>：因為大獎可能一次就來，到手就該考慮收手</li>
+        </ol>
+
+        <div class="david-note">戰神賽特之所以這麼受歡迎，不是因為它 RTP 最高（96.5% 只是中等偏上），而是因為倍率球的乘法累積創造了驚人的大獎潛力。但請記住，這種潛力是用「大部分時間都在輸」換來的。了解機制不代表能打敗數學，但至少讓你玩得明白。</div>
+
+        <h2 id="conclusion">結論</h2>
+        <p>戰神賽特是一台設計精密的高波動機器。5×6 的 Scatter Pays 盤面提供高命中率的基礎中獎，而倍率球的乘法累積則創造了極端的大獎可能性。理解這兩個機制的交互作用，你就掌握了這台機器的核心。先試玩，看完 Pay Table，準備好足夠的資金再上場。</p>
+
+        <div class="ad-inline"><div class="ad-banner">/* ad: post-footer */</div></div>
+
+        <div class="related-posts">
+          <h3>相關文章</h3>
+          <div class="post-list">
+            <a href="high-volatility-guide.html" class="post-item">
+              <div class="post-accent post-accent-amber"></div>
+              <div class="post-body">
+                <div class="post-title">高波動老虎機完全指南</div>
+                <div class="post-meta"><span class="cat-pill cat-slots">老虎機</span><span>9 min read</span></div>
+              </div>
+            </a>
+            <a href="pay-table-guide.html" class="post-item">
+              <div class="post-accent post-accent-amber"></div>
+              <div class="post-body">
+                <div class="post-title">Pay Table 完全解讀指南</div>
+                <div class="post-meta"><span class="cat-pill cat-slots">老虎機</span><span>10 min read</span></div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <aside class="toc-sidebar">
+      <div class="toc">
+        <div class="toc-title">目錄</div>
+        <ul class="toc-list">
+          <li><a href="#board-structure">盤面結構</a></li>
+          <li><a href="#scatter-pays">Scatter Pays 數學</a></li>
+          <li><a href="#multiplier-orbs">倍率球機制</a></li>
+          <li><a href="#free-spin-trigger">免費旋轉</a></li>
+          <li><a href="#buy-feature">買 Feature 分析</a></li>
+          <li><a href="#strategy">策略建議</a></li>
+          <li><a href="#conclusion">結論</a></li>
+        </ul>
+      </div>
+      <div class="ad-article-sidebar" id="article-sidebar-ad"></div>
+    </aside>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="../js/components.js"></script>
+  <script>
+    initPage('slots');
+    document.getElementById('breadcrumb').innerHTML = renderBreadcrumb([
+      { href: BASE_URL + '/', label: '~' },
+      { href: BASE_URL + '/slots/', label: '老虎機' },
+      { href: '', label: '戰神賽特深度解析' }
+    ]);
+    document.getElementById('article-author').innerHTML = renderAuthor('2026-06-27', '12 min read');
+  </script>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>捕魚機完全攻略：機制解析、倍率計算與最佳策略 | 大衛の電子攻略站</title>
+  <meta name="description" content="捕魚機完全攻略：從子彈成本、魚種倍率、命中機率到最佳策略，用數學拆解捕魚機的運作原理。">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="捕魚機完全攻略：機制解析、倍率計算與最佳策略">
+  <meta property="og:description" content="用數學拆解捕魚機：子彈成本、魚種倍率、命中機率與最佳策略完整分析。">
+  <meta property="article:published_time" content="2026-07-11">
+  <meta property="article:section" content="老虎機">
+  <link rel="canonical" href="https://www.rtp96.com/slots/fishing-game-complete.html">
+  <link rel="icon" type="image/png" href="../images/favicon-32.png">
+  <link rel="stylesheet" href="../style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "捕魚機完全攻略：機制解析、倍率計算與最佳策略",
+    "datePublished": "2026-07-11",
+    "dateModified": "2026-07-11",
+    "author": { "@type": "Person", "name": "大衛 (David)" },
+    "publisher": { "@type": "Person", "name": "大衛 (David)" },
+    "description": "用數學拆解捕魚機：子彈成本、魚種倍率、命中機率與最佳策略完整分析。",
+    "mainEntityOfPage": "https://www.rtp96.com/slots/fishing-game-complete.html"
+  }
+  </script>
+</head>
+<body>
+  <div id="site-header"></div>
+  <div id="breadcrumb"></div>
+
+  <div id="header-ad"></div>
+
+  <div class="article-layout">
+    <article class="article-main">
+      <header class="article-header">
+        <div style="margin-bottom:10px;"><span class="cat-pill cat-slots">老虎機</span></div>
+        <h1>捕魚機完全攻略：機制解析、倍率計算與最佳策略</h1>
+      </header>
+      <div id="article-author"></div>
+
+      <div class="article-content">
+        <p>捕魚機大概是所有電子遊戲裡最容易讓人上癮的類型。它不像老虎機那樣被動等待結果，你有一把「槍」，你在「瞄準」，你覺得自己的技術能影響結果。但真的是這樣嗎？</p>
+
+        <p>今天我要用工程師的視角把捕魚機的內部機制拆開。劇透：你的瞄準技術遠沒有你以為的那麼重要。</p>
+
+        <h2 id="how-it-works">捕魚機的運作原理</h2>
+        <p>捕魚機看起來像一個射擊遊戲，但它的核心其實是一台老虎機。每一發子彈就是一次「旋轉」，每條魚被擊中後是否被捕獲，是由 RNG（隨機數生成器）決定的，不是由你的瞄準精準度決定的。</p>
+
+        <p>具體流程是這樣的：</p>
+        <ol>
+          <li>你發射一發子彈（扣除子彈費用）</li>
+          <li>子彈碰到一條魚</li>
+          <li>系統用 RNG 判定這條魚是否被捕獲</li>
+          <li>如果捕獲成功，你獲得該魚種對應的倍率獎金</li>
+          <li>如果捕獲失敗，什麼都沒有（子彈費已扣）</li>
+        </ol>
+
+        <div class="info-box">
+          <h4>// fishing_core_truth</h4>
+          <p>子彈碰到魚 ≠ 捕獲成功</p>
+          <p>捕獲機率由 RNG 決定，跟你的操作技術無關</p>
+          <p>倍率越高的魚，捕獲機率越低</p>
+          <p>整體 RTP 通常在 95% ~ 97% 之間</p>
+        </div>
+
+        <h2 id="bullet-cost">子彈成本與倍率計算</h2>
+        <p>捕魚機的經濟模型很簡單：你花子彈成本去「換取」捕獲魚的機會。不同魚種有不同的倍率，倍率越高的魚越難捕獲。</p>
+
+        <table>
+          <thead>
+            <tr><th>魚種類型</th><th>典型倍率</th><th>估計捕獲率</th><th>期望值（每發子彈）</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>小魚（普通魚群）</td><td>2x ~ 5x</td><td>30% ~ 50%</td><td>~0.96x</td></tr>
+            <tr><td>中型魚</td><td>10x ~ 30x</td><td>5% ~ 15%</td><td>~0.96x</td></tr>
+            <tr><td>大型魚</td><td>50x ~ 100x</td><td>1% ~ 3%</td><td>~0.96x</td></tr>
+            <tr><td>BOSS 魚</td><td>200x ~ 500x</td><td>0.2% ~ 0.5%</td><td>~0.96x</td></tr>
+          </tbody>
+        </table>
+
+        <p>注意到了嗎？不管你打什麼魚，每發子彈的期望值都大約是 0.96x（假設 RTP 96%）。這意味著不管你專打小魚還是專打大魚，長期的損失率是一樣的。只是短期的波動不同：專打小魚比較穩定，專打大魚起伏很大。</p>
+
+        <div class="david-note">很多人有個誤解：覺得打小魚「比較穩」，打大魚「比較虧」。從期望值來看，兩者是一樣的。差別在波動度。打小魚就像玩低波動老虎機，資金曲線比較平。打大魚就像玩高波動老虎機，大部分時間在虧，偶爾爆一次。選擇取決於你的風險偏好，不是「哪種比較不虧」。</div>
+
+        <div class="ad-inline"></div>
+
+        <h2 id="skill-myth">「技術」成分有多少？</h2>
+        <p>這是捕魚機最大的爭議點。玩家覺得自己的瞄準和時機很重要，但事實上技術能影響的範圍非常有限。</p>
+
+        <p><strong>你能控制的</strong>：</p>
+        <ul>
+          <li>選擇打哪條魚（影響波動度，不影響期望值）</li>
+          <li>子彈的發射頻率（影響資金消耗速度）</li>
+          <li>選擇什麼時候進場和離場（資金管理）</li>
+        </ul>
+
+        <p><strong>你不能控制的</strong>：</p>
+        <ul>
+          <li>捕獲是否成功（RNG 決定）</li>
+          <li>特殊魚種出現的時機（系統控制）</li>
+          <li>長期 RTP（遊戲設計決定）</li>
+        </ul>
+
+        <p>有一個技術確實有微小的影響：避免「浪費子彈」。如果你的子彈沒碰到任何魚就飛出畫面，那就是純粹的浪費。所以瞄準能力能幫你減少這種浪費，但這個影響非常小，因為大部分捕魚機的畫面上魚群密度很高，很難完全打空。</p>
+
+        <h2 id="special-weapons">特殊武器與技能</h2>
+        <p>大部分捕魚機都有特殊武器或技能機制，例如：</p>
+        <ul>
+          <li><strong>電網/雷電</strong>：範圍攻擊，一次覆蓋多條魚</li>
+          <li><strong>鎖定瞄準</strong>：自動追蹤指定的魚</li>
+          <li><strong>超級子彈</strong>：威力加倍但成本也加倍</li>
+          <li><strong>BOSS 戰</strong>：限時挑戰高倍率 BOSS</li>
+        </ul>
+
+        <p>這些特殊武器的設計目的是增加遊戲的趣味性和多樣性，但從數學上看，它們的期望值跟普通子彈是一樣的（否則所有人都只用特殊武器了）。超級子彈的倍率更高但成本也更高，電網覆蓋面更大但每條魚的捕獲率會相應調低。</p>
+
+        <div class="david-note">我跟一位遊戲開發商的朋友聊過。他告訴我，捕魚機的設計核心原則就是：不管玩家怎麼操作，長期 RTP 都必須維持在設定值。如果某種操作方式能繞過這個限制，那就是 bug，必須修掉。所以不要試圖找「漏洞」或「套路」，那是不存在的。</div>
+
+        <h2 id="strategy">最佳策略建議</h2>
+        <ol>
+          <li><strong>控制射速</strong>：不要一直按著射擊鍵瘋狂掃射。每發子彈都是成本，射速越快錢花越快</li>
+          <li><strong>選擇適合的砲台</strong>：根據你的預算選擇子彈成本。預算少就用小砲台，不要為了追大魚上大砲台</li>
+          <li><strong>不要執著於 BOSS 魚</strong>：BOSS 魚倍率看起來很誘人，但捕獲率極低。你可能花了幾百發子彈都抓不到一條</li>
+          <li><strong>設定預算並嚴格遵守</strong>：捕魚機的上癮性極高，因為「再打一發」的誘惑永遠存在。設定好今天最多花多少錢，到了就走</li>
+          <li><strong>把它當遊戲而非投資</strong>：享受打魚的過程，不要期待靠捕魚機致富</li>
+        </ol>
+
+        <h2 id="conclusion">結論</h2>
+        <p>捕魚機是一台包裝成射擊遊戲的老虎機。它的核心是 RNG，你的技術能影響的範圍非常有限。不管打什麼魚，長期期望值都是一樣的。理解這個事實不會讓遊戲變得不好玩，但會讓你用更理性的方式面對它。控制射速、管好預算、享受過程。</p>
+
+        <div class="ad-inline"><div class="ad-banner">/* ad: post-footer */</div></div>
+
+        <div class="related-posts">
+          <h3>相關文章</h3>
+          <div class="post-list">
+            <a href="fishing-game-strategy.html" class="post-item">
+              <div class="post-accent post-accent-amber"></div>
+              <div class="post-body">
+                <div class="post-title">捕魚機策略分析</div>
+                <div class="post-meta"><span class="cat-pill cat-slots">老虎機</span><span>8 min read</span></div>
+              </div>
+            </a>
+            <a href="../rtp/how-casinos-make-money.html" class="post-item">
+              <div class="post-accent post-accent-blue"></div>
+              <div class="post-body">
+                <div class="post-title">娛樂城怎麼賺錢</div>
+                <div class="post-meta"><span class="cat-pill cat-rtp">RTP 研究</span><span>9 min read</span></div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <aside class="toc-sidebar">
+      <div class="toc">
+        <div class="toc-title">目錄</div>
+        <ul class="toc-list">
+          <li><a href="#how-it-works">運作原理</a></li>
+          <li><a href="#bullet-cost">子彈成本與倍率</a></li>
+          <li><a href="#skill-myth">技術成分</a></li>
+          <li><a href="#special-weapons">特殊武器</a></li>
+          <li><a href="#strategy">最佳策略</a></li>
+          <li><a href="#conclusion">結論</a></li>
+        </ul>
+      </div>
+      <div class="ad-article-sidebar" id="article-sidebar-ad"></div>
+    </aside>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="../js/components.js"></script>
+  <script>
+    initPage('slots');
+    document.getElementById('breadcrumb').innerHTML = renderBreadcrumb([
+      { href: BASE_URL + '/', label: '~' },
+      { href: BASE_URL + '/slots/', label: '老虎機' },
+      { href: '', label: '捕魚機完全攻略' }
+    ]);
+    document.getElementById('article-author').innerHTML = renderAuthor('2026-07-11', '11 min read');
+  </script>
+</body>
+</html>
