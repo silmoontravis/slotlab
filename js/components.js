@@ -2,6 +2,8 @@
 
 const SITE_NAME = '大衛の電子攻略站';
 const BASE_URL = getBaseUrl();
+const ARTICLE_COUNTS = { slots: 7, casinos: 4, guides: 3, rtp: 3 };
+const TOTAL_ARTICLES = Object.values(ARTICLE_COUNTS).reduce((a,b) => a+b, 0);
 
 function getBaseUrl() {
   const path = window.location.pathname;
@@ -135,10 +137,10 @@ function renderSidebar() {
     <div class="widget">
       <h3 class="widget-title">分類</h3>
       <ul class="widget-list">
-        <li><a href="${BASE_URL}/slots/"><span class="cat-pill cat-slots">老虎機</span> 研究筆記 <span class="cat-count">7</span></a></li>
-        <li><a href="${BASE_URL}/casinos/"><span class="cat-pill cat-casinos">娛樂城</span> 平台觀察 <span class="cat-count">4</span></a></li>
-        <li><a href="${BASE_URL}/guides/"><span class="cat-pill cat-guides">攻略</span> 新手指南 <span class="cat-count">3</span></a></li>
-        <li><a href="${BASE_URL}/rtp/"><span class="cat-pill cat-rtp">RTP</span> 數據分析 <span class="cat-count">3</span></a></li>
+        <li><a href="${BASE_URL}/slots/"><span class="cat-pill cat-slots">老虎機</span> 研究筆記 <span class="cat-count">${ARTICLE_COUNTS.slots}</span></a></li>
+        <li><a href="${BASE_URL}/casinos/"><span class="cat-pill cat-casinos">娛樂城</span> 平台觀察 <span class="cat-count">${ARTICLE_COUNTS.casinos}</span></a></li>
+        <li><a href="${BASE_URL}/guides/"><span class="cat-pill cat-guides">攻略</span> 新手指南 <span class="cat-count">${ARTICLE_COUNTS.guides}</span></a></li>
+        <li><a href="${BASE_URL}/rtp/"><span class="cat-pill cat-rtp">RTP</span> 數據分析 <span class="cat-count">${ARTICLE_COUNTS.rtp}</span></a></li>
       </ul>
     </div>
     <div class="ad-sidebar">${renderAdSlot('B', 'sidebar')}</div>
