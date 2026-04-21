@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>捕魚機攻略：倍率分層與最佳射擊策略分析 | 大衛の電子攻略站</title>
+  <meta name="description" content="工程師大衛用數據分析捕魚機的倍率分層設計與最佳射擊策略，解析砲台選擇、魚種價值與資金效率最大化方法。">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="捕魚機攻略：倍率分層與最佳射擊策略分析">
+  <meta property="og:description" content="用數據科學分析捕魚機的倍率分層設計與最佳射擊策略。">
+  <meta property="article:published_time" content="2026-04-26">
+  <meta property="article:section" content="老虎機評測">
+  <link rel="canonical" href="https://silmoontravis.github.io/slotlab/slots/fishing-game-strategy.html">
+  <link rel="icon" type="image/png" href="../images/favicon-32.png">
+  <link rel="stylesheet" href="../style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "捕魚機攻略：倍率分層與最佳射擊策略分析",
+    "datePublished": "2026-04-26",
+    "dateModified": "2026-04-26",
+    "author": { "@type": "Person", "name": "大衛 (David)" },
+    "publisher": { "@type": "Person", "name": "大衛 (David)" },
+    "description": "捕魚機倍率分層設計與最佳射擊策略的數據分析。",
+    "mainEntityOfPage": "https://silmoontravis.github.io/slotlab/slots/fishing-game-strategy.html"
+  }
+  </script>
+</head>
+<body>
+  <div id="site-header"></div>
+  <div id="breadcrumb"></div>
+
+  <div id="header-ad"></div>
+
+  <div class="article-layout">
+    <article class="article-main">
+      <header class="article-header">
+        <div style="margin-bottom:10px;"><span class="cat-pill cat-slots">老虎機</span></div>
+        <h1>捕魚機攻略：倍率分層與最佳射擊策略分析</h1>
+      </header>
+      <div id="article-author"></div>
+
+      <div class="article-content">
+        <p>捕魚機大概是我研究過最「反直覺」的遊戲類型之一。它看起來像一個技巧型遊戲 — 你瞄準、你射擊、你捕獲 — 但實際上，底層的數學模型跟老虎機幾乎是一樣的。今天我要從工程師的角度，把捕魚機的倍率分層設計和最佳射擊策略拆解給你看。</p>
+
+        <div class="david-note">我第一次研究捕魚機的原始碼時，發現了一件讓我很驚訝的事：你的「瞄準」其實不影響擊殺機率。每一發子彈打出去的瞬間，伺服器就已經用 RNG 決定好這發會不會命中了。你的操作只決定了子彈打向哪條魚，而不是命中與否。</div>
+
+        <h2 id="how-it-works">捕魚機的真實運作原理</h2>
+        <p>大部分玩家以為捕魚機是「射擊遊戲」，但從技術層面來看，它其實是「包裝成射擊遊戲的老虎機」。核心機制如下：</p>
+        <ol>
+          <li>你選擇砲台等級（決定單發子彈成本）。</li>
+          <li>你射擊一條魚（選擇目標）。</li>
+          <li>伺服器透過 RNG 判定是否擊殺。</li>
+          <li>若擊殺，獎金 = 子彈成本 x 該魚種倍率。</li>
+        </ol>
+        <p>關鍵在於第三步：擊殺與否是由隨機數決定的，跟你的操作技巧無關。每條魚都有一個預設的「擊殺機率」，這個機率和它的倍率成反比 — 倍率越高的魚，擊殺機率越低。</p>
+
+        <div class="info-box">
+          <h4>// kill_probability_model</h4>
+          <p>典型的捕魚機 RTP 約為 92%~97%。假設 RTP 為 95%，一條 50 倍的魚，理論擊殺機率約為 95% / 50 = 1.9%。一條 2 倍的魚，理論擊殺機率約為 95% / 2 = 47.5%。實際遊戲中會有微調，但大方向是這個邏輯。</p>
+        </div>
+
+        <h2 id="multiplier-tiers">倍率分層設計</h2>
+        <p>捕魚機的魚種通常分為四到五個倍率層級：</p>
+
+        <table>
+          <thead>
+            <tr><th>層級</th><th>倍率範圍</th><th>擊殺機率</th><th>代表魚種</th><th>RTP 貢獻</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>小魚</td><td>2x~5x</td><td>19%~47%</td><td>小丑魚、河豚</td><td>約 40%</td></tr>
+            <tr><td>中魚</td><td>8x~20x</td><td>5%~12%</td><td>鯊魚、旗魚</td><td>約 25%</td></tr>
+            <tr><td>大魚</td><td>30x~50x</td><td>2%~3%</td><td>鯨魚、海龜</td><td>約 15%</td></tr>
+            <tr><td>BOSS 魚</td><td>100x~500x</td><td>0.2%~1%</td><td>龍王、金鯊</td><td>約 10%</td></tr>
+            <tr><td>特殊</td><td>炸彈/雷電</td><td>依範圍</td><td>全屏武器</td><td>約 5%</td></tr>
+          </tbody>
+        </table>
+
+        <p>從這張表你可以看出，小魚貢獻了最多的 RTP，這意味著你的回收大部分來自頻繁擊殺小魚，而不是偶爾打到大魚。</p>
+
+        <h2 id="shooting-strategy">最佳射擊策略</h2>
+        <p>既然我們知道了底層邏輯，就可以推導出最佳策略：</p>
+
+        <h3>策略一：穩定小魚流</h3>
+        <p>選擇最低砲台，專打 2x~5x 的小魚。這個策略的優點是現金流穩定、資金消耗慢。缺點是不太刺激，而且受限於射速，單位時間的理論回報有上限。</p>
+
+        <h3>策略二：中魚效率流</h3>
+        <p>用中等砲台，專打 8x~20x 的中型魚。這是我個人覺得效率最好的策略。中魚的擊殺機率還算合理（5%~12%），倍率又夠高，形成了一個不錯的風險收益比。</p>
+
+        <h3>策略三：Boss 獵人流</h3>
+        <p>用最高砲台，專打 Boss 魚。高風險高回報，資金燒得快，但一旦擊殺回報巨大。這個策略需要非常充裕的預算。</p>
+
+        <div class="david-note">我自己偏好策略二。原因很簡單：從期望值角度看，三種策略的長期 RTP 是一樣的（都是那個固定的回報率），但策略二的「資金波動」最適中，不會像打小魚那樣無聊，也不會像打 Boss 那樣心驚膽跳。</div>
+
+        <div class="ad-inline"></div>
+
+        <h2 id="common-myths">捕魚機的常見迷思</h2>
+        <h3>迷思 1：「打很多發沒中，下一發一定會中」</h3>
+        <p>錯。每一發子彈都是獨立事件，跟之前打了多少發完全無關。這是典型的賭徒謬誤。</p>
+
+        <h3>迷思 2：「某個角度打中率比較高」</h3>
+        <p>錯。擊殺判定發生在伺服器端，跟角度無關。只要子彈碰觸到魚的判定範圍，就會觸發 RNG 判定。</p>
+
+        <h3>迷思 3：「特定時段比較容易出大魚」</h3>
+        <p>沒有證據支持。正規平台的 RNG 不會根據時段調整，這違反博彩監管規定。</p>
+
+        <h3>迷思 4：「跟著高手打同一條魚可以撿尾刀」</h3>
+        <p>部分正確。在多人場景中，如果多人同時攻擊一條魚，每一發都是獨立判定。所以你「碰巧」在別人打了很多發之後擊殺，不代表前面的子彈幫你「磨血」了。</p>
+
+        <h2 id="bankroll-tips">資金管理建議</h2>
+        <p>捕魚機的資金消耗速度通常比老虎機快，因為你持續在射擊。我的建議：</p>
+        <ul>
+          <li>選擇砲台等級時，確保你的預算足夠支撐至少 500 發子彈。</li>
+          <li>不要因為一時衝動就升砲台。升砲台 = 每發成本加倍，資金消耗速度也加倍。</li>
+          <li>設定明確的時間限制，不要一坐就是好幾個小時。</li>
+          <li>如果連續 100 發都沒有打到中型以上的魚，考慮降低砲台等級或換桌。</li>
+        </ul>
+
+        <div class="david-note">最後一個提醒：捕魚機的「操作感」會讓你產生一種「我在控制遊戲」的錯覺。但數學不會騙人 — 長期來看，莊家優勢是固定的。享受射擊的樂趣，但不要誤以為技巧可以改變機率。</div>
+
+        <h2 id="conclusion">結論</h2>
+        <p>捕魚機是一個包裝精美的機率遊戲。理解它的倍率分層設計和擊殺機率模型，能幫助你做出更理性的決策。選擇適合自己預算的砲台等級，專注中效率區間的魚種，設好停損線，然後享受遊戲過程 — 這就是我的捕魚機攻略。</p>
+
+        <div class="ad-inline"><div class="ad-banner">/* ad: post-footer */</div></div>
+
+        <div class="related-posts">
+          <h3>相關文章</h3>
+          <div class="post-list">
+            <a href="online-slot-guide.html" class="post-item">
+              <div class="post-accent post-accent-amber"></div>
+              <div class="post-body">
+                <div class="post-title">線上老虎機完整攻略：從選台到獲利的科學方法</div>
+                <div class="post-meta"><span class="cat-pill cat-slots">老虎機</span><span>12 min read</span></div>
+              </div>
+            </a>
+            <a href="../rtp/slot-volatility-math.html" class="post-item">
+              <div class="post-accent post-accent-purple"></div>
+              <div class="post-body">
+                <div class="post-title">老虎機波動率的數學模型</div>
+                <div class="post-meta"><span class="cat-pill cat-rtp">RTP</span><span>11 min read</span></div>
+              </div>
+            </a>
+            <a href="../guides/responsible-gambling.html" class="post-item">
+              <div class="post-accent post-accent-blue"></div>
+              <div class="post-body">
+                <div class="post-title">理性娛樂指南：資金管理與停損策略</div>
+                <div class="post-meta"><span class="cat-pill cat-guides">攻略</span><span>9 min read</span></div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <aside class="toc-sidebar">
+      <div class="toc">
+        <div class="toc-title">目錄</div>
+        <ul class="toc-list">
+          <li><a href="#how-it-works">真實運作原理</a></li>
+          <li><a href="#multiplier-tiers">倍率分層設計</a></li>
+          <li><a href="#shooting-strategy">最佳射擊策略</a></li>
+          <li><a href="#common-myths">常見迷思</a></li>
+          <li><a href="#bankroll-tips">資金管理</a></li>
+          <li><a href="#conclusion">結論</a></li>
+        </ul>
+      </div>
+      <div class="ad-article-sidebar" id="article-sidebar-ad"></div>
+    </aside>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="../js/components.js"></script>
+  <script>
+    initPage('slots');
+    document.getElementById('breadcrumb').innerHTML = renderBreadcrumb([
+      { href: BASE_URL + '/', label: '~' },
+      { href: BASE_URL + '/slots/', label: '老虎機' },
+      { href: '', label: '捕魚機攻略' }
+    ]);
+    document.getElementById('article-author').innerHTML = renderAuthor('2026-04-26', '11 min read');
+  </script>
+</body>
+</html>

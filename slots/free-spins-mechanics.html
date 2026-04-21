@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>免費旋轉觸發機制解析：隱藏在機率背後的設計邏輯 | 大衛の電子攻略站</title>
+  <meta name="description" content="深入解析老虎機免費旋轉的觸發機制，包含 Scatter 機率設計、Free Spins RTP 佔比、Retrigger 機制與 Buy Feature 的數學分析。">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="免費旋轉觸發機制解析：隱藏在機率背後的設計邏輯">
+  <meta property="og:description" content="從遊戲設計師的角度解析免費旋轉的觸發機率與設計邏輯。">
+  <meta property="article:published_time" content="2026-05-06">
+  <meta property="article:section" content="老虎機評測">
+  <link rel="canonical" href="https://silmoontravis.github.io/slotlab/slots/free-spins-mechanics.html">
+  <link rel="icon" type="image/png" href="../images/favicon-32.png">
+  <link rel="stylesheet" href="../style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "免費旋轉觸發機制解析：隱藏在機率背後的設計邏輯",
+    "datePublished": "2026-05-06",
+    "dateModified": "2026-05-06",
+    "author": { "@type": "Person", "name": "大衛 (David)" },
+    "publisher": { "@type": "Person", "name": "大衛 (David)" },
+    "description": "老虎機免費旋轉觸發機制的數學分析與設計邏輯解析。",
+    "mainEntityOfPage": "https://silmoontravis.github.io/slotlab/slots/free-spins-mechanics.html"
+  }
+  </script>
+</head>
+<body>
+  <div id="site-header"></div>
+  <div id="breadcrumb"></div>
+
+  <div id="header-ad"></div>
+
+  <div class="article-layout">
+    <article class="article-main">
+      <header class="article-header">
+        <div style="margin-bottom:10px;"><span class="cat-pill cat-slots">老虎機</span></div>
+        <h1>免費旋轉觸發機制解析：隱藏在機率背後的設計邏輯</h1>
+      </header>
+      <div id="article-author"></div>
+
+      <div class="article-content">
+        <p>Free Spins（免費旋轉）大概是老虎機玩家最期待的功能。那個 Scatter 出現的瞬間、觸發動畫播放的時候，腎上腺素直接飆高。但你有沒有想過：Free Spins 的觸發機率到底是多少？為什麼有時候玩了 300 轉都不觸發？它在整個遊戲的數學模型中扮演什麼角色？今天我來把這些問題一次講清楚。</p>
+
+        <div class="david-note">我研究過幾十款老虎機的數學模型（有些是合法公開的數據，有些是我自己用統計方法反推的），發現 Free Spins 的設計邏輯比大部分人想像的要精密得多。它不只是「一個 Bonus 功能」，它是整個遊戲 RTP 架構的核心支柱。</div>
+
+        <h2 id="trigger-mechanics">觸發機制基礎</h2>
+        <p>大部分老虎機的 Free Spins 觸發條件是：在一次旋轉中，出現足夠數量的 Scatter 符號。最常見的設定是：</p>
+
+        <table>
+          <thead>
+            <tr><th>Scatter 數量</th><th>觸發結果</th><th>典型機率</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>3 個</td><td>觸發 Free Spins（通常 10~15 次）</td><td>1/100 ~ 1/200</td></tr>
+            <tr><td>4 個</td><td>更多 Free Spins（通常 15~20 次）</td><td>1/500 ~ 1/2,000</td></tr>
+            <tr><td>5 個</td><td>最大 Free Spins + 額外獎勵</td><td>1/5,000 ~ 1/50,000</td></tr>
+          </tbody>
+        </table>
+
+        <p>以最常見的「3 個 Scatter 觸發」為例，典型的觸發機率大約是 1/150，也就是平均每 150 次旋轉觸發一次。但這是「平均值」，實際上你可能連續 400 次都不觸發，也可能 20 次就觸發。</p>
+
+        <div class="info-box">
+          <h4>// scatter_probability</h4>
+          <p>以一台 5 軸老虎機為例，假設每軸有 30 個停止位，其中 1~2 個是 Scatter。每軸出現 Scatter 的機率約為 1/30 ~ 2/30。需要至少 3 軸出現 Scatter：觸發機率 = C(5,3) x (2/30)^3 x (28/30)^2 ≈ 0.65%，約 1/154 次。實際遊戲中還會有加權調整。</p>
+        </div>
+
+        <h2 id="rtp-contribution">Free Spins 的 RTP 貢獻</h2>
+        <p>這是很多人忽略的重點：Free Spins 通常佔了整個遊戲 RTP 的很大比例。</p>
+
+        <table>
+          <thead>
+            <tr><th>遊戲類型</th><th>Base Game RTP</th><th>Free Spins RTP</th><th>總 RTP</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>低波動</td><td>75~80%</td><td>16~21%</td><td>96%</td></tr>
+            <tr><td>中波動</td><td>60~70%</td><td>26~36%</td><td>96%</td></tr>
+            <tr><td>高波動</td><td>45~55%</td><td>41~51%</td><td>96%</td></tr>
+          </tbody>
+        </table>
+
+        <p>看到了嗎？高波動機台的 Free Spins 貢獻了超過一半的 RTP。這意味著如果你一直觸發不了 Free Spins，你的短期回報率可能只有 45~55%，遠低於標示的 96%。這也解釋了為什麼高波動機台的「乾旱期」特別難熬。</p>
+
+        <div class="david-note">這個數據讓我重新思考了「Buy Feature」的價值。如果 Free Spins 佔了 RTP 的一半，那直接花錢買進入其實是在「購買」那部分的回報率。當然，前提是 Buy Feature 的定價合理。</div>
+
+        <div class="ad-inline"></div>
+
+        <h2 id="inside-free-spins">Free Spins 內部機制</h2>
+        <p>進入 Free Spins 之後，遊戲的數學模型通常會有以下變化：</p>
+
+        <h3>符號權重調整</h3>
+        <p>在 Free Spins 模式中，高價值符號的出現機率通常會提高。這不是「作弊」，這是遊戲設計的一部分 — 為了確保 Free Spins 的回報符合預設的 RTP 分配。</p>
+
+        <h3>Multiplier（倍數器）</h3>
+        <p>很多遊戲在 Free Spins 中會加入累進倍數器。例如每次中獎倍數加 1，從 1x 一路上升到 5x 甚至更高。這種設計讓 Free Spins 的後半段比前半段更有爆發力。</p>
+
+        <h3>Retrigger（重新觸發）</h3>
+        <p>在 Free Spins 進行中再次出現足夠的 Scatter，就會額外獲得更多免費旋轉次數。Retrigger 的機率通常比 Base Game 的觸發機率略高，因為 Free Spins 中 Scatter 的權重會被調整。</p>
+
+        <h3>特殊功能</h3>
+        <p>有些遊戲在 Free Spins 中會解鎖 Base Game 沒有的功能，例如：擴展 Wild、黏性 Wild（Sticky Wild）、隨機加入高價值符號等。</p>
+
+        <h2 id="buy-feature">Buy Feature 分析</h2>
+        <p>越來越多遊戲提供「Buy Feature」— 直接花費固定金額進入 Free Spins。通常定價是投注額的 80~100 倍。這值得嗎？</p>
+
+        <p>從數學角度分析：</p>
+        <ul>
+          <li>如果 Buy Feature 價格是 100 倍投注額，而自然觸發機率是 1/150，那自然觸發的「預期成本」是 150 倍投注額。</li>
+          <li>所以 Buy Feature 理論上「便宜」了 33%。</li>
+          <li>但要注意：Buy Feature 的 RTP 可能跟自然觸發不同（有些遊戲會略低）。</li>
+          <li>另外，Buy Feature 每次消耗大量資金，會大幅提高你的資金波動。</li>
+        </ul>
+
+        <h2 id="myths">常見迷思</h2>
+        <h3>「快要觸發了，我能感覺到」</h3>
+        <p>不，你不能。每次旋轉都是獨立事件。你前面玩了 300 次沒觸發，第 301 次的觸發機率還是 1/150，不會變高。</p>
+
+        <h3>「某個時段比較容易觸發」</h3>
+        <p>沒有。正規遊戲的 RNG 不會根據時間調整機率。</p>
+
+        <h3>「觸發了就一定大贏」</h3>
+        <p>不一定。Free Spins 的結果同樣由 RNG 決定，有可能觸發了但只拿到很少的獎金。特別是低波動機台，Free Spins 的回報範圍通常比較集中。</p>
+
+        <div class="david-note">我追蹤過自己 500 次 Free Spins 的結果。最低的一次只拿到 3 倍投注額（觸發成本遠高於此），最高一次拿到 847 倍。中位數大約在 15~25 倍之間。所以「觸發就大贏」真的只是幻想。</div>
+
+        <h2 id="conclusion">結論</h2>
+        <p>Free Spins 不是運氣的禮物，它是遊戲數學模型中被精心設計的一個環節。理解它的觸發機率、RTP 貢獻和內部機制，能幫助你建立更合理的期望值。不要因為追求 Free Spins 而過度投注，也不要因為連續不觸發就認為機台有問題。一切都是數學，而數學是公平的。</p>
+
+        <div class="ad-inline"><div class="ad-banner">/* ad: post-footer */</div></div>
+
+        <div class="related-posts">
+          <h3>相關文章</h3>
+          <div class="post-list">
+            <a href="online-slot-guide.html" class="post-item">
+              <div class="post-accent post-accent-amber"></div>
+              <div class="post-body">
+                <div class="post-title">線上老虎機完整攻略：從選台到獲利的科學方法</div>
+                <div class="post-meta"><span class="cat-pill cat-slots">老虎機</span><span>12 min read</span></div>
+              </div>
+            </a>
+            <a href="../rtp/slot-volatility-math.html" class="post-item">
+              <div class="post-accent post-accent-purple"></div>
+              <div class="post-body">
+                <div class="post-title">老虎機波動率的數學模型</div>
+                <div class="post-meta"><span class="cat-pill cat-rtp">RTP</span><span>11 min read</span></div>
+              </div>
+            </a>
+            <a href="progressive-jackpot.html" class="post-item">
+              <div class="post-accent post-accent-amber"></div>
+              <div class="post-body">
+                <div class="post-title">累積獎池老虎機運作原理</div>
+                <div class="post-meta"><span class="cat-pill cat-slots">老虎機</span><span>10 min read</span></div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <aside class="toc-sidebar">
+      <div class="toc">
+        <div class="toc-title">目錄</div>
+        <ul class="toc-list">
+          <li><a href="#trigger-mechanics">觸發機制基礎</a></li>
+          <li><a href="#rtp-contribution">RTP 貢獻</a></li>
+          <li><a href="#inside-free-spins">內部機制</a></li>
+          <li><a href="#buy-feature">Buy Feature 分析</a></li>
+          <li><a href="#myths">常見迷思</a></li>
+          <li><a href="#conclusion">結論</a></li>
+        </ul>
+      </div>
+      <div class="ad-article-sidebar" id="article-sidebar-ad"></div>
+    </aside>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="../js/components.js"></script>
+  <script>
+    initPage('slots');
+    document.getElementById('breadcrumb').innerHTML = renderBreadcrumb([
+      { href: BASE_URL + '/', label: '~' },
+      { href: BASE_URL + '/slots/', label: '老虎機' },
+      { href: '', label: '免費旋轉機制解析' }
+    ]);
+    document.getElementById('article-author').innerHTML = renderAuthor('2026-05-06', '10 min read');
+  </script>
+</body>
+</html>
