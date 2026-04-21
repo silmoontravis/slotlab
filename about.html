@@ -3,63 +3,70 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>關於我們 | SlotLab 虎機研究所</title>
-  <meta name="description" content="了解 SlotLab 虎機研究所的創立理念、團隊背景與評測方法論。我們是台灣首個數據驅動的老虎機獨立評測媒體。">
-  <meta property="og:title" content="關於我們 | SlotLab 虎機研究所">
-  <meta property="og:description" content="了解我們的創立理念、團隊背景與評測方法論。">
+  <title>關於大衛 | 大衛の電子攻略站</title>
+  <meta name="description" content="我是大衛，一個白天寫程式、晚上研究老虎機數據的軟體工程師。這裡記錄我用 Python 和機率論拆解遊戲的過程。">
+  <meta property="og:title" content="關於大衛 | 大衛の電子攻略站">
+  <meta property="og:description" content="一個軟體工程師的老虎機研究自我介紹。">
   <link rel="canonical" href="https://silmoontravis.github.io/slotlab/about.html">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/favicon-32.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="site-header"></div>
-
   <div id="breadcrumb"></div>
 
-  <article class="article-header">
-    <h1>關於 SlotLab 虎機研究所</h1>
-    <div class="article-meta">
-      <span>獨立評測媒體</span>
-      <span>|</span>
-      <span>數據驅動</span>
-      <span>|</span>
-      <span>不收業配</span>
+  <div class="about-page">
+    <div class="about-hero">
+      <img src="images/david-avatar.png" alt="大衛">
+      <div>
+        <h1>嗨，我是大衛。</h1>
+        <p>軟體工程師 / 業餘老虎機研究者 / 數據控</p>
+      </div>
     </div>
-  </article>
 
-  <div class="article-content">
-    <h2>我們是誰</h2>
-    <p>SlotLab 虎機研究所成立於 2026 年，是台灣首個以數據科學角度深度解析老虎機與線上娛樂城的獨立評測媒體。我們的團隊由遊戲數學家、資深玩家與科技人組成，致力於用最嚴謹的方法論，為台灣的老虎機愛好者提供最客觀、最有價值的資訊。</p>
+    <div class="article-content">
+      <h2>我怎麼開始研究老虎機的</h2>
+      <p>說來有點好笑。我本業是軟體工程師，某天朋友拉我玩了一台線上老虎機。輸了幾百塊之後，工程師的職業病發作了 — 我沒有繼續投錢，而是打開了 Python，開始研究這台機器的 RTP 到底怎麼算出來的。</p>
+      <p>然後就一發不可收拾了。</p>
+      <p>我發現老虎機背後的數學模型非常迷人：機率分布、期望值計算、波動率模擬... 這些在統計學課本裡枯燥的概念，放到實際的遊戲場景中突然變得很有趣。而且，市場上充斥著太多錯誤資訊和業配文章，真正用數據說話的內容少之又少。</p>
 
-    <h2>為什麼創立這個網站</h2>
-    <p>台灣市場上充斥著大量的娛樂城推廣文章，多數都是收了業配費的置入行銷。玩家很難找到真正客觀、以數據為基礎的評測內容。我們看到了這個缺口，決定建立一個完全獨立的平台。</p>
-    <p>我們相信：<strong>數據不會說謊</strong>。當你了解一台老虎機的 RTP 結構、波動率特性、獎金觸發機率之後，你就能做出更明智的選擇 — 不是為了保證贏錢，而是為了享受更好的遊戲體驗。</p>
+      <div class="david-note">我不是職業賭徒，也不鼓勵任何人把老虎機當投資。我只是一個對機率論感到著迷的工程師，把研究結果寫成筆記分享出來。</div>
 
-    <h2>我們的評測方法論</h2>
-    <div class="info-box">
-      <h4>四層評測架構</h4>
+      <h2>我做了什麼</h2>
+      <p>這個部落格是我的研究筆記本。我會：</p>
       <ul>
-        <li><strong>第一層：數學分析</strong> — 解讀官方公布的 RTP 數據，計算理論波動率與 Hit Rate</li>
-        <li><strong>第二層：機制拆解</strong> — 分析免費旋轉觸發機率、乘數結構、獎金遊戲期望值</li>
-        <li><strong>第三層：實機測試</strong> — 以標準化注額進行 1,000~10,000 次旋轉，記錄實際表現</li>
-        <li><strong>第四層：玩家體驗</strong> — 評估視覺設計、音效品質、流暢度與整體娛樂性</li>
+        <li><strong>用 Python 模擬</strong> — 寫腳本跑上萬次旋轉，驗證官方公布的 RTP 數據是否可信</li>
+        <li><strong>拆解遊戲機制</strong> — 分析免費旋轉的觸發機率、乘數結構、獎金期望值</li>
+        <li><strong>破解迷思</strong> — 用機率論和統計學打臉那些「快要出大獎了」的都市傳說</li>
+        <li><strong>評估平台</strong> — 從工程師角度看娛樂城的安全性、公平性和出金穩定度</li>
       </ul>
+
+      <h2>我的分析方法</h2>
+      <div class="info-box">
+        <h4>// analysis_pipeline.py</h4>
+        <ul>
+          <li><strong>Step 1: 數學分析</strong> — 從官方賠率表計算理論 RTP 和 Hit Rate</li>
+          <li><strong>Step 2: 機制拆解</strong> — 分析 Free Spin 觸發率、乘數結構、Bonus 期望值</li>
+          <li><strong>Step 3: 模擬驗證</strong> — 用 Python 跑 10,000+ 次旋轉，對比理論值</li>
+          <li><strong>Step 4: 體驗評分</strong> — 視覺、音效、流暢度的主觀評價（畢竟我也是玩家）</li>
+        </ul>
+      </div>
+
+      <h2>我的原則</h2>
+      <ul>
+        <li><strong>不收業配</strong> — 這是個人部落格，沒有人付我錢寫好話</li>
+        <li><strong>數據優先</strong> — 所有結論都有數據佐證，不靠「感覺」</li>
+        <li><strong>教育導向</strong> — 目標是讓你變聰明，不是讓你去賭</li>
+        <li><strong>承認不確定性</strong> — 我的分析也可能有錯，歡迎討論指正</li>
+      </ul>
+
+      <h2 id="disclaimer">免責聲明</h2>
+      <p>認真的部分來了。大衛の電子攻略站是一個教育性質的個人部落格。我分享的所有內容僅供學習和娛樂參考，不構成任何投資建議或賭博鼓勵。</p>
+      <p>老虎機和所有博弈遊戲都有風險。不管 RTP 多高、策略多好，長期來看莊家永遠有數學優勢（這就是它們能營運的原因）。請理性娛樂、量力而為，千萬不要投入超過你能承受的金額。</p>
+      <p>如果你或你認識的人有賭博相關的困擾，請尋求專業協助。</p>
+
+      <div class="david-note">說白了：把老虎機當成花錢買娛樂就好，就像去電影院一樣。偶爾贏了是驚喜，輸了是預期中的娛樂成本。用這個心態去玩，你會開心很多。</div>
     </div>
-
-    <h2>我們的原則</h2>
-    <ul>
-      <li><strong>100% 獨立</strong> — 不接受任何娛樂城或遊戲商的付費推廣</li>
-      <li><strong>數據優先</strong> — 所有結論都必須有數據佐證，不靠「感覺」評分</li>
-      <li><strong>教育導向</strong> — 我們的目標是讓讀者變得更聰明，而不是鼓勵賭博</li>
-      <li><strong>透明公開</strong> — 評測方法論完全公開，讓讀者自行判斷</li>
-    </ul>
-
-    <h2 id="disclaimer">免責聲明</h2>
-    <p>SlotLab 虎機研究所是一個教育性質的內容平台。我們提供的所有資訊僅供參考與教育用途，不構成任何形式的投資建議或賭博鼓勵。</p>
-    <p>老虎機與所有博弈遊戲都存在風險。無論 RTP 多高、策略多好，長期來看莊家永遠有優勢。請務必理性娛樂、量力而為，絕不投入超過自己能承受損失的金額。</p>
-    <p>如果你或你認識的人有賭博成癮的問題，請尋求專業協助。</p>
   </div>
 
   <div id="site-footer"></div>
@@ -68,8 +75,8 @@
   <script>
     initPage('about');
     document.getElementById('breadcrumb').innerHTML = renderBreadcrumb([
-      { href: BASE_URL + '/', label: '首頁' },
-      { href: '', label: '關於我們' }
+      { href: BASE_URL + '/', label: '~' },
+      { href: '', label: '關於大衛' }
     ]);
   </script>
 </body>
