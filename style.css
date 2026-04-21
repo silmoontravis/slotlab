@@ -361,8 +361,11 @@ img { max-width: 100%; height: auto; }
   padding: 2px 8px; border-radius: 4px; font-size: 0.85em; color: var(--accent);
 }
 
-/* TOC */
-.toc { position: sticky; top: calc(var(--header-height) + 24px); }
+/* TOC sidebar */
+.toc-sidebar { position: sticky; top: calc(var(--header-height) + 20px); align-self: start; }
+.toc { }
+.ad-article-sidebar { margin-top: 20px; }
+.ad-article-sidebar .ad-banner { height: 250px; }
 .toc-title { font-size: 0.82rem; font-weight: 700; color: var(--text-primary); margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px solid var(--accent); }
 .toc-list { list-style: none; }
 .toc-list li { padding: 4px 0; }

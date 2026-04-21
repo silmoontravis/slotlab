@@ -187,4 +187,10 @@ function initPage(activePage) {
   document.querySelectorAll('.ad-inline').forEach((el, i) => {
     el.innerHTML = renderAdSlot(`C${i+1}`, 'banner');
   });
+
+  // Article sidebar ad (next to TOC)
+  const articleSidebarAd = document.getElementById('article-sidebar-ad');
+  if (articleSidebarAd) {
+    articleSidebarAd.innerHTML = renderAdSlot('E', 'sidebar');
+  }
 }
