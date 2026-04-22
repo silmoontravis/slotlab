@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://silmoontravis.github.io/slotlab/sitemap.xml
+Sitemap: https://www.rtp96.com/sitemap.xml
