@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>命中頻率解析：為什麼有些老虎機「感覺」比較好開？ | 大衛の電子攻略站</title>
+  <meta name="description" content="深入解析老虎機的命中頻率（Hit Frequency），解釋它跟 RTP 和波動率的關係，以及為什麼命中頻率是被忽略但很重要的指標。">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="命中頻率解析：為什麼有些老虎機「感覺」比較好開？">
+  <meta property="og:description" content="老虎機命中頻率的定義、計算方式與實戰意義完整解析。">
+  <meta property="og:url" content="https://www.rtp96.com/blog/posts/hit-frequency-explained">
+  <meta property="og:site_name" content="大衛の電子攻略站">
+  <meta property="article:published_time" content="2026-04-22"> <!-- published_time -->
+  <meta property="article:section" content="RTP 分析">
+  <link rel="canonical" href="https://www.rtp96.com/blog/posts/hit-frequency-explained">
+  <link rel="icon" type="image/png" href="../../images/favicon-32.png">
+  <link rel="stylesheet" href="../../style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "命中頻率解析：為什麼有些老虎機「感覺」比較好開？",
+    "datePublished": "2026-04-03",
+    "dateModified": "2026-04-03",
+    "author": { "@type": "Person", "name": "大衛 (David)" },
+    "publisher": { "@type": "Person", "name": "大衛 (David)" },
+    "description": "老虎機命中頻率的定義、計算方式與實戰意義完整解析。",
+    "mainEntityOfPage": "https://www.rtp96.com/blog/posts/hit-frequency-explained"
+  }
+  </script>
+</head>
+<body>
+  <div id="site-header"></div>
+  <div id="breadcrumb"></div>
+  <div id="header-ad"></div>
+
+  <div class="article-layout">
+    <article class="article-main">
+      <header class="article-header">
+        <div style="margin-bottom:10px;"><span class="cat-pill cat-rtp">RTP</span></div>
+        <h1>命中頻率解析：為什麼有些老虎機「感覺」比較好開？</h1>
+      </header>
+      <div id="article-author"></div>
+
+      <div class="article-content">
+        <p>你有沒有過這種經驗：玩 A 機台的時候三轉就中獎，感覺這台「很好開」；玩 B 機台連續空轉 20 次，覺得這台「很冷」。但一看 RTP，兩台都是 96%。為什麼體驗差這麼多？答案就在命中頻率。</p>
+
+        <div class="david-note">命中頻率是我覺得最被低估的老虎機指標。大家都在看 RTP 和波動率，但命中頻率才是決定你「感覺好不好」的關鍵因素。</div>
+
+        <h2 id="definition">什麼是命中頻率？</h2>
+        <p>命中頻率（Hit Frequency）是指「每次旋轉中獎的機率」，用百分比表示。例如命中頻率 30% 代表平均每 10 轉會中獎 3 次。</p>
+        <p>注意：命中頻率只計算「有沒有中獎」，不管中多少。可能是中了一個小獎（回收 20% 的投注額），也可能是中了大獎（回收 500 倍）。</p>
+
+        <h2 id="rtp-relationship">命中頻率跟 RTP 的關係</h2>
+        <p>命中頻率跟 RTP 是完全不同的指標：</p>
+        <table>
+          <thead>
+            <tr><th>指標</th><th>描述</th><th>範例</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>RTP 96%</td><td>長期平均回報率</td><td>投注 100 元，平均回收 96 元</td></tr>
+            <tr><td>命中頻率 30%</td><td>每轉中獎機率</td><td>10 轉平均中獎 3 次</td></tr>
+          </tbody>
+        </table>
+        <p>兩台 96% RTP 的機台，命中頻率可能完全不同：</p>
+        <ul>
+          <li><strong>機台 A</strong>：命中頻率 40%，大部分是小獎（0.5x~2x 投注額）。</li>
+          <li><strong>機台 B</strong>：命中頻率 15%，偶爾一個大獎（50x~500x 投注額）。</li>
+        </ul>
+        <p>兩者的長期 RTP 都是 96%，但遊戲體驗完全不同。</p>
+
+        <h2 id="losses-disguised">偽裝成中獎的損失</h2>
+        <p>這是一個很有趣的概念叫做「LDW」（Losses Disguised as Wins）。當你投注 10 元，中了一個 3 元的獎，遊戲會播放中獎的音效和動畫。你的大腦會覺得「我贏了」，但實際上你淨虧損了 7 元。</p>
+        <p>高命中頻率的機台大量使用 LDW — 你幾乎每轉都「中獎」，但大部分的中獎金額都小於你的投注額。這會讓你產生「一直在贏」的錯覺，實際上資金在緩慢流失。</p>
+
+        <div class="info-box">
+          <h4>// ldw_example</h4>
+          <p>研究顯示，在命中頻率 35% 的低波動機台中，約有 40~50% 的「中獎」其實是 LDW。也就是說，你每 10 轉「中獎」3.5 次，但其中約 1.5 次是虧損的「中獎」。真正贏回投注額的只有約 2 次。</p>
+        </div>
+
+        <div class="ad-inline"></div>
+
+        <h2 id="finding-hit-rate">如何得知命中頻率？</h2>
+        <p>大多數遊戲商不會直接公布命中頻率。以下是幾種推估方式：</p>
+        <ol>
+          <li><strong>查遊戲評測網站</strong>：一些專業的老虎機評測網站會測試並公布命中頻率。</li>
+          <li><strong>自己測試</strong>：用 Demo 模式轉 200~500 轉，記錄中獎次數。命中頻率 ≈ 中獎次數 / 總旋轉次數。</li>
+          <li><strong>看遊戲規則</strong>：少數遊戲商會在遊戲規則或技術文件中提到命中頻率。</li>
+          <li><strong>用波動率推估</strong>：低波動 ≈ 高命中頻率（30~40%），高波動 ≈ 低命中頻率（15~25%）。</li>
+        </ol>
+
+        <h2 id="choosing">根據命中頻率選機台</h2>
+        <p>不同的命中頻率適合不同的遊戲目的：</p>
+        <ul>
+          <li><strong>娛樂為主（30%+）</strong>：適合想「一直有東西中」的體驗派玩家。資金消耗速度穩定，不會有太大的情緒波動。</li>
+          <li><strong>平衡型（20~30%）</strong>：中獎頻率適中，既有小獎維持興趣，又保留了大獎的可能性。</li>
+          <li><strong>追求大獎（15~20%）</strong>：大部分時間在空轉，但一旦中獎金額可能很高。需要足夠的耐心和資金。</li>
+        </ul>
+
+        <div class="david-note">我個人偏好命中頻率在 25~30% 的機台。不會空轉到焦慮，但又不會因為太頻繁的小獎而覺得無聊。這是一個很主觀的偏好，找到你自己的舒適區最重要。</div>
+
+        <h2 id="conclusion">結論</h2>
+        <p>命中頻率是理解老虎機體驗的關鍵拼圖。RTP 告訴你「會回收多少」，波動率告訴你「結果會多極端」，命中頻率告訴你「多常會中獎」。三個指標結合在一起，你才能完整地理解一款遊戲。下次選機台的時候，除了看 RTP 和波動率，也花點時間了解它的命中頻率 — 這會幫你找到真正適合你的遊戲。</p>
+
+        <div class="ad-inline"><div class="ad-banner">/* ad: post-footer */</div></div>
+
+        <div class="related-posts">
+          <h3>相關文章</h3>
+          <div class="post-list">
+            <a href="../../slots/what-is-rtp.html" class="post-item">
+              <div class="post-accent post-accent-amber"></div>
+              <div class="post-body">
+                <div class="post-title">RTP 到底是什麼？</div>
+                <div class="post-meta"><span class="cat-pill cat-slots">老虎機</span><span>8 min read</span></div>
+              </div>
+            </a>
+            <a href="../../rtp/slot-volatility-math.html" class="post-item">
+              <div class="post-accent post-accent-purple"></div>
+              <div class="post-body">
+                <div class="post-title">波動率的數學分析</div>
+                <div class="post-meta"><span class="cat-pill cat-rtp">RTP</span><span>9 min read</span></div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <aside class="toc-sidebar">
+      <div class="toc">
+        <div class="toc-title">目錄</div>
+        <ul class="toc-list">
+          <li><a href="#definition">什麼是命中頻率</a></li>
+          <li><a href="#rtp-relationship">跟 RTP 的關係</a></li>
+          <li><a href="#losses-disguised">偽裝的中獎</a></li>
+          <li><a href="#finding-hit-rate">如何得知</a></li>
+          <li><a href="#choosing">選機台</a></li>
+          <li><a href="#conclusion">結論</a></li>
+        </ul>
+      </div>
+      <div class="ad-article-sidebar" id="article-sidebar-ad"></div>
+    </aside>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="../../js/components.js"></script>
+  <script>
+    initPage('blog');
+    document.getElementById('breadcrumb').innerHTML = renderBreadcrumb([
+      { href: BASE_URL + '/', label: '~' },
+      { href: BASE_URL + '/blog/', label: '部落格' },
+      { href: '', label: '命中頻率解析' }
+    ]);
+    document.getElementById('article-author').innerHTML = renderAuthor('2026-04-22', '8 min read');
+  </script>
+</body>
+</html>

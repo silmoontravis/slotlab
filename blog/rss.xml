@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>大衛の電子攻略站 — 部落格</title>
+    <link>https://www.rtp96.com/blog/</link>
+    <description>老虎機研究、RTP 分析、娛樂城評測與遊戲攻略的最新文章。</description>
+    <language>zh-TW</language>
+    <atom:link href="https://www.rtp96.com/blog/rss.xml" rel="self" type="application/rss+xml"/>
+  </channel>
+</rss>

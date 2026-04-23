@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RNG 解密：老虎機的隨機數生成器到底怎麼運作？ | 大衛の電子攻略站</title>
+  <meta name="description" content="從工程師角度解密老虎機的核心技術 — RNG（隨機數生成器），解釋 PRNG 演算法、種子值、公平性認證與常見疑問。">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="RNG 解密：老虎機的隨機數生成器到底怎麼運作？">
+  <meta property="og:description" content="老虎機 RNG 隨機數生成器的技術原理與公平性認證解析。">
+  <meta property="og:url" content="https://www.rtp96.com/blog/posts/rng-how-slots-work">
+  <meta property="og:site_name" content="大衛の電子攻略站">
+  <meta property="article:published_time" content="2026-04-22"> <!-- published_time -->
+  <meta property="article:section" content="RTP 分析">
+  <link rel="canonical" href="https://www.rtp96.com/blog/posts/rng-how-slots-work">
+  <link rel="icon" type="image/png" href="../../images/favicon-32.png">
+  <link rel="stylesheet" href="../../style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "RNG 解密：老虎機的隨機數生成器到底怎麼運作？",
+    "datePublished": "2026-04-06",
+    "dateModified": "2026-04-06",
+    "author": { "@type": "Person", "name": "大衛 (David)" },
+    "publisher": { "@type": "Person", "name": "大衛 (David)" },
+    "description": "老虎機 RNG 隨機數生成器的技術原理與公平性認證解析。",
+    "mainEntityOfPage": "https://www.rtp96.com/blog/posts/rng-how-slots-work"
+  }
+  </script>
+</head>
+<body>
+  <div id="site-header"></div>
+  <div id="breadcrumb"></div>
+  <div id="header-ad"></div>
+
+  <div class="article-layout">
+    <article class="article-main">
+      <header class="article-header">
+        <div style="margin-bottom:10px;"><span class="cat-pill cat-rtp">RTP</span></div>
+        <h1>RNG 解密：老虎機的隨機數生成器到底怎麼運作？</h1>
+      </header>
+      <div id="article-author"></div>
+
+      <div class="article-content">
+        <p>每次你按下老虎機的「旋轉」按鈕，背後都有一個叫做 RNG（Random Number Generator）的系統在運作。它決定了你這一轉會看到什麼符號、會不會中獎、中多少。作為一個軟體工程師，我對 RNG 的技術實現特別感興趣。今天就來拆解它。</p>
+
+        <div class="david-note">理解 RNG 的好處是：你會真正明白為什麼「找規律」是不可能的，然後放下那些無用的迷思，專注在可以控制的事情上。</div>
+
+        <h2 id="what-is-rng">什麼是 RNG？</h2>
+        <p>RNG 是一種產生隨機數字序列的演算法或硬體設備。在老虎機中，RNG 負責決定每次旋轉的結果。它每秒會產生數百到數千個隨機數字，即使沒有人在玩，它也在不斷運轉。</p>
+        <p>當你按下旋轉按鈕的那一瞬間，系統會抓取當前的隨機數字，然後用這些數字來映射到捲軸上的符號位置。結果在你按下按鈕的那一刻就已經決定了 — 後面的動畫只是演出。</p>
+
+        <h2 id="prng">PRNG vs 真隨機</h2>
+        <p>嚴格來說，大多數老虎機使用的是 PRNG（Pseudo-Random Number Generator，偽隨機數生成器），而不是真正的隨機。PRNG 需要一個「種子值」（seed）來啟動，然後透過數學公式產生看起來隨機的數字序列。</p>
+        <p>常見的 PRNG 演算法包括：</p>
+        <ul>
+          <li><strong>Mersenne Twister</strong>：週期長度為 2^19937-1，是很多程式語言的預設隨機數生成器。</li>
+          <li><strong>Fortuna</strong>：專為密碼學設計的 PRNG，安全性更高。</li>
+          <li><strong>SHA-256 基礎的 PRNG</strong>：使用加密雜湊函數作為核心的生成器。</li>
+        </ul>
+
+        <div class="info-box">
+          <h4>// prng_vs_trng</h4>
+          <p>PRNG 是「偽」隨機 — 如果你知道種子值和演算法，理論上可以預測整個序列。但在實際的博彩系統中，種子值通常來自硬體噪音源（如電子元件的熱噪音），而且會頻繁更換。所以「破解 RNG」在實務上是不可能的。</p>
+        </div>
+
+        <h2 id="how-mapping">RNG 如何映射到符號？</h2>
+        <p>假設一條捲軸上有 100 個符號位置，RNG 會產生一個 0~99 的數字，對應到捲軸上的某個位置。5 條捲軸就需要 5 個數字。</p>
+        <p>但這裡有個關鍵細節：捲軸上的符號不是均勻分佈的。高賠付的符號數量少，低賠付的符號數量多。例如：</p>
+        <ul>
+          <li>Wild 符號可能只佔 2/100 的位置。</li>
+          <li>Scatter 符號可能只佔 3/100 的位置。</li>
+          <li>低賠付的撲克牌符號可能佔 30/100 的位置。</li>
+        </ul>
+        <p>這個「權重分佈」就是遊戲商用來控制 RTP 和波動率的工具。改變符號在捲軸上的數量和位置，就能改變遊戲的數學特性。</p>
+
+        <h2 id="fairness">公平性認證</h2>
+        <p>合規的遊戲商需要讓獨立測試機構來驗證 RNG 的公平性。主要的認證機構包括：</p>
+        <table>
+          <thead>
+            <tr><th>機構</th><th>所在地</th><th>測試內容</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>eCOGRA</td><td>英國</td><td>RNG 公平性、RTP 驗證、玩家保護</td></tr>
+            <tr><td>iTech Labs</td><td>澳洲</td><td>RNG 測試、遊戲數學驗證</td></tr>
+            <tr><td>GLI</td><td>美國</td><td>RNG 合規、系統安全</td></tr>
+            <tr><td>BMM Testlabs</td><td>美國</td><td>RNG 認證、軟體測試</td></tr>
+          </tbody>
+        </table>
+        <p>這些機構會進行統計測試（如 Diehard tests、NIST SP 800-22），確認 RNG 產生的數字序列是否符合隨機性的統計標準。</p>
+
+        <div class="ad-inline"></div>
+
+        <h2 id="common-questions">常見問題</h2>
+
+        <h3>RNG 可以被駭客入侵嗎？</h3>
+        <p>理論上有可能，但正規平台的 RNG 系統有多層安全防護。更大的風險來自平台本身（例如不合規的小平台可能會修改 RNG 輸出），而不是外部駭客。</p>
+
+        <h3>賭場可以「調整」RNG 嗎？</h3>
+        <p>合規平台不能即時調整 RNG。但遊戲商通常會提供多個 RTP 版本，平台可以選擇使用哪個版本。這不是「調整 RNG」，而是使用不同的數學模型。</p>
+
+        <h3>快速點擊旋轉會影響結果嗎？</h3>
+        <p>會 — 但不是你想的那樣。因為 RNG 每秒產生大量隨機數字，你在不同時間點按下按鈕，會抓到不同的數字。但這純粹是時間的偶然，不是可以被利用的規律。</p>
+
+        <div class="david-note">我見過有人聲稱「在特定時間按下按鈕可以增加中獎機率」— 這需要你精確到毫秒等級的操作，而且要知道 RNG 的內部狀態。這在現實中是不可能的。</div>
+
+        <h2 id="conclusion">結論</h2>
+        <p>RNG 是老虎機公平性的基石。它確保每次旋轉都是獨立的、隨機的、不可預測的。理解 RNG 的運作方式，你就能真正理解為什麼沒有「必勝公式」，為什麼「找規律」是徒勞的。把精力放在你能控制的事情上 — 選擇高 RTP 機台、做好資金管理、負責任地享受遊戲。</p>
+
+        <div class="ad-inline"><div class="ad-banner">/* ad: post-footer */</div></div>
+
+        <div class="related-posts">
+          <h3>相關文章</h3>
+          <div class="post-list">
+            <a href="../../slots/what-is-rtp.html" class="post-item">
+              <div class="post-accent post-accent-amber"></div>
+              <div class="post-body">
+                <div class="post-title">RTP 到底是什麼？</div>
+                <div class="post-meta"><span class="cat-pill cat-slots">老虎機</span><span>8 min read</span></div>
+              </div>
+            </a>
+            <a href="../../rtp/rtp-myths.html" class="post-item">
+              <div class="post-accent post-accent-purple"></div>
+              <div class="post-body">
+                <div class="post-title">RTP 五大迷思破解</div>
+                <div class="post-meta"><span class="cat-pill cat-rtp">RTP</span><span>8 min read</span></div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <aside class="toc-sidebar">
+      <div class="toc">
+        <div class="toc-title">目錄</div>
+        <ul class="toc-list">
+          <li><a href="#what-is-rng">什麼是 RNG</a></li>
+          <li><a href="#prng">PRNG vs 真隨機</a></li>
+          <li><a href="#how-mapping">符號映射</a></li>
+          <li><a href="#fairness">公平性認證</a></li>
+          <li><a href="#common-questions">常見問題</a></li>
+          <li><a href="#conclusion">結論</a></li>
+        </ul>
+      </div>
+      <div class="ad-article-sidebar" id="article-sidebar-ad"></div>
+    </aside>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="../../js/components.js"></script>
+  <script>
+    initPage('blog');
+    document.getElementById('breadcrumb').innerHTML = renderBreadcrumb([
+      { href: BASE_URL + '/', label: '~' },
+      { href: BASE_URL + '/blog/', label: '部落格' },
+      { href: '', label: 'RNG 解密' }
+    ]);
+    document.getElementById('article-author').innerHTML = renderAuthor('2026-04-22', '9 min read');
+  </script>
+</body>
+</html>

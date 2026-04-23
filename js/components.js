@@ -21,6 +21,7 @@ function renderHeader(activePage) {
     { href: `${BASE_URL}/casinos/`, label: '娛樂城', id: 'casinos' },
     { href: `${BASE_URL}/guides/`, label: '攻略', id: 'guides' },
     { href: `${BASE_URL}/rtp/`, label: 'RTP', id: 'rtp' },
+    { href: `${BASE_URL}/blog/`, label: '部落格', id: 'blog' },
     { href: `${BASE_URL}/about.html`, label: '關於大衛', id: 'about' },
   ];
 

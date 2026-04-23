@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.rtp96.com/sitemap.xml
+Sitemap: https://www.rtp96.com/blog/rss.xml

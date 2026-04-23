@@ -1,0 +1,188 @@
+name: Daily Blog Auto-Publish
+
+on:
+  schedule:
+    - cron: '0 1 * * *'  # 09:00 UTC+8 (Taiwan time)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for drafts
+        id: check
+        run: |
+          DRAFT=$(ls blog/drafts/*.html 2>/dev/null | sort | head -1)
+          if [ -z "$DRAFT" ]; then
+            echo "No drafts available"
+            echo "has_draft=false" >> $GITHUB_OUTPUT
+          else
+            FILENAME=$(basename "$DRAFT")
+            echo "draft_path=$DRAFT" >> $GITHUB_OUTPUT
+            echo "filename=$FILENAME" >> $GITHUB_OUTPUT
+            echo "has_draft=true" >> $GITHUB_OUTPUT
+            echo "Publishing: $FILENAME"
+          fi
+
+      - name: Move draft to posts
+        if: steps.check.outputs.has_draft == 'true'
+        run: |
+          mv "${{ steps.check.outputs.draft_path }}" "blog/posts/${{ steps.check.outputs.filename }}"
+
+      - name: Update blog index
+        if: steps.check.outputs.has_draft == 'true'
+        run: |
+          python3 << 'PYEOF'
+          import re, datetime
+
+          filename = "${{ steps.check.outputs.filename }}"
+          filepath = f"blog/posts/{filename}"
+          today = datetime.date.today().isoformat()
+          slug = filename.replace('.html', '')
+
+          with open(filepath, 'r', encoding='utf-8') as f:
+              html = f.read()
+
+          # Extract title
+          title_match = re.search(r'<h1[^>]*>([^<]+)', html)
+          title = title_match.group(1).strip() if title_match else slug
+
+          # Extract description
+          desc_match = re.search(r'name="description" content="([^"]*)"', html)
+          desc = desc_match.group(1)[:150] if desc_match else ""
+
+          # Extract category pill class and label
+          cat_match = re.search(r'class="cat-pill (cat-\w+)">([^<]+)', html)
+          cat_class = cat_match.group(1) if cat_match else "cat-slots"
+          cat_label = cat_match.group(2) if cat_match else "老虎機"
+
+          # Determine accent color
+          accent_map = {
+              'cat-slots': 'post-accent-amber',
+              'cat-casinos': 'post-accent-cyan',
+              'cat-guides': 'post-accent-green',
+              'cat-rtp': 'post-accent-purple',
+          }
+          accent = accent_map.get(cat_class, 'post-accent-amber')
+
+          card = f'''          <a href="posts/{filename}" class="blog-card">
+              <div class="blog-accent {accent}"></div>
+              <div class="blog-body">
+                <div class="blog-title">{title}</div>
+                <div class="blog-excerpt">{desc}</div>
+                <div class="blog-meta">
+                  <span class="cat-pill {cat_class}">{cat_label}</span>
+                  <span>{today}</span>
+                  <span>8 min read</span>
+                </div>
+              </div>
+            </a>'''
+
+          with open('blog/index.html', 'r', encoding='utf-8') as f:
+              index = f.read()
+
+          # Remove empty placeholder if present
+          index = index.replace('<div class="blog-empty">尚未發佈文章，敬請期待。</div>\n', '')
+          index = index.replace('<div class="blog-empty">尚未發佈文章，敬請期待。</div>', '')
+
+          # Insert after BLOG_CARDS_START marker
+          marker = '<!-- BLOG_CARDS_START -->'
+          marker_pos = index.find(marker)
+          if marker_pos >= 0:
+              insert_pos = marker_pos + len(marker)
+              index = index[:insert_pos] + '\n' + card + index[insert_pos:]
+
+          with open('blog/index.html', 'w', encoding='utf-8') as f:
+              f.write(index)
+
+          print(f"Added card for {filename}")
+          PYEOF
+
+      - name: Update sitemap
+        if: steps.check.outputs.has_draft == 'true'
+        run: |
+          FILENAME="${{ steps.check.outputs.filename }}"
+          SLUG="${FILENAME%.html}"
+          URL="https://www.rtp96.com/blog/posts/${SLUG}"
+          sed -i "/<\/urlset>/i\\  <url><loc>${URL}</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>" sitemap.xml
+
+      - name: Update RSS
+        if: steps.check.outputs.has_draft == 'true'
+        run: |
+          FILE="blog/posts/${{ steps.check.outputs.filename }}"
+          FILENAME="${{ steps.check.outputs.filename }}"
+          SLUG="${FILENAME%.html}"
+          TITLE=$(grep -oP '<h1[^>]*>\K[^<]+' "$FILE" | head -1)
+          DESC=$(grep -oP 'name="description" content="\K[^"]+' "$FILE" | head -1)
+          DATE=$(date -R)
+          URL="https://www.rtp96.com/blog/posts/${SLUG}"
+
+          ITEM="  <item>\n    <title>${TITLE}</title>\n    <link>${URL}</link>\n    <description>${DESC:0:200}</description>\n    <pubDate>${DATE}</pubDate>\n    <guid>${URL}</guid>\n  </item>"
+
+          sed -i "/<\/channel>/i\\${ITEM}" blog/rss.xml
+
+      - name: Update article date to today
+        if: steps.check.outputs.has_draft == 'true'
+        run: |
+          FILE="blog/posts/${{ steps.check.outputs.filename }}"
+          TODAY=$(date +%Y-%m-%d)
+          sed -i "s/\"datePublished\": \"[0-9-]*\"/\"datePublished\": \"${TODAY}\"/" "$FILE"
+          sed -i "s/\"dateModified\": \"[0-9-]*\"/\"dateModified\": \"${TODAY}\"/" "$FILE"
+          sed -i "s/content=\"[0-9-]*\" \/>\s*<!-- published_time -->/content=\"${TODAY}\" \/>/" "$FILE"
+
+      - name: Commit and push
+        if: steps.check.outputs.has_draft == 'true'
+        run: |
+          git config user.name "rtp96 Blog Bot"
+          git config user.email "blog@rtp96.com"
+          git add -A
+          git commit -m "Blog: publish ${{ steps.check.outputs.filename }}"
+          git push
+
+      - name: Notify Google Indexing API
+        if: steps.check.outputs.has_draft == 'true'
+        env:
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+        run: |
+          if [ -n "$GCP_SA_KEY" ]; then
+            FILENAME="${{ steps.check.outputs.filename }}"
+            SLUG="${FILENAME%.html}"
+            echo "$GCP_SA_KEY" > /tmp/sa.json
+            pip install -q google-auth google-api-python-client
+            python3 -c "
+          from google.oauth2 import service_account
+          from googleapiclient.discovery import build
+          creds = service_account.Credentials.from_service_account_file('/tmp/sa.json', scopes=['https://www.googleapis.com/auth/indexing'])
+          svc = build('indexing', 'v3', credentials=creds)
+          url = 'https://www.rtp96.com/blog/posts/${SLUG}'
+          svc.urlNotifications().publish(body={'url': url, 'type': 'URL_UPDATED'}).execute()
+          print(f'Indexed: {url}')
+          "
+            rm /tmp/sa.json
+          fi
+
+      - name: Notify Telegram
+        if: steps.check.outputs.has_draft == 'true'
+        env:
+          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          FILENAME="${{ steps.check.outputs.filename }}"
+          SLUG="${FILENAME%.html}"
+          URL="https://www.rtp96.com/blog/posts/${SLUG}"
+          python3 -c "
+          import json, urllib.request
+          data = json.dumps({
+            'chat_id': '${TG_CHAT}',
+            'text': 'rtp96 Blog published\n\n${SLUG}\n${URL}\n\nGoogle indexed'
+          }).encode('utf-8')
+          req = urllib.request.Request('https://api.telegram.org/bot${TG_TOKEN}/sendMessage', data=data)
+          req.add_header('Content-Type', 'application/json; charset=utf-8')
+          urllib.request.urlopen(req)
+          print('Telegram notified')
+          "

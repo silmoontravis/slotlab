@@ -1,0 +1,99 @@
+/* Blog Section - 大衛の電子攻略站 */
+
+.blog-hero {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 40px 24px 20px;
+}
+
+.blog-hero h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.blog-hero p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  max-width: 600px;
+}
+
+.blog-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.blog-card {
+  display: flex;
+  gap: 16px;
+  padding: 20px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  transition: all var(--transition);
+  color: inherit;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+}
+
+.blog-card:hover {
+  background: var(--bg-card-hover);
+  box-shadow: var(--shadow-sm);
+  transform: translateX(4px);
+}
+
+.blog-card .blog-accent {
+  width: 4px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  align-self: stretch;
+}
+
+.blog-card .blog-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.blog-card .blog-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  transition: color var(--transition);
+}
+
+.blog-card:hover .blog-title {
+  color: var(--accent);
+}
+
+.blog-card .blog-excerpt {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.blog-card .blog-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.blog-empty {
+  text-align: center;
+  padding: 60px 24px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .blog-hero h1 {
+    font-size: 1.3rem;
+  }
+}
