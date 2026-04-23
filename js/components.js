@@ -2,7 +2,7 @@
 
 const SITE_NAME = '大衛の電子攻略站';
 const BASE_URL = getBaseUrl();
-const ARTICLE_COUNTS = { slots: 7, casinos: 4, guides: 3, rtp: 3 };
+const ARTICLE_COUNTS = { slots: 35, casinos: 20, guides: 32, rtp: 11 };
 const TOTAL_ARTICLES = Object.values(ARTICLE_COUNTS).reduce((a,b) => a+b, 0);
 
 function getBaseUrl() {
@@ -21,7 +21,6 @@ function renderHeader(activePage) {
     { href: `${BASE_URL}/casinos/`, label: '娛樂城', id: 'casinos' },
     { href: `${BASE_URL}/guides/`, label: '攻略', id: 'guides' },
     { href: `${BASE_URL}/rtp/`, label: 'RTP', id: 'rtp' },
-    { href: `${BASE_URL}/blog/`, label: '部落格', id: 'blog' },
     { href: `${BASE_URL}/about.html`, label: '關於大衛', id: 'about' },
   ];
 

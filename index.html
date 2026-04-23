@@ -773,5 +773,50 @@
 
   <script src="js/components.js"></script>
   <script>initPage('home');</script>
+  <script>
+  // Pagination for post lists
+  (function() {
+    const PAGE_SIZE = 5;
+    document.querySelectorAll('.post-list').forEach(list => {
+      const items = Array.from(list.querySelectorAll('.post-item'));
+      if (items.length <= PAGE_SIZE) return;
+
+      let page = 0;
+      const totalPages = Math.ceil(items.length / PAGE_SIZE);
+
+      // Create pagination controls
+      const nav = document.createElement('div');
+      nav.style.cssText = 'display:flex;justify-content:center;gap:8px;margin-top:16px;';
+
+      function render() {
+        items.forEach((item, i) => {
+          item.style.display = (i >= page * PAGE_SIZE && i < (page + 1) * PAGE_SIZE) ? '' : 'none';
+        });
+        nav.innerHTML = '';
+        if (page > 0) {
+          const prev = document.createElement('button');
+          prev.textContent = '← 上一頁';
+          prev.style.cssText = 'padding:8px 16px;border:1px solid #30363d;background:#161b22;color:#c9d1d9;border-radius:6px;cursor:pointer;font-size:14px;';
+          prev.onclick = () => { page--; render(); list.scrollIntoView({behavior:'smooth',block:'start'}); };
+          nav.appendChild(prev);
+        }
+        const info = document.createElement('span');
+        info.textContent = (page+1) + ' / ' + totalPages;
+        info.style.cssText = 'padding:8px 12px;color:#8b949e;font-size:14px;display:flex;align-items:center;';
+        nav.appendChild(info);
+        if (page < totalPages - 1) {
+          const next = document.createElement('button');
+          next.textContent = '下一頁 →';
+          next.style.cssText = 'padding:8px 16px;border:1px solid #30363d;background:#161b22;color:#c9d1d9;border-radius:6px;cursor:pointer;font-size:14px;';
+          next.onclick = () => { page++; render(); list.scrollIntoView({behavior:'smooth',block:'start'}); };
+          nav.appendChild(next);
+        }
+      }
+
+      list.parentElement.appendChild(nav);
+      render();
+    });
+  })();
+  </script>
 </body>
 </html>
