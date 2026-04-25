@@ -2,7 +2,7 @@
 
 const SITE_NAME = '大衛の電子攻略站';
 const BASE_URL = getBaseUrl();
-const ARTICLE_COUNTS = { slots: 22, casinos: 11, guides: 10, rtp: 9 };
+const ARTICLE_COUNTS = { slots: 35, casinos: 20, guides: 37, rtp: 11 };
 const TOTAL_ARTICLES = Object.values(ARTICLE_COUNTS).reduce((a,b) => a+b, 0);
 
 function getBaseUrl() {
