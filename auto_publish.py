@@ -129,17 +129,20 @@ def get_cat_info(category: str) -> dict:
 
 
 def blog_card(post: dict) -> str:
-    """Generate a card for blog/index.html (simple style, no .html extension in href)."""
-    slug = post["filename"].replace(".html", "")
+    """Generate a card for blog/index.html (main site post-item style)."""
     cat_info = get_cat_info(post["category"])
-    return f"""    <a href="posts/{slug}" class="post-card">
-      <div class="post-meta">
-        <span class="cat">{post['category']}</span>
-        <span>{post['date']}</span>
-      </div>
-      <h2>{post['title']}</h2>
-      <p>{post['description']}</p>
-    </a>"""
+    return f"""          <a href="posts/{post['filename']}" class="post-item">
+            <div class="post-accent {cat_info['accent']}"></div>
+            <div class="post-body">
+              <div class="post-title">{post['title']}</div>
+              <div class="post-excerpt">{post['description']}</div>
+              <div class="post-meta">
+                <span class="cat-pill {cat_info['css_pill']}">{post['category']}</span>
+                <span>{post['date']}</span>
+                <span>{post.get('readtime', '6 min read')}</span>
+              </div>
+            </div>
+          </a>"""
 
 
 def homepage_card(post: dict) -> str:
