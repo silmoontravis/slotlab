@@ -10,7 +10,7 @@
 | sitemap 顯示已索引 | **0** | GSC 的 sitemap 報表「indexed: 0」。但單頁 inspection 顯示首頁、what-is-rtp、rtp-myths、baccarat 等是 `Submitted and indexed`，所以不是全站沒收錄，是收錄率低 |
 | 公開 HTML | 119（另 6 篇草稿） | `docs/url-inventory.json` |
 | 不在 sitemap 的公開頁 | **38** | 整個 casinos/guides/rtp/slots 分類目錄下大半沒進 sitemap，只靠內連被發現 |
-| 全站 119 頁收錄狀態 | 見 `docs/gsc-index-status.json` | 掃描中，掃完補表 |
+| 全站 119 頁收錄狀態 | **已索引 62／Discovered 未索引 19／Google 不知道這個 URL 33／Crawled 未索引 4／錯誤 1** | `docs/gsc-index-status.json`。33 頁 Google 連看都沒看過＝幾乎全是沒進 sitemap 的分類頁（slots/guides/rtp/casinos 分類首頁本身也在內）；19 頁看過不收＝薄內容 |
 | 抽樣 6 頁 | 4 indexed、1「Discovered - not indexed」、1「Crawled - not indexed」 | 後兩種就是「Google 看過但覺得不值得收」＝薄內容訊號 |
 
 ## 2. 現有流量（GSC，2026-03-01～10-02）
