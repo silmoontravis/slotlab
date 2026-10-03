@@ -54,7 +54,7 @@
 
 - **GSC**：SA `claude-dns-automation@dulcet-elevator-296603` 是 `sc-domain:rtp96.com` 和 `https://www.rtp96.com/` 的 siteOwner，searchAnalytics／sitemaps／urlInspection 都通。
 - **GA4**：`G-WD5D746KC6` 有裝，但 GCP 專案 1081933354675 沒開 Analytics Admin／Data API，SA 也沒加進 GA property → 需要 Travis 在 GCP console 開 API ＋ GA 後台把 SA email 加 Viewer。沒有這個就只能看 GSC。
-- **Cloudflare Pages 部署 token**：舊記憶裡那組還沒驗（auto mode 擋了含 token 的指令），部署前要在 credentials 檔裡放好再測。
+- **Cloudflare Pages 部署 token**：已放 `~/.claude/credentials/rtp96-pages.env`，實測可讀專案 `rtp96`（最後部署 2026-07-17，比 repo 最後 commit 05-12 新 → 已把 live 鏡像到 `D:/maki-workspace/rtp96-live-snapshot-20261003/` 並同步回 repo，差異只有 6 篇草稿被發布）。
 
 ## 6. 台彩資料來源（驗證過）
 
@@ -76,4 +76,4 @@
 2. 先修會立即影響收錄的：38 頁補進 sitemap、canonical 改無副檔名、`rtp96.com` → `www` 301、og:image 換 1200×630。
 3. 第一批目標頁（有既有曝光、排名 20～50、改好就能進第一頁）：`slots/what-is-rtp`（rtp是什麼／rtp博弈，91 曝光）、`blog/posts/casino-bonus-types`（83）、`slots/mahjong-ways-deep-dive`（pos 3.6）、`guides/bonus-hunting-guide`（pos 18.7）、`slots/fishing-game-complete`（捕魚機 96 曝光但 pos 93）。
 4. 樂透專區從零起步，第一批先做 3 個工具頁＋冷熱號分析文，用兩個月的 GSC 看有沒有長尾進來，再決定投入 25 篇還是縮減。
-5. 待 Travis：GA4 開 API＋加 SA；確認 CF Pages token 可用。
+5. 待 Travis：GA4 開 API＋把 SA 加進 GA property（Viewer）。
