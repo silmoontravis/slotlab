@@ -118,11 +118,21 @@ img { max-width: 100%; height: auto; }
 .ad-size { font-size: 0.7rem; color: var(--text-muted); margin-bottom: 4px; }
 .ad-cta { font-size: 0.78rem; color: var(--amber); font-weight: 600; }
 
-.ad-header { max-width: var(--max-width); margin: 16px auto; padding: 0 24px; height: 90px; }
+.ad-header { max-width: var(--max-width); margin: 16px auto; padding: 0 24px; }
 .ad-header .ad-banner { width: 100%; height: 90px; }
 .ad-sidebar .ad-banner { width: 100%; height: 250px; }
-.ad-inline { margin: 28px 0; height: 100px; }
+.ad-inline { margin: 28px 0; }
 .ad-inline .ad-banner { height: 100%; }
+/* 自家產品廣告輪播（2026-10-04）：容器照圖的比例撐高，兩張疊在同一格，用透明度切換；728×90 在手機等比縮 */
+.ad-rotator { position: relative; width: 100%; max-width: calc(var(--ad-w) * 1px); margin: 0 auto; aspect-ratio: var(--ad-w) / var(--ad-h); border-radius: var(--radius-md); overflow: hidden; box-shadow: 0 1px 2px rgba(15,23,42,.08), 0 0 0 1px rgba(15,23,42,.06); background: var(--bg-card); }
+.ad-rotator.ad-size-sidebar { aspect-ratio: auto; }
+.ad-rotator .ad-item { position: absolute; inset: 0; display: block; opacity: 0; transition: opacity .6s ease; pointer-events: none; }
+.ad-rotator .ad-item.on { opacity: 1; pointer-events: auto; position: relative; }
+.ad-rotator .ad-item img { display: block; width: 100%; height: auto; }
+.ad-rotator .ad-item picture { display: block; }
+.ad-cap { display: flex; flex-direction: column; gap: 2px; padding: 8px 12px 10px; font-size: 0.78rem; line-height: 1.4; color: var(--text-muted); background: var(--bg-card); border-top: 1px solid var(--border-color, #e5e7eb); }
+.ad-cap b { color: var(--text-primary); font-size: 0.82rem; }
+.ad-rotator .ad-item:hover img { filter: brightness(1.04); }
 
 /* ===== BLOG INTRO ===== */
 .blog-intro {

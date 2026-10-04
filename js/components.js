@@ -63,22 +63,42 @@ function getPageCode() {
   return 'HOME';
 }
 
+// 自家產品廣告（2026-10-04）：同尺寸的兩張輪播；點了到客服中心落地頁（cs.wii789.com/ask/{product}），對話框第一句自動帶「我要詢問「X」產品」
+//   SEO：兩張都在 HTML 裡（輪播只切可見），每張是真的 <a>，alt／title 寫產品關鍵詞，<picture> 給 WebP＋@2x，寫死寬高不跳版，自家產品不加 nofollow
+const ADS = [
+  { key: 'ceo', name: 'CEO 傳真系統', href: 'https://cs.wii789.com/ask/ceo', cap: 'LINE BOT 整合 · 傳單直接進掃描列印',
+    alt: 'CEO 傳真系統：LINE BOT 整合，LINE 傳單直接進掃描列印與收發流程', title: '詢問 CEO 傳真系統（LINE BOT 整合、訊息管理、掃描列印）' },
+  { key: '123win', name: '123Win 2.0 樂透記帳', href: 'https://cs.wii789.com/ask/123win', cap: 'KEY 單 · 會員群組 · 日月年報表',
+    alt: '123Win 2.0 樂透記帳 KEY 單系統：會員、群組、個人帳單與日月年報表', title: '詢問 123Win 2.0 樂透記帳 KEY 單系統' },
+];
 function renderAdSlot(position, size) {
-  const page = getPageCode();
-  const id = `${position}-${page}-001`;
-  const sizeLabel = size === 'banner' ? '728×90' : size === 'sidebar' ? '300×250' : '728×90';
-  return `<div class="ad-banner" data-ad-id="${id}">
-    <div class="ad-placeholder">
-      <div class="ad-label">廣告版位 ${id}</div>
-      <div class="ad-size">${sizeLabel}</div>
-      <div class="ad-cta">歡迎洽詢合作 📩</div>
-    </div>
-  </div>`;
+  const id = `${position}-${getPageCode()}-001`;
+  const [w, h] = size === 'sidebar' ? [300, 250] : [728, 90];
+  const f = `${w}x${h}`, eager = position === 'A';
+  const items = ADS.map((a, i) => `<a class="ad-item${i === 0 ? ' on' : ''}" href="${a.href}" title="${a.title}" data-ad="${a.key}" data-slot="${id}">
+      <picture><source type="image/webp" srcset="${BASE_URL}/images/ads/${a.key}-${f}.webp 1x, ${BASE_URL}/images/ads/${a.key}-${f}@2x.webp 2x">
+      <img src="${BASE_URL}/images/ads/${a.key}-${f}.png" alt="${a.alt}" width="${w}" height="${h}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async"></picture>
+      ${size === 'sidebar' ? `<span class="ad-cap"><b>${a.name}</b>${a.cap}</span>` : ''}</a>`).join('');
+  return `<div class="ad-rotator ad-size-${size}" data-ad-id="${id}" style="--ad-w:${w};--ad-h:${h}">${items}</div>`;
+}
+// 輪播：每個版位 8 秒換一張，相鄰版位錯開起始（同一頁同時看得到兩個產品）；滑鼠停著不換；系統設「減少動態」就不自動換；點擊記 GA 事件
+function initAds() {
+  const slots = [...document.querySelectorAll('.ad-rotator')].filter(el => el.offsetParent !== null);   // 只算看得到的（側欄在手機是 display:none）
+  slots.forEach((el, i) => {
+    const items = [...el.querySelectorAll('.ad-item')]; if (items.length < 2) return;
+    let cur = i % items.length; items.forEach((a, k) => a.classList.toggle('on', k === cur));
+    const step = () => { if (el.matches(':hover')) return; cur = (cur + 1) % items.length; items.forEach((a, k) => a.classList.toggle('on', k === cur)); };
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(step, 8000);
+  });
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('.ad-item'); if (!a || typeof gtag !== 'function') return;
+    gtag('event', 'ad_click', { product: a.dataset.ad, slot: a.dataset.slot, page: location.pathname });
+  });
 }
 
 function renderFooter() {
   return `
-  <div class="ad-footer" style="max-width:1100px;margin:0 auto 24px;padding:0 20px;height:90px;">
+  <div class="ad-footer" style="max-width:1100px;margin:0 auto 24px;padding:0 20px;">
     ${renderAdSlot('D', 'banner')}
   </div>
   <footer class="site-footer">
@@ -198,7 +218,7 @@ function initPage(activePage) {
 
   // Header ad
   const headerAdEl = document.getElementById('header-ad');
-  if (headerAdEl) headerAdEl.innerHTML = `<div class="ad-header"><div style="height:90px;">${renderAdSlot('A', 'banner')}</div></div>`;
+  if (headerAdEl) headerAdEl.innerHTML = `<div class="ad-header">${renderAdSlot('A', 'banner')}</div>`;
 
   // Inline ads
   document.querySelectorAll('.ad-inline').forEach((el, i) => {
@@ -210,4 +230,5 @@ function initPage(activePage) {
   if (articleSidebarAd) {
     articleSidebarAd.innerHTML = renderAdSlot('E', 'sidebar');
   }
+  initAds();
 }
