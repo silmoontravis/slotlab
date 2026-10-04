@@ -24,7 +24,8 @@ function facts(html, isArticle, pageDir = '/') {
 }
 const rows = []; let bad = 0;
 for (const u of inv) {
-  const oldF = path.join(ROOT, u.file); const newF = path.join(DIST, u.url.endsWith('/') ? u.url + 'index.html' : u.url + '.html');
+  const oldF = [path.join(ROOT, u.file), path.join(ROOT, '..', '..', 'rtp96-live-snapshot-20261003', u.file), path.join(ROOT, '..', 'rtp96-live-snapshot-20261003', u.file)].find(f => fs.existsSync(f));   // 舊 HTML 已從 repo 移除（10-04）：改比線上快照；兩邊都沒有就只檢查新站有沒有這頁
+  if (!oldF) { const nf = path.join(DIST, u.url.endsWith('/') ? u.url + 'index.html' : u.url + '.html'); if (!fs.existsSync(nf)) { rows.push(`| ${u.url} | ✗ 新站沒有這頁 |`); bad++; } else rows.push(`| ${u.url} | （無舊檔可比）新站有 |`); continue; } const newF = path.join(DIST, u.url.endsWith('/') ? u.url + 'index.html' : u.url + '.html');
   if (!fs.existsSync(newF)) { rows.push(`| ${u.url} | ✗ 新站沒有這頁 |`); bad++; continue; }
   const isArticle = !/\/$/.test(u.url) && u.url !== '/about';
   const dir = path.posix.dirname(u.file);

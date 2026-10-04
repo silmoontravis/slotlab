@@ -1,4 +1,4 @@
-# P1 遷移比對（2026-10-04T03:42）
+# P1 遷移比對（2026-10-04T03:45）
 
 舊＝repo HTML（＝線上），新＝dist。125 個網址，0 個有差異。
 
@@ -46,7 +46,7 @@
 | /blog/posts/rng-how-slots-work | ✓ |
 | /blog/posts/scatter-wild-symbols-explained | ✓ |
 | /blog/posts/seasonal-casino-promotions | ✓ |
-| /blog/posts/slot-addiction-prevention | ✓ |
+| /blog/posts/slot-addiction-prevention | （無舊檔可比）新站有 |
 | /blog/posts/slot-bankroll-calculator | ✓ |
 | /blog/posts/slot-beginner-guide | ✓ |
 | /blog/posts/slot-betting-strategies | ✓ |
@@ -65,67 +65,67 @@
 | /blog/posts/slot-rtp-tracking-tools | ✓ |
 | /blog/posts/slot-streaming-culture | ✓ |
 | /blog/posts/slot-tournament-strategy | ✓ |
-| /blog/posts/slot-variance-calculator | ✓ |
+| /blog/posts/slot-variance-calculator | （無舊檔可比）新站有 |
 | /blog/posts/slot-volatility-chart | ✓ |
 | /blog/posts/slot-volatility-selection | ✓ |
 | /blog/posts/slot-win-probability-calculation | ✓ |
 | /blog/posts/taiwan-online-gambling-law | ✓ |
 | /blog/posts/volatility-deep-dive | ✓ |
-| /blog/posts/vr-casino-future | ✓ |
-| /casinos/casino-safety-checklist | ✓ |
-| /casinos/casino-withdrawal-tips | ✓ |
-| /casinos/chess-card-games-guide | ✓ |
-| /casinos/deposit-bonus-guide | ✓ |
+| /blog/posts/vr-casino-future | （無舊檔可比）新站有 |
+| /casinos/casino-safety-checklist | （無舊檔可比）新站有 |
+| /casinos/casino-withdrawal-tips | （無舊檔可比）新站有 |
+| /casinos/chess-card-games-guide | （無舊檔可比）新站有 |
+| /casinos/deposit-bonus-guide | （無舊檔可比）新站有 |
 | /casinos/how-to-choose | ✓ |
 | /casinos/ | （資訊）卡片數 20→22 |
 | /casinos/line-casino-review | ✓ |
-| /casinos/live-dealer-guide | ✓ |
-| /casinos/mobile-casino-guide | ✓ |
+| /casinos/live-dealer-guide | （無舊檔可比）新站有 |
+| /casinos/mobile-casino-guide | （無舊檔可比）新站有 |
 | /casinos/online-casino-ranking-2026 | ✓ |
 | /casinos/payment-methods-guide | ✓ |
-| /casinos/taiwan-casino-market | ✓ |
-| /guides/bankroll-management | ✓ |
+| /casinos/taiwan-casino-market | （無舊檔可比）新站有 |
+| /guides/bankroll-management | （無舊檔可比）新站有 |
 | /guides/beginner-complete-guide | ✓ |
-| /guides/bonus-hunting-guide | ✓ |
-| /guides/game-selection-strategy | ✓ |
+| /guides/bonus-hunting-guide | （無舊檔可比）新站有 |
+| /guides/game-selection-strategy | （無舊檔可比）新站有 |
 | /guides/ | （資訊）卡片數 37→39 |
-| /guides/lottery-guide | ✓ |
+| /guides/lottery-guide | （無舊檔可比）新站有 |
 | /guides/responsible-gambling | ✓ |
-| /guides/slot-basics-complete | ✓ |
-| /guides/slot-myths-debunked | ✓ |
+| /guides/slot-basics-complete | （無舊檔可比）新站有 |
+| /guides/slot-myths-debunked | （無舊檔可比）新站有 |
 | /guides/sports-betting-beginners | ✓ |
-| /guides/when-to-stop | ✓ |
+| /guides/when-to-stop | （無舊檔可比）新站有 |
 | / | （資訊）卡片數 106→24 |
-| /rtp/cheating-myths | ✓ |
+| /rtp/cheating-myths | （無舊檔可比）新站有 |
 | /rtp/house-edge-explained | ✓ |
-| /rtp/how-casinos-make-money | ✓ |
+| /rtp/how-casinos-make-money | （無舊檔可比）新站有 |
 | /rtp/ | （資訊）卡片數 11→17 |
-| /rtp/long-term-simulation | ✓ |
-| /rtp/rtp-by-provider | ✓ |
+| /rtp/long-term-simulation | （無舊檔可比）新站有 |
+| /rtp/rtp-by-provider | （無舊檔可比）新站有 |
 | /rtp/rtp-myths | ✓ |
-| /rtp/rtp-vs-hit-frequency | ✓ |
+| /rtp/rtp-vs-hit-frequency | （無舊檔可比）新站有 |
 | /rtp/slot-volatility-math | ✓ |
-| /rtp/variance-explained | ✓ |
-| /slots/atg-games-review | ✓ |
-| /slots/bng-booongo-review | ✓ |
-| /slots/demo-play-guide | ✓ |
-| /slots/fishing-game-complete | ✓ |
+| /rtp/variance-explained | （無舊檔可比）新站有 |
+| /slots/atg-games-review | （無舊檔可比）新站有 |
+| /slots/bng-booongo-review | （無舊檔可比）新站有 |
+| /slots/demo-play-guide | （無舊檔可比）新站有 |
+| /slots/fishing-game-complete | （無舊檔可比）新站有 |
 | /slots/fishing-game-strategy | ✓ |
 | /slots/free-spins-mechanics | ✓ |
-| /slots/gates-of-olympus-review | ✓ |
+| /slots/gates-of-olympus-review | （無舊檔可比）新站有 |
 | /slots/high-volatility-guide | ✓ |
 | /slots/ | （資訊）卡片數 35→40 |
-| /slots/jackpot-tips | ✓ |
-| /slots/jili-games-guide | ✓ |
-| /slots/mahjong-ways-deep-dive | ✓ |
+| /slots/jackpot-tips | （無舊檔可比）新站有 |
+| /slots/jili-games-guide | （無舊檔可比）新站有 |
+| /slots/mahjong-ways-deep-dive | （無舊檔可比）新站有 |
 | /slots/online-slot-guide | ✓ |
-| /slots/online-vs-arcade | ✓ |
-| /slots/pay-table-guide | ✓ |
-| /slots/pg-soft-review | ✓ |
+| /slots/online-vs-arcade | （無舊檔可比）新站有 |
+| /slots/pay-table-guide | （無舊檔可比）新站有 |
+| /slots/pg-soft-review | （無舊檔可比）新站有 |
 | /slots/progressive-jackpot | ✓ |
-| /slots/rsg-games-review | ✓ |
-| /slots/sweet-bonanza-analysis | ✓ |
-| /slots/thunder-hammer-review | ✓ |
+| /slots/rsg-games-review | （無舊檔可比）新站有 |
+| /slots/sweet-bonanza-analysis | （無舊檔可比）新站有 |
+| /slots/thunder-hammer-review | （無舊檔可比）新站有 |
 | /slots/top-10-slots-2026 | ✓ |
-| /slots/war-god-seth-analysis | ✓ |
+| /slots/war-god-seth-analysis | （無舊檔可比）新站有 |
 | /slots/what-is-rtp | ✓ |
