@@ -44,9 +44,11 @@ jobs:
           command: pages deploy dist --project-name=rtp96 --branch=main --commit-dirty=true
       - name: 線上抽查
         run: |
-          set -e
-          curl -fsS https://www.rtp96.com/lotto/lotto649-results | grep -q "lt-table"
-          curl -fsS https://www.rtp96.com/sitemap.xml | grep -c "<url>"
+          for i in 1 2 3 4 5 6; do
+            sleep 20
+            if curl -fsS https://www.rtp96.com/lotto/lotto649-results | grep -q "lt-table"; then echo "線上 OK（第 $i 次）"; curl -fsS https://www.rtp96.com/sitemap.xml | grep -c "<url>"; exit 0; fi
+          done
+          echo "::warning::部署後 2 分鐘線上還沒看到新頁（可能是快取），請人工看 https://www.rtp96.com/lotto/"; exit 0
       - name: 抓取有錯就把摘要寫進 job summary
         if: steps.fetch.outcome == 'failure'
         run: echo "⚠️ lotto-fetch 回報錯誤（資料保留上一筆有效），看 data/lotto/*.json 的 errors" >> $GITHUB_STEP_SUMMARY

@@ -47,7 +47,7 @@ function validate(g, d) {
   return e;
 }
 const sig = (d) => JSON.stringify([d.numbers, d.special, d.drawDate, d.prizes.map(p => [p.tier, p.winners, p.perPrize])]);
-let exit = 0; const summary = {};
+let exit = 0; const summary = {}, status = {};
 for (const [id, g] of Object.entries(GAMES)) {
   const file = path.join(DIR, id + '.json');
   const db = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : { game: id, name: g.name, draws: [], errors: [] };
@@ -71,9 +71,12 @@ for (const [id, g] of Object.entries(GAMES)) {
   db.draws = [...byP.values()].sort((a, b) => a.period - b.period);
   // 期號要嚴格遞增、開獎日也要遞增
   for (let i = 1; i < db.draws.length; i++) if (db.draws[i].drawDate < db.draws[i - 1].drawDate) { db.errors.push({ at: new Date().toISOString(), period: db.draws[i].period, errors: ['開獎日倒退'] }); exit = 2; }
-  db.errors = db.errors.slice(-200); db.updatedAt = new Date().toISOString(); db.latest = db.draws[db.draws.length - 1]?.period;
-  fs.writeFileSync(file, JSON.stringify(db));
+  db.errors = db.errors.slice(-200); db.latest = db.draws[db.draws.length - 1]?.period;
+  // 只有資料真的變了才改檔（含 updatedAt），不然 CI 每次都會多一個空 commit；最後檢查時間另外寫 status.json（不進 git）
+  if (added || revised || !fs.existsSync(file)) { db.updatedAt = new Date().toISOString(); fs.writeFileSync(file, JSON.stringify(db)); }
+  status[id] = { checkedAt: new Date().toISOString(), latest: db.draws[db.draws.length - 1]?.drawDate, errors: db.errors.slice(-3) };
   summary[id] = { total: db.draws.length, added, revised, bad, latest: db.draws[db.draws.length - 1]?.drawDate, first: db.draws[0]?.drawDate };
 }
+fs.writeFileSync(path.join(DIR, 'status.json'), JSON.stringify(status));
 console.log(JSON.stringify(summary, null, 1));
 process.exit(exit);
