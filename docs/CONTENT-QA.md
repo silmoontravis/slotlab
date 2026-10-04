@@ -1,26 +1,31 @@
-# 稿件驗收（2026-10-04T04:49）
+# 稿件驗收（2026-10-04T07:22）
 
-55 篇，0 篇有錯。
+65 篇，0 篇有錯。
 
 | 文章 | 中文字 | david | sources | 結果 |
 |---|---|---|---|---|
 | /blog/posts/asia-slot-market-2026 | 2167 | 2 | 6 | ✓  |
 | /blog/posts/autoplay-pros-cons | 2224 | 2 | 2 | ✓  |
+| /blog/posts/baccarat-strategy-deep | 1898 | 2 | 2 | ✓  |
 | /blog/posts/cascade-slots-explained | 1910 | 2 | 3 | ✓  |
+| /blog/posts/casino-affiliate-guide | 2282 | 2 | 3 | ✓  |
 | /blog/posts/casino-bonus-types | 2036 | 2 | 3 | ✓  |
 | /blog/posts/casino-customer-service | 2177 | 2 | 4 | ✓  |
 | /blog/posts/casino-security-check | 2306 | 2 | 5 | ✓  |
 | /blog/posts/casino-withdrawal-speed | 2390 | 2 | 3 | ✓  |
+| /casinos/casino-withdrawal-tips | 2297 | 2 | 3 | ✓  |
 | /lotto/consecutive-numbers-how-often | 1815 | 3 | 3 | ✓  |
 | /blog/posts/crypto-casino-guide | 2466 | 2 | 5 | ✓  |
 | /lotto/daily539-how-to-play | 1859 | 2 | 3 | ✓  |
 | /lotto/daily539-missing-value-explained | 1828 | 2 | 3 | ✓  |
 | /blog/posts/ewallets-casino-guide | 2523 | 2 | 4 | ✓  |
 | /blog/posts/gambling-psychology-traps | 2288 | 2 | 3 | ✓  |
+| /guides/game-selection-strategy | 1818 | 2 | 2 | ✓  |
 | /blog/posts/high-rtp-slots-2026 | 1870 | 2 | 9 | ✓  |
 | /lotto/hot-cold-numbers-do-they-work | 2124 | 3 | 4 | ✓  |
 | /blog/posts/jackpot-types-explained | 1995 | 2 | 4 | ✓  |
 | /blog/posts/live-casino-beginners | 2033 | 2 | 4 | ✓  |
+| /casinos/live-dealer-guide | 2134 | 2 | 3 | ✓  |
 | /lotto/lottery-expected-value | 2190 | 2 | 5 | ✓  |
 | /lotto/lottery-odds-math-explained | 1873 | 2 | 3 | ✓  |
 | /lotto/lottery-random-test | 2130 | 2 | 3 | ✓  |
@@ -28,13 +33,16 @@
 | /lotto/lotto649-how-to-play | 2090 | 2 | 3 | ✓  |
 | /lotto/lotto649-number-frequency | 1800 | 2 | 3 | ✓  |
 | /lotto/lotto649-wheeling-worth-it | 1886 | 2 | 2 | ✓  |
+| /casinos/mobile-casino-guide | 1934 | 2 | 3 | ✓  |
 | /blog/posts/multiplier-slots-guide | 1985 | 2 | 6 | ✓  |
 | /blog/posts/netent-vs-microgaming | 1803 | 2 | 9 | ✓  |
 | /lotto/odd-even-big-small-patterns | 1811 | 2 | 4 | ✓  |
 | /blog/posts/online-vs-land-casino | 2168 | 2 | 4 | ✓  |
 | /blog/posts/pragmatic-play-review | 1915 | 2 | 10 | ✓  |
 | /lotto/quick-pick-vs-self-pick | 1978 | 2 | 3 | ✓  |
+| /rtp/rtp-vs-hit-frequency | 1867 | 2 | 2 | ✓  |
 | /blog/posts/seasonal-casino-promotions | 2004 | 2 | 3 | ✓  |
+| /blog/posts/slot-addiction-prevention | 2338 | 2 | 4 | ✓  |
 | /blog/posts/slot-bankroll-calculator | 2021 | 2 | 3 | ✓  |
 | /blog/posts/slot-betting-strategies | 2179 | 2 | 3 | ✓  |
 | /blog/posts/slot-bonus-round-guide | 1958 | 2 | 4 | ✓  |
@@ -45,13 +53,14 @@
 | /blog/posts/slot-rtp-tracking-tools | 1946 | 2 | 4 | ✓  |
 | /blog/posts/slot-streaming-culture | 2139 | 2 | 3 | ✓  |
 | /blog/posts/slot-tournament-strategy | 1938 | 2 | 3 | ✓  |
+| /blog/posts/slot-variance-calculator | 1837 | 2 | 2 | ✓  |
 | /blog/posts/slot-volatility-chart | 1968 | 2 | 5 | ✓  |
 | /lotto/superlotto638-how-to-play | 2076 | 2 | 3 | ✓  |
 | /lotto/superlotto638-second-zone-strategy | 2153 | 2 | 2 | ✓  |
 | /lotto/superlotto638-zone2-frequency | 1831 | 2 | 3 | ✓  |
 | /lotto/taiwan-lottery-prize-tax-and-claim | 2258 | 2 | 4 | ✓  |
 | /blog/posts/taiwan-online-gambling-law | 2343 | 2 | 4 | ✓  |
-| /lotto/underground-539-combos-and-cars | 1999 | 2 | 3 | ✓  |
+| /lotto/underground-539-combos-and-cars | 2113 | 2 | 3 | ✓  |
 | /lotto/underground-539-stars | 2214 | 2 | 3 | ✓  |
 | /lotto/underground-bookie-tiers | 2617 | 2 | 3 | ✓  |
 | /lotto/underground-mark-six-glossary | 2523 | 2 | 3 | ✓  |
@@ -59,3 +68,4 @@
 | /lotto/underground-rebate-and-share | 2016 | 2 | 3 | ✓  |
 | /lotto/underground-taiwan-number | 1997 | 2 | 3 | ✓  |
 | /lotto/underground-vs-official-odds | 2473 | 2 | 3 | ✓  |
+| /blog/posts/vr-casino-future | 2035 | 2 | 4 | ✓  |

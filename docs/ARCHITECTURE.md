@@ -132,6 +132,13 @@ title ≤60、description 40～160、H1 唯一、H2 ≥3 且自動 id、內文 �
 | **P3 內容** | 3 篇代表稿校準 → 30 篇重寫 + 25 篇新文 | 來源、數字、搜尋意圖、重複性逐篇驗收 | |
 | **P4 營運** | Threads 自動貼、開獎圖卡、月報 | 看實際流量再決定投入 | 10-04：真閱讀計數（Pages Function＋D1 `rtp96-views`，`functions/api/views/[id].js`，`wrangler.toml` 綁 VIEWS）＋編輯推薦標籤（site.json.featured）✅；月報 `scripts/seo-report.mjs` ✅；Threads 要先有帳號，未做 |
 
+## 3.7 時事關鍵字（2026-10-04，Travis「把台彩最新新聞消息帶進來當被搜尋的關鍵字」）
+- **每期快報** `/lotto/draws/<game>/<YYYY-MM-DD>`（最近 90 天每期一頁，程式自動排版）：標題＝彩種＋月/日＋號碼＋頭獎結果（連 N 摃／開出 N 注每注多少）；內容＝號碼與順序、各獎項注數獎金、連摃數、跟上期比較（重複號、連號、奇偶大小和值）、近 30 期出現次數、前五期、下期日期、台彩新聞。
+- **按月總表** `/lotto/draws/<game>/<YYYY-MM>`（2014 起全部）＋索引 `/lotto/draws/<game>/`。
+- **台彩動態** `scripts/lotto-news.mjs`：Google News RSS（大樂透／威力彩／今彩539／台灣彩券 加碼／樂透 頭獎）→ `data/lotto/news.json`（14 天、40 則、只存標題／來源／連結）；專區首頁、工具頁、快報頁顯示 8 則，外連 nofollow。CI 每天抓。
+- 注意：API 的 jackpot `prize` 是「本期分配到頭獎的金額」，不是媒體講的累積總額（例：本期 4,000 萬 vs 新聞 2.7 億），快報措辭寫「本期 X 無人中、併入下期累積」，不寫累積總額。539 頭獎固定 800 萬沒有 prize 欄位。
+- 網址數從 155 → 750；sitemap 自動含。
+
 ## 3.6 P2 實作備註（2026-10-04）
 - 工具頁模板 `templates/lotto.mjs`（stats／freshness／toolPage／calculatorPage／hubCards），瀏覽器端 `assets/js/lotto.js`（頁籤、對獎器、四個計算機）。統計全部 build 時算；對獎器內嵌最近 30 期，全量歷史在 `/data/lotto/<game>.min.json`。
 - 更新狀態：`freshness()` 依各彩種開獎日算「應有的最近一期」，22:30 後還沒有就標「延遲」；下次開獎日也算出來顯示。

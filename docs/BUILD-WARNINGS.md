@@ -1,14 +1,5 @@
-# build 警告（20261004044606）
+# build 警告（20261004072106）
 
-- /blog/posts/baccarat-strategy-deep description 34 字（要 40～160）
-- /blog/posts/baccarat-strategy-deep 內文 855 字 < 1500
-- /blog/posts/slot-addiction-prevention description 33 字（要 40～160）
-- /blog/posts/slot-addiction-prevention 內文 854 字 < 1500
-- /blog/posts/casino-affiliate-guide description 37 字（要 40～160）
-- /blog/posts/casino-affiliate-guide 內文 863 字 < 1500
-- /blog/posts/slot-variance-calculator description 36 字（要 40～160）
-- /blog/posts/slot-variance-calculator 內文 860 字 < 1500
-- /blog/posts/vr-casino-future 內文 868 字 < 1500
 - /slots/war-god-seth-analysis 內連少於 3
 - /slots/thunder-hammer-review 內連少於 3
 - /slots/sweet-bonanza-analysis 內連少於 3
@@ -28,8 +19,6 @@
 - /slots/atg-games-review 內連少於 3
 - /rtp/variance-explained 內連少於 3
 - /guides/responsible-gambling 內連少於 3
-- /rtp/rtp-vs-hit-frequency 內文 1452 字 < 1500
-- /rtp/rtp-vs-hit-frequency 內連少於 3
 - /rtp/rtp-by-provider 內連少於 3
 - /rtp/slot-volatility-math 內連少於 3
 - /rtp/long-term-simulation 內連少於 3
@@ -42,22 +31,14 @@
 - /guides/slot-basics-complete 內連少於 3
 - /slots/fishing-game-strategy 內連少於 3
 - /guides/lottery-guide 內連少於 3
-- /guides/game-selection-strategy 內文 1451 字 < 1500
-- /guides/game-selection-strategy 內連少於 3
 - /casinos/online-casino-ranking-2026 內連少於 3
 - /guides/bonus-hunting-guide 內連少於 3
 - /guides/bankroll-management 內連少於 3
 - /slots/online-slot-guide 內連少於 3
 - /casinos/taiwan-casino-market 內連少於 3
-- /casinos/mobile-casino-guide 內文 1457 字 < 1500
-- /casinos/mobile-casino-guide 內連少於 3
-- /casinos/live-dealer-guide 內文 1496 字 < 1500
-- /casinos/live-dealer-guide 內連少於 3
 - /slots/what-is-rtp 內連少於 3
 - /casinos/deposit-bonus-guide 內連少於 3
 - /casinos/chess-card-games-guide 內連少於 3
-- /casinos/casino-withdrawal-tips 內文 1437 字 < 1500
-- /casinos/casino-withdrawal-tips 內連少於 3
 - /casinos/casino-safety-checklist 內連少於 3
 - /slots/high-volatility-guide 內連少於 3
 - /slots/top-10-slots-2026 內連少於 3
