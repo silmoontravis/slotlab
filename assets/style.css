@@ -504,3 +504,6 @@ img { max-width: 100%; height: auto; }
 
 .lt-card-h b { white-space: nowrap; }
 .lt-card-h { gap: 8px; } .lt-card-h span { text-align: right; }
+
+/* 文章內表格在手機可左右捲（markdown 產的裸 table） */
+@media (max-width: 768px) { .article-content table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; white-space: nowrap; } }
