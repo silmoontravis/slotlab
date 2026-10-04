@@ -1,0 +1,160 @@
+# build 警告（20261004034229）
+
+- /blog/posts/taiwan-online-gambling-law 內文 1131 字 < 1500
+- /blog/posts/taiwan-online-gambling-law 填充句（舊文，P3 重寫）
+- /blog/posts/taiwan-online-gambling-law 填充句（舊文，P3 重寫）
+- /blog/posts/baccarat-strategy-deep description 34 字（要 40～160）
+- /blog/posts/baccarat-strategy-deep 內文 855 字 < 1500
+- /blog/posts/slot-addiction-prevention description 33 字（要 40～160）
+- /blog/posts/slot-addiction-prevention 內文 854 字 < 1500
+- /blog/posts/slot-bankroll-calculator 內文 1128 字 < 1500
+- /blog/posts/slot-bankroll-calculator 填充句（舊文，P3 重寫）
+- /blog/posts/slot-bankroll-calculator 填充句（舊文，P3 重寫）
+- /blog/posts/casino-affiliate-guide description 37 字（要 40～160）
+- /blog/posts/casino-affiliate-guide 內文 863 字 < 1500
+- /blog/posts/slot-variance-calculator description 36 字（要 40～160）
+- /blog/posts/slot-variance-calculator 內文 860 字 < 1500
+- /blog/posts/vr-casino-future 內文 868 字 < 1500
+- /blog/posts/slot-game-design-secrets 內文 1166 字 < 1500
+- /blog/posts/slot-game-design-secrets 填充句（舊文，P3 重寫）
+- /blog/posts/slot-game-design-secrets 填充句（舊文，P3 重寫）
+- /blog/posts/seasonal-casino-promotions 內文 1124 字 < 1500
+- /blog/posts/seasonal-casino-promotions 填充句（舊文，P3 重寫）
+- /blog/posts/seasonal-casino-promotions 填充句（舊文，P3 重寫）
+- /blog/posts/asia-slot-market-2026 內文 1098 字 < 1500
+- /blog/posts/asia-slot-market-2026 填充句（舊文，P3 重寫）
+- /blog/posts/asia-slot-market-2026 填充句（舊文，P3 重寫）
+- /blog/posts/multiplier-slots-guide 內文 1131 字 < 1500
+- /blog/posts/multiplier-slots-guide 填充句（舊文，P3 重寫）
+- /blog/posts/multiplier-slots-guide 填充句（舊文，P3 重寫）
+- /slots/war-god-seth-analysis 內連少於 3
+- /blog/posts/slot-rtp-tracking-tools 內文 1144 字 < 1500
+- /blog/posts/slot-rtp-tracking-tools 填充句（舊文，P3 重寫）
+- /blog/posts/slot-rtp-tracking-tools 填充句（舊文，P3 重寫）
+- /slots/thunder-hammer-review 內連少於 3
+- /blog/posts/ewallets-casino-guide 內文 1108 字 < 1500
+- /blog/posts/ewallets-casino-guide 填充句（舊文，P3 重寫）
+- /blog/posts/ewallets-casino-guide 填充句（舊文，P3 重寫）
+- /blog/posts/slot-streaming-culture 內文 1125 字 < 1500
+- /blog/posts/slot-streaming-culture 填充句（舊文，P3 重寫）
+- /blog/posts/slot-streaming-culture 填充句（舊文，P3 重寫）
+- /blog/posts/cascade-slots-explained 內文 1159 字 < 1500
+- /blog/posts/cascade-slots-explained 填充句（舊文，P3 重寫）
+- /blog/posts/cascade-slots-explained 填充句（舊文，P3 重寫）
+- /slots/sweet-bonanza-analysis 內連少於 3
+- /blog/posts/high-rtp-slots-2026 內文 1148 字 < 1500
+- /blog/posts/high-rtp-slots-2026 填充句（舊文，P3 重寫）
+- /blog/posts/high-rtp-slots-2026 填充句（舊文，P3 重寫）
+- /blog/posts/casino-security-check 內文 1151 字 < 1500
+- /blog/posts/casino-security-check 填充句（舊文，P3 重寫）
+- /blog/posts/casino-security-check 填充句（舊文，P3 重寫）
+- /slots/rsg-games-review 內連少於 3
+- /blog/posts/gambling-psychology-traps 內文 1124 字 < 1500
+- /blog/posts/gambling-psychology-traps 填充句（舊文，P3 重寫）
+- /blog/posts/gambling-psychology-traps 填充句（舊文，P3 重寫）
+- /blog/posts/netent-vs-microgaming 內文 1236 字 < 1500
+- /blog/posts/netent-vs-microgaming 填充句（舊文，P3 重寫）
+- /blog/posts/netent-vs-microgaming 填充句（舊文，P3 重寫）
+- /slots/pg-soft-review 內連少於 3
+- /blog/posts/casino-withdrawal-speed 內文 1108 字 < 1500
+- /blog/posts/casino-withdrawal-speed 填充句（舊文，P3 重寫）
+- /blog/posts/casino-withdrawal-speed 填充句（舊文，P3 重寫）
+- /slots/pay-table-guide 內連少於 3
+- /blog/posts/slot-feature-buy-analysis 內文 1239 字 < 1500
+- /blog/posts/slot-feature-buy-analysis 填充句（舊文，P3 重寫）
+- /blog/posts/slot-feature-buy-analysis 填充句（舊文，P3 重寫）
+- /blog/posts/slot-payline-explained 內文 1171 字 < 1500
+- /blog/posts/slot-payline-explained 填充句（舊文，P3 重寫）
+- /blog/posts/slot-payline-explained 填充句（舊文，P3 重寫）
+- /slots/online-vs-arcade 內連少於 3
+- /blog/posts/pragmatic-play-review 內文 1298 字 < 1500
+- /blog/posts/pragmatic-play-review 填充句（舊文，P3 重寫）
+- /blog/posts/pragmatic-play-review 填充句（舊文，P3 重寫）
+- /slots/progressive-jackpot 內連少於 3
+- /blog/posts/slot-volatility-chart 內文 1181 字 < 1500
+- /blog/posts/slot-volatility-chart 填充句（舊文，P3 重寫）
+- /blog/posts/slot-volatility-chart 填充句（舊文，P3 重寫）
+- /blog/posts/casino-customer-service 內文 1102 字 < 1500
+- /blog/posts/casino-customer-service 填充句（舊文，P3 重寫）
+- /blog/posts/casino-customer-service 填充句（舊文，P3 重寫）
+- /slots/mahjong-ways-deep-dive 內連少於 3
+- /blog/posts/autoplay-pros-cons 內文 1077 字 < 1500
+- /blog/posts/autoplay-pros-cons 填充句（舊文，P3 重寫）
+- /blog/posts/autoplay-pros-cons 填充句（舊文，P3 重寫）
+- /blog/posts/casino-bonus-types 內文 1105 字 < 1500
+- /blog/posts/casino-bonus-types 填充句（舊文，P3 重寫）
+- /blog/posts/casino-bonus-types 填充句（舊文，P3 重寫）
+- /blog/posts/slot-math-models 內文 1183 字 < 1500
+- /blog/posts/slot-math-models 填充句（舊文，P3 重寫）
+- /blog/posts/slot-math-models 填充句（舊文，P3 重寫）
+- /blog/posts/live-casino-beginners 內文 1136 字 < 1500
+- /blog/posts/live-casino-beginners 填充句（舊文，P3 重寫）
+- /blog/posts/live-casino-beginners 填充句（舊文，P3 重寫）
+- /slots/jili-games-guide 內連少於 3
+- /blog/posts/crypto-casino-guide 內文 1117 字 < 1500
+- /blog/posts/crypto-casino-guide 填充句（舊文，P3 重寫）
+- /blog/posts/crypto-casino-guide 填充句（舊文，P3 重寫）
+- /blog/posts/slot-tournament-strategy 內文 1140 字 < 1500
+- /blog/posts/slot-tournament-strategy 填充句（舊文，P3 重寫）
+- /blog/posts/slot-tournament-strategy 填充句（舊文，P3 重寫）
+- /slots/jackpot-tips 內連少於 3
+- /blog/posts/slot-bonus-round-guide 內文 1213 字 < 1500
+- /blog/posts/slot-bonus-round-guide 填充句（舊文，P3 重寫）
+- /blog/posts/slot-bonus-round-guide 填充句（舊文，P3 重寫）
+- /blog/posts/online-vs-land-casino 內文 1133 字 < 1500
+- /blog/posts/online-vs-land-casino 填充句（舊文，P3 重寫）
+- /blog/posts/online-vs-land-casino 填充句（舊文，P3 重寫）
+- /slots/gates-of-olympus-review 內連少於 3
+- /blog/posts/slot-betting-strategies 內文 1154 字 < 1500
+- /blog/posts/slot-betting-strategies 填充句（舊文，P3 重寫）
+- /blog/posts/slot-betting-strategies 填充句（舊文，P3 重寫）
+- /slots/fishing-game-complete 內連少於 3
+- /blog/posts/jackpot-types-explained 內文 1136 字 < 1500
+- /blog/posts/jackpot-types-explained 填充句（舊文，P3 重寫）
+- /blog/posts/jackpot-types-explained 填充句（舊文，P3 重寫）
+- /slots/demo-play-guide 內連少於 3
+- /slots/bng-booongo-review 內連少於 3
+- /slots/free-spins-mechanics 內連少於 3
+- /slots/atg-games-review 內連少於 3
+- /rtp/variance-explained 內連少於 3
+- /guides/responsible-gambling 內連少於 3
+- /rtp/rtp-vs-hit-frequency 內文 1452 字 < 1500
+- /rtp/rtp-vs-hit-frequency 內連少於 3
+- /rtp/rtp-by-provider 內連少於 3
+- /rtp/slot-volatility-math 內連少於 3
+- /rtp/long-term-simulation 內連少於 3
+- /rtp/how-casinos-make-money 內連少於 3
+- /rtp/cheating-myths 內連少於 3
+- /casinos/line-casino-review 內連少於 3
+- /guides/when-to-stop 內連少於 3
+- /guides/slot-myths-debunked 內連少於 3
+- /guides/sports-betting-beginners 內連少於 3
+- /guides/slot-basics-complete 內連少於 3
+- /slots/fishing-game-strategy 內連少於 3
+- /guides/lottery-guide 內連少於 3
+- /guides/game-selection-strategy 內文 1451 字 < 1500
+- /guides/game-selection-strategy 內連少於 3
+- /casinos/online-casino-ranking-2026 內連少於 3
+- /guides/bonus-hunting-guide 內連少於 3
+- /guides/bankroll-management 內連少於 3
+- /slots/online-slot-guide 內連少於 3
+- /casinos/taiwan-casino-market 內連少於 3
+- /casinos/mobile-casino-guide 內文 1457 字 < 1500
+- /casinos/mobile-casino-guide 內連少於 3
+- /casinos/live-dealer-guide 內文 1496 字 < 1500
+- /casinos/live-dealer-guide 內連少於 3
+- /slots/what-is-rtp 內連少於 3
+- /casinos/deposit-bonus-guide 內連少於 3
+- /casinos/chess-card-games-guide 內連少於 3
+- /casinos/casino-withdrawal-tips 內文 1437 字 < 1500
+- /casinos/casino-withdrawal-tips 內連少於 3
+- /casinos/casino-safety-checklist 內連少於 3
+- /slots/high-volatility-guide 內連少於 3
+- /slots/top-10-slots-2026 內連少於 3
+- /casinos/how-to-choose 內連少於 3
+- /rtp/house-edge-explained 內連少於 3
+- /casinos/payment-methods-guide 內連少於 3
+- /guides/beginner-complete-guide 內連少於 3
+- /rtp/rtp-myths 內連少於 3
+- /blog/posts/high-rtp-slots-recommended 內連找不到 /blog/posts/slot-volatility-guide
+- /blog/posts/buy-free-spins-worth-it 內連找不到 /blog/posts/slot-volatility-guide

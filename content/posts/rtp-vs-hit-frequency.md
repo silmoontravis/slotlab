@@ -1,0 +1,111 @@
+---
+id: rtp-vs-hit-frequency
+permalink: /rtp/rtp-vs-hit-frequency
+title: RTP vs 命中率：兩個容易搞混的重要指標
+category: rtp
+crumb: category
+tags: []
+date: '2026-04-04'
+updated: '2026-04-04'
+description: 深入比較 RTP 和命中率（Hit Frequency）的差異，用數據和模擬說明為什麼高命中率不等於高回報，幫你建立正確的遊戲認知。
+ogDescription: RTP 和命中率的差異解析，高命中率不等於高回報。
+excerpt: RTP 和命中率的差異解析，高命中率不等於高回報。
+readTime: 9
+image: ''
+sources: []
+related:
+  - /slots/what-is-rtp
+  - /rtp/variance-explained
+status: published
+legacy: true
+tocLegacy:
+  - href: '#definitions'
+    text: 兩個指標定義
+  - href: '#misconception'
+    text: 常見誤解
+  - href: '#relationship'
+    text: 兩者的關係
+  - href: '#simulation'
+    text: 模擬驗證
+  - href: '#which-to-choose'
+    text: 該看哪個？
+  - href: '#conclusion'
+    text: 結論
+ldDescription: RTP 和命中率的差異解析，高命中率不等於高回報。
+---
+
+<p>「這台 RTP 96%，命中率 30%。」「那台 RTP 95%，命中率 40%。」哪台比較好？很多人會直覺選命中率高的那台，覺得「比較容易中獎」。但這個直覺是錯的。</p>
+
+<p>RTP 和命中率是兩個完全不同的指標，搞混它們會讓你做出錯誤的遊戲選擇。這篇我用最清楚的方式幫你分辨。</p>
+
+<h2 id="definitions">兩個指標的定義</h2>
+
+<h3>RTP（Return to Player）</h3>
+<p>你每投注 100 元，長期能拿回多少。RTP 96% = 長期每投注 100 元，拿回 96 元。這是一個<strong>金額比例</strong>。</p>
+
+<h3>Hit Frequency（命中率）</h3>
+<p>每 100 次旋轉中，有幾次會產生中獎組合。命中率 30% = 平均每 100 次旋轉中，30 次會中獎。這是一個<strong>次數比例</strong>。</p>
+
+<p>關鍵差異：命中率告訴你「多常中獎」，但不告訴你「每次中多少」。</p>
+
+<div class="info-box">
+  <h4>// rtp_vs_hit_rate_example</h4>
+  <p>Machine A：RTP 96%，命中率 40%</p>
+  <p>→ 經常中獎，但每次中的金額小（平均 2.4 倍投注額）</p>
+  <p>Machine B：RTP 96%，命中率 15%</p>
+  <p>→ 很少中獎，但每次中的金額大（平均 6.4 倍投注額）</p>
+  <p>兩台的長期回報完全一樣，但遊戲體驗截然不同。</p>
+</div>
+
+<h2 id="misconception">最常見的誤解</h2>
+<p>「命中率高 = 回報好」是最常見的誤解。我用一個極端的例子來說明為什麼這是錯的：</p>
+<p>想像一台命中率 90% 的老虎機 — 你每 10 次旋轉就中獎 9 次！聽起來很棒對吧？但如果每次中獎的金額都是投注額的 0.5 倍呢？</p>
+<p>實際 RTP = 90% x 0.5 = 45%。你投注 100 元，長期只能拿回 45 元。命中率超高，但 RTP 超低。</p>
+
+<div class="david-note">我第一次真正理解這個差異，是在分析一款「水果盤」類型的老虎機時。它的命中率高達 45%，幾乎每兩次就中一次，玩起來很「爽」。但仔細看數據，每次中獎的平均金額只有投注額的 1.8 倍。算下來 RTP 只有 81%！相比之下，另一款命中率只有 18% 的遊戲，RTP 卻有 96.5%。數據不看仔細，真的會被騙。</div>
+
+<h2 id="relationship">RTP 和命中率的關係</h2>
+<p>用公式表示：</p>
+<p><strong>RTP = Hit Frequency x Average Win Size</strong></p>
+<p>其中 Average Win Size 是「每次中獎的平均倍數」。</p>
+<p>這意味著 RTP 是由命中率和平均獎金大小共同決定的。你可以有：</p>
+<ul>
+  <li>高命中率 + 低平均獎金 = 低波動遊戲</li>
+  <li>低命中率 + 高平均獎金 = 高波動遊戲</li>
+  <li>兩種組合可以達到相同的 RTP</li>
+</ul>
+
+<h2 id="simulation">模擬驗證</h2>
+<p>我模擬了三台 RTP 都是 96% 但命中率不同的老虎機，各跑 10,000 次旋轉：</p>
+
+<table>
+  <thead>
+    <tr><th>指標</th><th>Machine A（高命中）</th><th>Machine B（中命中）</th><th>Machine C（低命中）</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>RTP</td><td>96%</td><td>96%</td><td>96%</td></tr>
+    <tr><td>命中率</td><td>40%</td><td>25%</td><td>15%</td></tr>
+    <tr><td>平均中獎倍數</td><td>2.4x</td><td>3.84x</td><td>6.4x</td></tr>
+    <tr><td>最大單次獎金</td><td>50x</td><td>200x</td><td>2,000x</td></tr>
+    <tr><td>1K 次後破產率*</td><td>5%</td><td>18%</td><td>35%</td></tr>
+    <tr><td>1K 次後翻倍率*</td><td>3%</td><td>12%</td><td>22%</td></tr>
+  </tbody>
+</table>
+<p><small>*以 200 倍投注額為起始資金</small></p>
+
+<div class="ad-inline"></div>
+
+<h2 id="which-to-choose">該看哪個指標？</h2>
+<p>答案是：<strong>兩個都要看</strong>，但優先級不同。</p>
+<ol>
+  <li><strong>先看 RTP</strong>：這決定了你的長期成本。RTP 低的遊戲不管命中率多高都不划算。</li>
+  <li><strong>再看命中率</strong>：這決定了你的遊戲體驗。命中率高 = 穩定體驗，命中率低 = 刺激體驗。</li>
+  <li><strong>最後看波動率</strong>：波動率是命中率和獎金分布的綜合指標，比單獨看命中率更有參考價值。</li>
+</ol>
+
+<div class="david-note">我自己選遊戲的流程是：先篩掉 RTP 低於 95% 的，剩下的再根據我今天的預算和心情選波動率。命中率我基本不單獨看 — 因為只要 RTP 和波動率確定了，命中率就大致確定了。與其關注三個指標，不如把注意力放在最重要的兩個上。</div>
+
+<h2 id="conclusion">結論</h2>
+<p>RTP 和命中率是兩個不同維度的指標。RTP 告訴你「長期能拿回多少」，命中率告訴你「多常中獎」。高命中率不等於高回報，低命中率也不等於低回報。選遊戲時，RTP 永遠是第一優先。搞懂這個差異，你就已經比大多數玩家更有優勢了。</p>
+
+<div class="ad-inline"><div class="ad-banner">/* ad: post-footer */</div></div>

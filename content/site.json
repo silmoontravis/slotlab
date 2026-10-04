@@ -1,0 +1,138 @@
+{
+  "name": "大衛の電子攻略站",
+  "url": "https://www.rtp96.com",
+  "tagline": "用數據拆解博弈",
+  "author": "大衛 (David)",
+  "ga": "G-WD5D746KC6",
+  "home": {
+    "title": "大衛の電子攻略站 | 用數據研究老虎機的工程師部落格",
+    "description": "大衛の電子攻略站 — 一個軟體工程師的老虎機研究筆記。用 Python 分析 RTP、用機率論拆解遊戲機制，分享數據驅動的遊戲觀察。",
+    "h1": "嗨，我是大衛。研究老虎機是我的興趣，分享數據是我的日常。",
+    "intro": "白天寫 code，晚上跑 RTP 模擬。這裡記錄我用工程師腦袋拆解線上老虎機的筆記。"
+  },
+  "blog": {
+    "title": "部落格 | 大衛の電子攻略站",
+    "description": "大衛の電子攻略站部落格 — 老虎機RTP分析、娛樂城評測、遊戲攻略與博弈心理學深度文章。",
+    "h1": "大衛の電子攻略站 — 部落格",
+    "intro": "深度分析 · 數據驅動 · 理性遊戲"
+  },
+  "categories": {
+    "slots": {
+      "label": "老虎機",
+      "title": "老虎機研究筆記",
+      "intro": "我用 Python 跑數據、用機率論拆機制。這裡是我對各種老虎機的研究記錄，不業配、不吹捧，只看數字。",
+      "pageTitle": "老虎機研究",
+      "description": "大衛的老虎機研究筆記 — RTP 數據分析、波動率比較、機制拆解，用工程師的方式看懂每一台機台。"
+    },
+    "casinos": {
+      "label": "娛樂城",
+      "title": "娛樂城觀察筆記",
+      "intro": "從工程師角度看線上娛樂城 — 牌照、出金、公平性。不收業配，只根據實際體驗和公開資料來判斷。",
+      "pageTitle": "娛樂城觀察",
+      "description": "大衛的娛樂城觀察筆記 — 從工程師角度看平台安全性、出金穩定度、遊戲公平性，不收業配的獨立觀察。"
+    },
+    "guides": {
+      "label": "攻略",
+      "title": "新手攻略",
+      "intro": "如果你剛開始接觸老虎機，從這裡開始。我試著用最白話的方式，幫你建立正確的基礎觀念。",
+      "pageTitle": "新手攻略",
+      "description": "大衛的老虎機新手攻略 — 從零開始的系統化學習路線，用白話文解說專業術語和資金管理策略。"
+    },
+    "rtp": {
+      "label": "RTP",
+      "title": "RTP 數據分析",
+      "intro": "這是我最著迷的領域 — 用 Python 跑模擬、用數學拆解每一台老虎機的返還率結構。數據不會說謊。",
+      "pageTitle": "RTP 分析",
+      "description": "大衛的 RTP 數據分析 — 用 Python 模擬、用數學拆解，深入研究老虎機返還率的每一個細節。"
+    }
+  },
+  "featured": [
+    "/guides/beginner-complete-guide",
+    "/slots/what-is-rtp",
+    "/slots/top-10-slots-2026",
+    "/rtp/rtp-myths"
+  ],
+  "nav": [
+    {
+      "href": "/",
+      "label": "首頁",
+      "id": "home"
+    },
+    {
+      "href": "/slots/",
+      "label": "老虎機",
+      "id": "slots"
+    },
+    {
+      "href": "/casinos/",
+      "label": "娛樂城",
+      "id": "casinos"
+    },
+    {
+      "href": "/guides/",
+      "label": "攻略",
+      "id": "guides"
+    },
+    {
+      "href": "/rtp/",
+      "label": "RTP",
+      "id": "rtp"
+    },
+    {
+      "href": "/about",
+      "label": "關於大衛",
+      "id": "about"
+    }
+  ],
+  "accent": {
+    "slots": "amber",
+    "casinos": "blue",
+    "guides": "green",
+    "rtp": "purple"
+  },
+  "footer": {
+    "blurb": "一個軟體工程師的老虎機研究筆記。用 Python 跑數據、用機率論看遊戲，純粹好奇心驅動。所有內容僅供教育與娛樂用途。",
+    "picks": [
+      {
+        "href": "/guides/beginner-complete-guide",
+        "label": "入門指南"
+      },
+      {
+        "href": "/slots/what-is-rtp",
+        "label": "RTP 是什麼"
+      },
+      {
+        "href": "/about",
+        "label": "關於大衛"
+      }
+    ]
+  },
+  "sidebarPicks": [
+    {
+      "href": "/guides/beginner-complete-guide",
+      "label": "新手完整入門指南"
+    },
+    {
+      "href": "/slots/what-is-rtp",
+      "label": "RTP 到底是什麼？"
+    },
+    {
+      "href": "/slots/top-10-slots-2026",
+      "label": "2026 十大推薦機台"
+    },
+    {
+      "href": "/rtp/rtp-myths",
+      "label": "RTP 五大迷思破解"
+    },
+    {
+      "href": "/slots/high-volatility-guide",
+      "label": "高波動 vs 低波動"
+    }
+  ],
+  "redirects": [
+    [
+      "/blog/posts/slot-volatility-guide",
+      "/blog/posts/volatility-deep-dive"
+    ]
+  ]
+}
