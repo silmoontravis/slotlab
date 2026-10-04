@@ -6,12 +6,15 @@ import path from 'node:path';
 import matter from 'gray-matter';
 import MarkdownIt from 'markdown-it';
 import * as T from './templates/index.mjs';
+import * as L from './templates/lotto.mjs';
 
 const ROOT = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const DIST = path.join(ROOT, 'dist');
 const site = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/site.json'), 'utf8'));
 const BUILD = new Date().toISOString().replace(/\D/g, '').slice(0, 14);
 const md = new MarkdownIt({ html: true, linkify: false, typographer: false });
+const games = Object.keys(L.GAMES).map(id => L.loadGame(ROOT, id)).filter(g => g && g.draws.length);   // data/lotto 沒資料就不產工具頁
+const LOTTO_JS = `<script src="/js/lotto.js?v=__BUILD__" defer></script>`;
 const esc = T.esc;
 const FILLER = ['在這篇文章中，我們將從數據分析的角度', '作為一名長期研究電子遊戲數學模型的軟體工程師'];
 const errors = [], warns = [];
@@ -59,6 +62,7 @@ function gate(p) {
   chk((render(p).match(/<h2[\s>]/g) || []).length >= 3, `${where} H2 少於 3`);
   chk(text.length >= 1500, `${where} 內文 ${text.length} 字 < 1500`);
   chk((render(p).match(/href="\/(?!images)/g) || []).length >= 3, `${where} 內連少於 3`);
+  if (p.image && p.image.startsWith('/images/') && !fs.existsSync(path.join(ROOT, p.image.slice(1)))) fail(`${where} image 檔不存在 ${p.image}（先跑 node scripts/og-post.mjs）`);
   if (strict) { if (!(p.sources || []).length) fail(`${where} 沒 sources`); if (!p.image) fail(`${where} 沒 image`); for (const f of FILLER) if (text.includes(f.replace(/\s/g, ''))) fail(`${where} 命中填充句「${f}」`); }
   else for (const f of FILLER) if (text.includes(f.replace(/\s/g, ''))) warn(`${where} 填充句（舊文，P3 重寫）`);
 }
@@ -112,12 +116,45 @@ ${html}
 // 分類頁
 for (const [k, c] of Object.entries(site.categories)) {
   const code = T.pageCode(`/${k}/`); const list = posts.filter(p => p.category === k);
+  const hub = k === 'lotto' && games.length ? L.hubCards(games) : '';
   const inner = `<div class="category-hero"><h1>${esc(c.title)}</h1><p>${esc(c.intro)}</p></div>
 ${T.breadcrumb([{ href: '/', label: '~' }, { label: c.label }])}
 <div class="ad-header">${T.adSlot('A', 'banner', code)}</div>
-<div class="content-grid"><main class="main-content"><div class="post-list" data-page-size="10">${list.map(p => T.postItem(site, p)).join('')}</div></main>${T.sidebar(site, counts, code)}</div>`;
+<div class="content-grid"><main class="main-content">${hub}<div class="post-list" data-page-size="10">${list.map(p => T.postItem(site, p)).join('')}</div></main>${T.sidebar(site, counts, code)}</div>`;
   out(`/${k}/`, shell(`/${k}/`, k, inner, { title: `${c.pageTitle || c.title} | ${site.name}`, description: c.description, canonical: url(`/${k}/`), jsonld: [{ '@context': 'https://schema.org', '@type': 'CollectionPage', name: c.title, url: url(`/${k}/`), description: c.description }] }));
 }
+// 樂透工具頁（P2）：三彩種開獎／冷熱號／遺漏／對獎器 ＋ 計算機
+const toolPages = [];
+function toolShell(perma, h1, kicker, bodyHtml, meta) {
+  const code = T.pageCode(perma); const toc = [...bodyHtml.matchAll(/<h2 id="([^"]+)">([^<]+)<\/h2>/g)].map(m => ({ id: m[1], text: m[2] }));
+  const crumbs = [{ href: '/', label: '~' }, { href: '/lotto/', label: '樂透' }, { label: h1 }];
+  const inner = `${T.breadcrumb(crumbs)}
+<div class="ad-header">${T.adSlot('A', 'banner', code)}</div>
+<div class="article-layout">
+  <article class="article-main">
+    <header class="article-header"><div style="margin-bottom:10px;"><span class="cat-pill cat-lotto">樂透</span> <span class="muted">${esc(kicker)}</span></div><h1>${esc(h1)}</h1></header>
+    ${T.author(site, meta.date, meta.readTime)}
+    <div class="article-content">
+${bodyHtml}
+    </div>
+  </article>
+  <aside class="toc-sidebar">
+    ${toc.length ? `<div class="toc"><div class="toc-title">目錄</div><ul class="toc-list">${toc.map(t => `<li><a href="#${t.id}">${esc(t.text)}</a></li>`).join('')}</ul></div>` : ''}
+    <div class="ad-article-sidebar">${T.adSlot('E', 'sidebar', code)}</div>
+  </aside>
+</div>`;
+  out(perma, shell(perma, 'lotto', inner, { ...meta.head, canonical: url(perma), extraScripts: LOTTO_JS, jsonld: [...(meta.jsonld || []), { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.label === '~' ? '首頁' : c.label, ...(c.href ? { item: url(c.href) } : {}) })) }] }));
+  toolPages.push({ loc: perma, mod: meta.date, pri: '0.9' });
+}
+for (const g of games) {
+  const st = L.stats(g); const latest = g.draws[g.draws.length - 1]; const nums = latest.numbers.map(n => String(n).padStart(2, '0')).join('、');
+  toolShell(`/lotto/${g.slug}`, `${g.name}開獎號碼、冷熱號與遺漏值（${latest.drawDate} 第 ${latest.period} 期）`, `${g.dayText} · 資料 ${st.first} 起 ${st.n} 期`, L.toolPage(g, site, T.pageCode(`/lotto/${g.slug}`)),
+    { date: latest.drawDate, readTime: 6, jsonld: L.toolJsonLd(g, site), head: { title: `${g.name}開獎號碼｜冷熱號、遺漏值、對獎器（${latest.drawDate} 最新） | ${site.name}`, description: `${g.name}第 ${latest.period} 期（${latest.drawDate}）開獎號碼 ${nums}${latest.special != null ? `，${g.special} ${String(latest.special).padStart(2, '0')}` : ''}。近 30／50／100 期冷熱號、每個號碼的遺漏值與連莊、最近 30 期紀錄與對獎器，資料來自台彩官方。`, ogType: 'article' } });
+  fs.mkdirSync(path.join(DIST, 'data/lotto'), { recursive: true });
+  fs.writeFileSync(path.join(DIST, 'data/lotto', g.id + '.min.json'), JSON.stringify({ game: g.id, name: g.name, updatedAt: g.updatedAt, source: 'https://www.taiwanlottery.com/', draws: g.draws.map(x => [x.period, x.drawDate, x.numbers, x.special]) }));
+}
+if (games.length) toolShell('/lotto/lotto-wheel-calculator', '包牌／連碰計算機：大樂透、威力彩、539 注數與金額', '純前端計算，不會上傳任何資料', L.calculatorPage(),
+  { date: BUILD.slice(0, 4) + '-' + BUILD.slice(4, 6) + '-' + BUILD.slice(6, 8), readTime: 4, head: { title: '樂透包牌／連碰計算機：注數、金額、碰數一次算（大樂透、威力彩、539） | ' + site.name, description: '大樂透、威力彩、今彩539 包牌要幾注、多少錢；地下 539／六合術語的二三四星連碰碰數、全車、立柱怎麼算。只算數學，不提供任何投注管道。', ogType: 'article' } });
 // 部落格總表
 {
   const code = 'BLOG';
@@ -138,9 +175,9 @@ const skipImg = /^(logo_combo_\d|logo_final_\d|logo_g\d|logo_gemini|logo_option_
 fs.mkdirSync(path.join(DIST, 'images'), { recursive: true });
 for (const e of fs.readdirSync(path.join(ROOT, 'images'))) { if (skipImg.test(e)) continue; cp('images/' + e, 'images/' + e); }
 fs.writeFileSync(path.join(DIST, '_redirects'), (site.redirects || []).map(([f, t]) => f + ' ' + t + ' 301').join(String.fromCharCode(10)) + String.fromCharCode(10));   // 舊站本來就壞的內連、改名的頁：舊網址 301 到新頁（Pages _redirects；主機名層級轉址在 functions/_middleware.js）
-cp('assets/style.css', 'style.css'); cp('assets/js/site.js', 'js/site.js'); cp('functions', 'functions'); cp('robots.txt', 'robots.txt');
+cp('assets/style.css', 'style.css'); cp('assets/js/site.js', 'js/site.js'); cp('assets/js/lotto.js', 'js/lotto.js'); cp('functions', 'functions'); cp('robots.txt', 'robots.txt');
 // sitemap
-const all = [{ loc: '/', mod: posts[0]?.updated || posts[0]?.date, pri: '1.0' }, { loc: '/blog/', mod: posts[0]?.date, pri: '0.8' }, ...Object.keys(site.categories).map(k => ({ loc: `/${k}/`, mod: posts.find(p => p.category === k)?.date, pri: '0.8' })), ...pages.map(p => ({ loc: p.permalink, mod: BUILD.slice(0, 4) + '-' + BUILD.slice(4, 6) + '-' + BUILD.slice(6, 8), pri: '0.5' })), ...posts.map(p => ({ loc: p.permalink, mod: p.updated || p.date, pri: p.permalink.split('/').filter(Boolean).length === 2 ? '0.7' : '0.6' }))];
+const all = [{ loc: '/', mod: posts[0]?.updated || posts[0]?.date, pri: '1.0' }, { loc: '/blog/', mod: posts[0]?.date, pri: '0.8' }, ...toolPages, ...Object.keys(site.categories).map(k => ({ loc: `/${k}/`, mod: posts.find(p => p.category === k)?.date, pri: '0.8' })), ...pages.map(p => ({ loc: p.permalink, mod: BUILD.slice(0, 4) + '-' + BUILD.slice(4, 6) + '-' + BUILD.slice(6, 8), pri: '0.5' })), ...posts.map(p => ({ loc: p.permalink, mod: p.updated || p.date, pri: p.permalink.split('/').filter(Boolean).length === 2 ? '0.7' : '0.6' }))];
 fs.writeFileSync(path.join(DIST, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${all.map(u => `  <url>\n    <loc>${url(u.loc)}</loc>\n    <lastmod>${u.mod || BUILD.slice(0, 4) + '-' + BUILD.slice(4, 6) + '-' + BUILD.slice(6, 8)}</lastmod>\n    <priority>${u.pri}</priority>\n  </url>`).join('\n')}\n</urlset>\n`);
 // rss（最新 30 篇）
 const rss = posts.slice(0, 30).map(p => `    <item><title>${esc(p.title)}</title><link>${url(p.permalink)}</link><guid>${url(p.permalink)}</guid><pubDate>${new Date(p.date || Date.now()).toUTCString()}</pubDate><description>${esc(p.description)}</description></item>`).join('\n');

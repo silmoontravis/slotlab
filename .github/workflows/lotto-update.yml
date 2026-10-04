@@ -1,0 +1,52 @@
+# 每天台灣時間 21:30／22:30 抓台彩開獎 → 有新資料就 commit → build → 部署 Cloudflare Pages（docs/ARCHITECTURE.md §2.6）
+#   也在 push main 時跑（內容更新即部署）、可手動觸發。延遲目標：官方公布後 2 小時內；不承諾準點。
+#   secrets：CF_API_TOKEN、CF_ACCOUNT_ID（repo 已設）。抓取失敗（exit 2）不擋部署：保留上一筆有效資料，頁面會顯示「延遲」。
+name: lotto-update-and-deploy
+on:
+  schedule:
+    - cron: '30 13 * * *'   # 21:30 Asia/Taipei
+    - cron: '30 14 * * *'   # 22:30 Asia/Taipei
+  push:
+    branches: [main]
+    paths-ignore: ['docs/**', '*.md']
+  workflow_dispatch: {}
+permissions:
+  contents: write
+concurrency: { group: lotto-deploy, cancel-in-progress: false }
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 1 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+      - run: npm ci --no-audit --no-fund
+      - name: 抓開獎（失敗不擋）
+        id: fetch
+        continue-on-error: true
+        run: node scripts/lotto-fetch.mjs
+      - name: 有新資料就 commit 回 repo
+        run: |
+          if ! git diff --quiet -- data/lotto; then
+            git config user.name "lotto-bot"; git config user.email "lotto-bot@users.noreply.github.com"
+            git add data/lotto && git commit -m "data: 台彩開獎更新 $(TZ=Asia/Taipei date +%F' '%R)" && git push
+          else echo "資料沒變"; fi
+      - name: 缺的 og 圖補產（新文沒附圖時）
+        run: CHROME=$(command -v google-chrome || command -v chromium-browser || command -v chromium) node scripts/og-post.mjs
+      - name: build（品質閘門沒過會停）
+        run: node build.mjs
+      - name: 部署 Cloudflare Pages（正式分支 main）
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=rtp96 --branch=main --commit-dirty=true
+      - name: 線上抽查
+        run: |
+          set -e
+          curl -fsS https://www.rtp96.com/lotto/lotto649-results | grep -q "lt-table"
+          curl -fsS https://www.rtp96.com/sitemap.xml | grep -c "<url>"
+      - name: 抓取有錯就把摘要寫進 job summary
+        if: steps.fetch.outcome == 'failure'
+        run: echo "⚠️ lotto-fetch 回報錯誤（資料保留上一筆有效），看 data/lotto/*.json 的 errors" >> $GITHUB_STEP_SUMMARY

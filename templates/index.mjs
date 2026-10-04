@@ -48,7 +48,7 @@ export function footer(site, code) {
   </div><div class="footer-bottom"><p>&copy; ${new Date().getFullYear()} ${esc(site.name)} // 獨立研究，不收業配，不鼓勵賭博。</p></div></footer>`;
 }
 /** 共用外殼：head 的 meta 由呼叫端決定（物件），body 片段直接塞 */
-export function layout(site, { title, description, canonical, ogType = 'website', ogDescription, image, extraHead = '', jsonld = [], noindex = false }, body, build) {
+export function layout(site, { title, description, canonical, ogType = 'website', ogDescription, image, extraHead = '', jsonld = [], noindex = false, extraScripts = '' }, body, build) {
   const og = image || `${site.url}/images/og-default.png`;
   return `<!DOCTYPE html>
 <html lang="zh-TW">
@@ -77,6 +77,7 @@ export function layout(site, { title, description, canonical, ogType = 'website'
 <body>
 ${body}
 <script src="/js/site.js?v=${build}" defer></script>
+${extraScripts.replace(/__BUILD__/g, build)}
 </body>
 </html>
 `;

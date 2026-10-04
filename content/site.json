@@ -44,6 +44,13 @@
       "intro": "這是我最著迷的領域 — 用 Python 跑模擬、用數學拆解每一台老虎機的返還率結構。數據不會說謊。",
       "pageTitle": "RTP 分析",
       "description": "大衛的 RTP 數據分析 — 用 Python 模擬、用數學拆解，深入研究老虎機返還率的每一個細節。"
+    },
+    "lotto": {
+      "label": "樂透",
+      "title": "樂透專區",
+      "intro": "台彩三種樂透的開獎資料我全抓回來了：冷熱號、遺漏值、對獎器、包牌計算機，加上我用數據拆解玩法、機率與地下簽賭術語的筆記。不報明牌，只算數學。",
+      "pageTitle": "樂透專區：開獎號碼、冷熱號、遺漏值與機率分析",
+      "description": "大樂透、威力彩、今彩539 最新開獎與歷史統計：冷熱號、遺漏值、連莊、對獎器、包牌與連碰計算機；加上用數據回測的玩法分析與地下簽賭術語解說。"
     }
   },
   "featured": [
@@ -79,6 +86,11 @@
       "id": "rtp"
     },
     {
+      "href": "/lotto/",
+      "label": "樂透",
+      "id": "lotto"
+    },
+    {
       "href": "/about",
       "label": "關於大衛",
       "id": "about"
@@ -88,11 +100,16 @@
     "slots": "amber",
     "casinos": "blue",
     "guides": "green",
-    "rtp": "purple"
+    "rtp": "purple",
+    "lotto": "rose"
   },
   "footer": {
     "blurb": "一個軟體工程師的老虎機研究筆記。用 Python 跑數據、用機率論看遊戲，純粹好奇心驅動。所有內容僅供教育與娛樂用途。",
     "picks": [
+      {
+        "href": "/lotto/",
+        "label": "樂透專區"
+      },
       {
         "href": "/guides/beginner-complete-guide",
         "label": "入門指南"
@@ -108,6 +125,10 @@
     ]
   },
   "sidebarPicks": [
+    {
+      "href": "/lotto/lotto649-results",
+      "label": "大樂透開獎與冷熱號"
+    },
     {
       "href": "/guides/beginner-complete-guide",
       "label": "新手完整入門指南"
