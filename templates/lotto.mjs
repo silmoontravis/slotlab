@@ -149,11 +149,14 @@ export function calculatorPage() {
 <div class="tab-pane" data-pane="c3" hidden>
   <div class="calc" data-calc="car">
     <label>彩種 <select data-max><option value="39">539（1 碰 38）</option><option value="49">六合（1 碰 48）</option></select></label>
-    <label>幾車 <input type="number" data-cars value="1" min="0.5" step="0.5"></label>
-    <label>每碰單價（元，自己填） <input type="number" data-price value="100" min="1"></label>
+    <label>幾車 <input type="number" data-cars value="1" min="0.1" step="0.1"></label>
+    <label>每支價格（元） <input type="number" data-price value="75" min="1"></label>
     <div class="calc-out" aria-live="polite"></div>
   </div>
-  <p>全車＝選 1 個號碼，跟其餘每個號碼各碰一組二星：539 是 38 組、六合是 48 組；半車就是每組下一半。</p>
+  <p><strong>一車怎麼算：</strong>選定 1 個號碼，跟其餘每個號碼各碰一支二星。539 有 39 個號碼，扣掉自己 ＝ <strong>38 支</strong>；六合彩 49 個 ＝ <strong>48 支</strong>。一車的錢 ＝ 支數 × 每支價格。每支價格看盤口，坊間常見 70～80 元上下，有的系統固定 100 元一支。</p>
+  <div class="lt-scroll"><table class="lt-table"><thead><tr><th>每支價格</th><th>539 一車（38 支）</th><th>六合 一車（48 支）</th></tr></thead><tbody>
+    <tr><td>70 元</td><td>2,660 元</td><td>3,360 元</td></tr><tr><td>75 元</td><td>2,850 元</td><td>3,600 元</td></tr><tr><td>80 元</td><td>3,040 元</td><td>3,840 元</td></tr><tr><td>100 元</td><td>3,800 元</td><td>4,800 元</td></tr></tbody></table></div>
+  <p>中獎怎麼看：中心號碼沒開，整車沒中；中心號碼開了，它跟其他開出號碼的那幾支二星都中——539 開 5 顆所以中 4 支、六合開 6 顆正碼所以中 5 支。半車＝每支下 0.5，錢跟中獎都是一半。</p>
 </div>
 <div class="tab-pane" data-pane="c4" hidden>
   <div class="calc" data-calc="pillar">
