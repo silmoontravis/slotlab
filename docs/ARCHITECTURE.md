@@ -95,7 +95,7 @@ Markdown 擴充：`:::david`→david-note、`:::tip`、`:::info`、`:::disclaime
 title ≤60、description 40～160、H1 唯一、H2 ≥3 且自動 id、內文 ≥1,500 字、內連 ≥3（同分類 ≥2）、`image` 存在且 ≥1200 寬、`sources` 至少 1 條、填充句黑名單（「在這篇文章中，我們將從數據分析的角度」等）命中即擋、canonical＝permalink、permalink 唯一、舊 URL 全部有去向（對照 `url-inventory.json`）。
 
 ### 2.5 閱讀人數
-- `views-counter` Worker（DO sqlite）：`GET /v/:id`→`{views}`；`POST /v/:id`→+1。前端載入後 POST 一次（同 session 不重複）。
+- 實作改成 **Pages Function＋D1**（不用另開 Worker）：`GET /api/views/:id`→`{views}`；`POST /api/views/:id`→+1（只收 Origin／Referer 是 rtp96.com 的）。前端同 session 只 POST 一次（sessionStorage）。D1 的 UPDATE 是原子的，計數不會掉；KV 仍不能當計數器。
 - 不預灌、不乘倍。首頁／分類頁「編輯推薦」區塊讀 `site.json.featured`。
 - KV 不能當計數器（memory `feedback_kv_not_for_counters`）。
 
@@ -130,7 +130,7 @@ title ≤60、description 40～160、H1 唯一、H2 ≥3 且自動 id、內文 �
 | **P1 遷移** | extract→content、模板、build、qa、deploy、GitHub Actions | 所有舊 URL 有去向；正文／圖片／表格／內連逐頁 diff 無遺失；可回滾（保留快照） | ✅ 10-04 上線：118 篇進 content/、migrate-diff 125/125 零差異；GitHub Actions 未做（用 scripts/deploy.mjs 手動） |
 | **P2 工具** | 3 彩種開獎＋冷熱號、lotto-fetch、cron、告警 | 資料正確；失敗不誤報；手機可用；DO 計數上線量使用 | ✅ 10-04 上線：`/lotto/{lotto649,superlotto638,daily539}-results`＋`/lotto/lotto-wheel-calculator`＋`/lotto/`；data/lotto 2014 起全量；GitHub Actions `lotto-update.yml` 每天 21:30／22:30 抓→commit→build→deploy；qa-lotto 33 項。**DO 閱讀計數還沒做**（P4） |
 | **P3 內容** | 3 篇代表稿校準 → 30 篇重寫 + 25 篇新文 | 來源、數字、搜尋意圖、重複性逐篇驗收 | |
-| **P4 營運** | Threads 自動貼、開獎圖卡、月報 | 看實際流量再決定投入 | |
+| **P4 營運** | Threads 自動貼、開獎圖卡、月報 | 看實際流量再決定投入 | 10-04：真閱讀計數（Pages Function＋D1 `rtp96-views`，`functions/api/views/[id].js`，`wrangler.toml` 綁 VIEWS）＋編輯推薦標籤（site.json.featured）✅；月報 `scripts/seo-report.mjs` ✅；Threads 要先有帳號，未做 |
 
 ## 3.6 P2 實作備註（2026-10-04）
 - 工具頁模板 `templates/lotto.mjs`（stats／freshness／toolPage／calculatorPage／hubCards），瀏覽器端 `assets/js/lotto.js`（頁籤、對獎器、四個計算機）。統計全部 build 時算；對獎器內嵌最近 30 期，全量歷史在 `/data/lotto/<game>.min.json`。

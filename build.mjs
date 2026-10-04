@@ -28,7 +28,19 @@ const pages = fs.existsSync(path.join(ROOT, 'content/pages')) ? fs.readdirSync(p
 const byLink = new Map(); for (const p of posts) { if (byLink.has(p.permalink)) fail(`permalink 重複 ${p.permalink}`); byLink.set(p.permalink, p); }
 const counts = posts.reduce((a, p) => (a[p.category] = (a[p.category] || 0) + 1, a), {});
 const url = (perma) => site.url + perma;
-const render = (p) => /<(p|h2|div|ul|table)[\s>]/.test(p.body.trim().slice(0, 200)) ? p.body : md.render(p.body);   // 舊文是 HTML 原樣；新文是 Markdown
+// 舊文是 HTML 原樣；新文是 Markdown。:::david／tip／info／disclaimer 區塊先抽出來各自 render，再塞回去（不靠 markdown-it 把 ::: 當獨立段落，緊鄰內文也不會被併成同一個 <p>）
+const BOX = { david: 'david-note', tip: 'info-box', info: 'info-box', disclaimer: 'disclaimer-box' };
+const renderCache = new Map();
+function render(p) {
+  if (renderCache.has(p)) return renderCache.get(p);
+  let out;
+  if (/<(p|h2|div|ul|table)[\s>]/.test(p.body.trim().slice(0, 200))) out = p.body;
+  else {
+    const blocks = []; const src = p.body.replace(/\r\n/g, '\n').replace(/^:::(david|tip|info|disclaimer)[ \t]*\n([\s\S]*?)\n:::[ \t]*$/gm, (m, k, inner) => { blocks.push(`<div class="${BOX[k]}">${md.render(inner.trim())}</div>`); return `\n\n@@BOX${blocks.length - 1}@@\n\n`; });
+    out = md.render(src).replace(/<p>@@BOX(\d+)@@<\/p>/g, (m, i) => blocks[+i]);
+  }
+  renderCache.set(p, out); return out;
+}
 
 // ---------- 正文處理：h2 補 id → 目錄；相關文章 ----------
 function prepBody(p) {
@@ -83,7 +95,7 @@ for (const p of posts) {
 <div class="article-layout">
   <article class="article-main">
     <header class="article-header"><div style="margin-bottom:10px;"><span class="cat-pill cat-${p.category}">${esc(cat?.label || p.category)}</span></div><h1>${esc(p.h1 || p.title)}</h1></header>
-    ${T.author(site, p.date, p.readTime)}
+    ${T.author(site, p.date, p.readTime, p.id, T.isFeatured(site, p))}
     <div class="article-content">
 ${html}
       ${rel.length ? `<div class="related-posts"><h3>相關文章</h3><div class="post-list">${rel.map(postCard).join('')}</div></div>` : ''}
@@ -134,7 +146,7 @@ function toolShell(perma, h1, kicker, bodyHtml, meta) {
 <div class="article-layout">
   <article class="article-main">
     <header class="article-header"><div style="margin-bottom:10px;"><span class="cat-pill cat-lotto">樂透</span> <span class="muted">${esc(kicker)}</span></div><h1>${esc(h1)}</h1></header>
-    ${T.author(site, meta.date, meta.readTime)}
+    ${T.author(site, meta.date, meta.readTime, perma.split('/').pop())}
     <div class="article-content">
 ${bodyHtml}
     </div>

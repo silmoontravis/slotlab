@@ -15,6 +15,16 @@
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(step, 8000);
   });
   document.addEventListener('click', (e) => { const a = e.target.closest('.ad-item'); if (a && typeof gtag === 'function') gtag('event', 'ad_click', { product: a.dataset.ad, slot: a.dataset.slot, page: location.pathname }); });
+  // ---------- 真閱讀計數：GET 顯示；同一個瀏覽器 session 內同一篇只 POST 一次（docs/ARCHITECTURE.md §2.5）----------
+  const vEl = document.querySelector('[data-views]');
+  if (vEl) (async () => {
+    const id = vEl.dataset.views; let seen = false; try { seen = sessionStorage.getItem('v:' + id) === '1'; } catch { }
+    try {
+      const r = await fetch('/api/views/' + encodeURIComponent(id), seen ? {} : { method: 'POST' });
+      const j = await r.json(); if (!seen) { try { sessionStorage.setItem('v:' + id, '1'); } catch { } }
+      if (typeof j.views === 'number') vEl.textContent = j.views.toLocaleString('zh-TW') + ' 次閱讀';
+    } catch { }
+  })();
   // ---------- 列表分頁（data-page-size）＋ 部落格篩選（data-filter）----------
   for (const list of document.querySelectorAll('.post-list[data-page-size]')) {
     const size = +list.dataset.pageSize || 10; let items = [...list.querySelectorAll('.post-item')]; if (items.length <= size) continue;

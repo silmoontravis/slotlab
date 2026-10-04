@@ -22,12 +22,14 @@ export function header(site, active) {
 export function breadcrumb(items) {
   return `<div class="breadcrumb">${items.map((it, i) => i === items.length - 1 ? `<span style="color:var(--text-primary)">${esc(it.label)}</span>` : `<a href="${it.href}">${esc(it.label)}</a><span class="sep">/</span>`).join('')}</div>`;
 }
-export function author(site, date, readTime) {
-  return `<div class="article-author"><img src="/images/david-avatar.png" alt="大衛" width="44" height="44"><div class="author-info"><div class="author-name">${esc(site.author)}</div><div class="author-date">${esc(date)} &middot; ${readTime} min read</div></div></div>`;
+/** 作者列；id 給真閱讀計數用（site.js 會 GET /api/views/:id 填數字、同 session 只 POST 一次）；featured＝編輯推薦（人工挑，site.json.featured） */
+export function author(site, date, readTime, id = '', featured = false) {
+  return `<div class="article-author"><img src="/images/david-avatar.png" alt="大衛" width="44" height="44"><div class="author-info"><div class="author-name">${esc(site.author)}${featured ? ' <span class="pill-featured">編輯推薦</span>' : ''}</div><div class="author-date">${esc(date)} &middot; ${readTime} min read${id ? ` &middot; <span class="views" data-views="${esc(id)}" title="真實閱讀次數，不灌水"></span>` : ''}</div></div></div>`;
 }
+export const isFeatured = (site, p) => (site.featured || []).includes(p.permalink);
 export function postItem(site, p) {
   return `<a href="${p.permalink}" class="post-item"><div class="post-accent post-accent-${site.accent[p.category] || 'green'}"></div><div class="post-body">
-    <div class="post-title">${esc(p.title)}</div>${p.excerpt ? `<div class="post-excerpt">${esc(p.excerpt)}</div>` : ''}
+    <div class="post-title">${esc(p.title)}${isFeatured(site, p) ? ' <span class="pill-featured">編輯推薦</span>' : ''}</div>${p.excerpt ? `<div class="post-excerpt">${esc(p.excerpt)}</div>` : ''}
     <div class="post-meta"><span class="cat-pill cat-${p.category}">${esc(site.categories[p.category]?.label || p.category)}</span><span>${esc(p.date)}</span><span>${p.readTime} min read</span></div></div></a>`;
 }
 export function sidebar(site, counts, code) {

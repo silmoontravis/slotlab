@@ -1,0 +1,10 @@
+# Cloudflare Pages 專案設定（wrangler pages deploy 會讀；Functions 的綁定在這裡）
+name = "rtp96"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-09-01"
+
+# 真閱讀計數（functions/api/views/[id].js）：D1 資料庫 rtp96-views，表 views(id, n, updated_at)
+[[d1_databases]]
+binding = "VIEWS"
+database_name = "rtp96-views"
+database_id = "f8f41f1e-6be7-4604-b09b-8aafdeb0ff8a"
