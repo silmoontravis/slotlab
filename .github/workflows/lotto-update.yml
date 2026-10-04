@@ -26,6 +26,9 @@ jobs:
         id: fetch
         continue-on-error: true
         run: node scripts/lotto-fetch.mjs
+      - name: 抓台彩新聞標題（時事關鍵字；失敗不擋）
+        continue-on-error: true
+        run: node scripts/lotto-news.mjs
       - name: 有新資料就 commit 回 repo
         run: |
           if ! git diff --quiet -- data/lotto; then

@@ -7,6 +7,7 @@ import matter from 'gray-matter';
 import MarkdownIt from 'markdown-it';
 import * as T from './templates/index.mjs';
 import * as L from './templates/lotto.mjs';
+import * as N from './templates/lotto-news.mjs';
 
 const ROOT = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const DIST = path.join(ROOT, 'dist');
@@ -15,6 +16,7 @@ const BUILD = new Date().toISOString().replace(/\D/g, '').slice(0, 14);
 const md = new MarkdownIt({ html: true, linkify: false, typographer: false });
 const games = Object.keys(L.GAMES).map(id => L.loadGame(ROOT, id)).filter(g => g && g.draws.length);   // data/lotto 沒資料就不產工具頁
 const LOTTO_JS = `<script src="/js/lotto.js?v=__BUILD__" defer></script>`;
+const NEWS = fs.existsSync(path.join(ROOT, 'data/lotto/news.json')) ? JSON.parse(fs.readFileSync(path.join(ROOT, 'data/lotto/news.json'), 'utf8')) : null;   // scripts/lotto-news.mjs
 const esc = T.esc;
 const FILLER = ['在這篇文章中，我們將從數據分析的角度', '作為一名長期研究電子遊戲數學模型的軟體工程師'];
 const errors = [], warns = [];
@@ -129,7 +131,7 @@ ${html}
 // 分類頁
 for (const [k, c] of Object.entries(site.categories)) {
   const code = T.pageCode(`/${k}/`); const list = posts.filter(p => p.category === k);
-  const hub = k === 'lotto' && games.length ? L.hubCards(games) : '';
+  const hub = k === 'lotto' && games.length ? L.hubCards(games) + N.newsBlock(NEWS) : '';
   const inner = `<div class="category-hero"><h1>${esc(c.title)}</h1><p>${esc(c.intro)}</p></div>
 ${T.breadcrumb([{ href: '/', label: '~' }, { label: c.label }])}
 <div class="ad-header">${T.adSlot('A', 'banner', code)}</div>
@@ -161,10 +163,35 @@ ${bodyHtml}
 }
 for (const g of games) {
   const st = L.stats(g); const latest = g.draws[g.draws.length - 1]; const nums = latest.numbers.map(n => String(n).padStart(2, '0')).join('、');
-  toolShell(`/lotto/${g.slug}`, `${g.name}開獎號碼、冷熱號與遺漏值（${latest.drawDate} 第 ${latest.period} 期）`, `${g.dayText} · 資料 ${st.first} 起 ${st.n} 期`, L.toolPage(g, site, T.pageCode(`/lotto/${g.slug}`)),
+  toolShell(`/lotto/${g.slug}`, `${g.name}開獎號碼、冷熱號與遺漏值（${latest.drawDate} 第 ${latest.period} 期）`, `${g.dayText} · 資料 ${st.first} 起 ${st.n} 期`, L.toolPage(g, site, T.pageCode(`/lotto/${g.slug}`)) + `<h2 id="recent-draws">最近幾期快報</h2>` + N.recentDrawLinks(g, 8) + N.newsBlock(NEWS, g.name),
     { date: latest.drawDate, readTime: 6, jsonld: L.toolJsonLd(g, site), head: { title: `${g.name}開獎號碼｜冷熱號、遺漏值、對獎器（${latest.drawDate} 最新） | ${site.name}`, description: `${g.name}第 ${latest.period} 期（${latest.drawDate}）開獎號碼 ${nums}${latest.special != null ? `，${g.special} ${String(latest.special).padStart(2, '0')}` : ''}。近 30／50／100 期冷熱號、每個號碼的遺漏值與連莊、最近 30 期紀錄與對獎器，資料來自台彩官方。`, ogType: 'article' } });
   fs.mkdirSync(path.join(DIST, 'data/lotto'), { recursive: true });
   fs.writeFileSync(path.join(DIST, 'data/lotto', g.id + '.min.json'), JSON.stringify({ game: g.id, name: g.name, updatedAt: g.updatedAt, source: 'https://www.taiwanlottery.com/', draws: g.draws.map(x => [x.period, x.drawDate, x.numbers, x.special]) }));
+}
+// 每期快報（最近 90 天）＋ 按月總表（全部）＋ 各彩種總表索引；標題就是搜尋詞（Travis 10-04：把台彩時事當關鍵字）
+const since = new Date(Date.now() - 90 * 864e5).toISOString().slice(0, 10);
+for (const g of games) {
+  const months = [...new Set(g.draws.map(x => x.drawDate.slice(0, 7)))].sort().reverse();
+  const crumbsBase = [{ href: '/', label: '~' }, { href: '/lotto/', label: '樂透' }, { href: `/lotto/${g.slug}`, label: g.name }];
+  const sub = (perma, h1, kicker, body, meta) => {
+    const code = T.pageCode(perma); const toc = [...body.matchAll(/<h2 id="([^"]+)">([^<]+)<\/h2>/g)].map(m => ({ id: m[1], text: m[2] }));
+    const crumbs = [...crumbsBase, { label: meta.crumb || h1 }];
+    const inner = `${T.breadcrumb(crumbs)}\n<div class="ad-header">${T.adSlot('A', 'banner', code)}</div>\n<div class="article-layout"><article class="article-main"><header class="article-header"><div style="margin-bottom:10px;"><span class="cat-pill cat-lotto">樂透</span> <span class="muted">${esc(kicker)}</span></div><h1>${esc(h1)}</h1></header>${T.author(site, meta.date, meta.readTime)}<div class="article-content">\n${body}\n</div></article><aside class="toc-sidebar">${toc.length ? `<div class="toc"><div class="toc-title">目錄</div><ul class="toc-list">${toc.map(t => `<li><a href="#${t.id}">${esc(t.text)}</a></li>`).join('')}</ul></div>` : ''}<div class="ad-article-sidebar">${T.adSlot('E', 'sidebar', code)}</div></aside></div>`;
+    out(perma, shell(perma, 'lotto', inner, { ...meta.head, canonical: url(perma), jsonld: [...(meta.jsonld || []), { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.label === '~' ? '首頁' : c.label, ...(c.href ? { item: url(c.href) } : {}) })) }] }));
+    toolPages.push({ loc: perma, mod: meta.date, pri: meta.pri || '0.6' });
+  };
+  g.draws.forEach((x, i) => {
+    if (x.drawDate < since) return;
+    const title = N.drawTitle(g, i); const j = (x.prizes || []).find(p => /jackpot/i.test(p.tier));
+    sub(N.drawPath(g, x), title, `第 ${x.period} 期 · 每期快報（程式自動整理）`, N.drawPage(g, i, site, NEWS), { crumb: `${+x.drawDate.slice(5, 7)}/${+x.drawDate.slice(8, 10)} 第 ${x.period} 期`, date: x.drawDate, readTime: 3, pri: i === g.draws.length - 1 ? '0.8' : '0.5',
+      head: { title: `${title} | ${site.name}`, description: `${g.name} ${x.drawDate} 第 ${x.period} 期開獎號碼 ${x.numbers.map(n => String(n).padStart(2, '0')).join('、')}${x.special != null ? `，${g.special} ${String(x.special).padStart(2, '0')}` : ''}；各獎項中獎注數與獎金、頭獎${j ? (j.winners ? `開出 ${j.winners} 注` : `摃龜（本期 ${(j.prize ?? j.perPrize ?? 0).toLocaleString('zh-TW')} 元併入下期）`) : ''}、跟上期比較、下期開獎日。資料來自台彩官方。`, ogType: 'article' },
+      jsonld: [{ '@context': 'https://schema.org', '@type': 'Article', headline: title, datePublished: x.drawDate, dateModified: x.drawDate, author: { '@type': 'Person', name: site.author }, mainEntityOfPage: url(N.drawPath(g, x)), image: `${site.url}/images/og-default.png` }] });
+  });
+  for (const ym of months) {
+    const list = g.draws.filter(x => x.drawDate.startsWith(ym)); const h1 = `${g.name} ${+ym.slice(0, 4)} 年 ${+ym.slice(5, 7)} 月開獎號碼總表（${list.length} 期）`;
+    sub(N.monthPath(g, ym), h1, '歷史開獎 · 按月整理', N.monthPage(g, ym, list, months), { date: list[list.length - 1].drawDate, readTime: 2, head: { title: `${h1} | ${site.name}`, description: `${g.name} ${+ym.slice(0, 4)} 年 ${+ym.slice(5, 7)} 月每一期的開獎號碼、頭獎注數與獎金、銷售額，${list.length} 期完整列表，附當月最常開出的號碼。來源台彩官方。` } });
+  }
+  sub(`/lotto/draws/${g.id}/`, `${g.name}歷史開獎號碼總表（${g.draws[0].drawDate.slice(0, 4)}～${g.draws[g.draws.length - 1].drawDate.slice(0, 4)}，按月）`, `${g.draws.length} 期`, N.archiveIndex(g, months), { date: g.draws[g.draws.length - 1].drawDate, readTime: 1, pri: '0.7', head: { title: `${g.name}歷史開獎號碼總表（按月）| ${site.name}`, description: `${g.name}自 ${g.draws[0].drawDate} 起全部 ${g.draws.length} 期開獎號碼，按年月整理，每月一頁含號碼、頭獎、銷售額。` } });
 }
 if (games.length) toolShell('/lotto/lotto-wheel-calculator', '包牌／連碰計算機：大樂透、威力彩、539 注數與金額', '純前端計算，不會上傳任何資料', L.calculatorPage(),
   { date: BUILD.slice(0, 4) + '-' + BUILD.slice(4, 6) + '-' + BUILD.slice(6, 8), readTime: 4, head: { title: '樂透包牌／連碰計算機：注數、金額、碰數一次算（大樂透、威力彩、539） | ' + site.name, description: '大樂透、威力彩、今彩539 包牌要幾注、多少錢；地下 539／六合術語的二三四星連碰碰數、全車、立柱怎麼算。只算數學，不提供任何投注管道。', ogType: 'article' } });

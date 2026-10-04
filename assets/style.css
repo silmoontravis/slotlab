@@ -511,3 +511,8 @@ img { max-width: 100%; height: auto; }
 /* 真閱讀計數與編輯推薦（P4） */
 .views:empty { display: none; }
 .pill-featured { display: inline-block; vertical-align: middle; margin-left: 6px; padding: 1px 8px; border-radius: 999px; font-size: 0.7rem; font-weight: 700; background: #fef3c7; color: #b45309; border: 1px solid #fcd34d; }
+
+/* 快報、月表、新聞（P4 時事關鍵字） */
+.lt-news ul { list-style: none; padding: 0; margin: 8px 0; } .lt-news li { padding: 8px 0; border-bottom: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 2px; } .lt-news li span { font-size: 0.78rem; color: var(--text-muted); } .lt-news a { color: var(--text-primary); text-decoration: none; font-weight: 600; } .lt-news a:hover { color: var(--accent); }
+.lt-months a { display: inline-block; padding: 4px 10px; margin: 2px; border-radius: 8px; background: var(--bg-card); border: 1px solid var(--border-color); text-decoration: none; font-size: 0.9rem; }
+.lt-draws { list-style: none; padding: 0; } .lt-draws li { padding: 6px 0; border-bottom: 1px solid var(--border-color); font-size: 0.92rem; }
