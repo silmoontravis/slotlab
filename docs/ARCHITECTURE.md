@@ -126,11 +126,19 @@ title ≤60、description 40～160、H1 唯一、H2 ≥3 且自動 id、內文 �
 | 階段 | 範圍 | 過關條件 | 狀態 |
 |---|---|---|---|
 | **P0 基準** | GSC／URL 清冊／關鍵字對照／live 快照 | 清楚現況與第一批目標頁 | 完成（GA4 待開 API） |
-| **P0.5 速修** | 38 頁補 sitemap、canonical 改無副檔名、apex→www 301、og:image、提交 sitemap | 兩週後 GSC 收錄數上升 | 待做（不等遷移，直接改 live 快照部署） |
-| **P1 遷移** | extract→content、模板、build、qa、deploy、GitHub Actions | 所有舊 URL 有去向；正文／圖片／表格／內連逐頁 diff 無遺失；可回滾（保留快照） | |
+| **P0.5 速修** | 38 頁補 sitemap、canonical 改無副檔名、apex→www 301、og:image、提交 sitemap | 兩週後 GSC 收錄數上升 | ✅ 10-04 上線（apex 301 用 functions/_middleware.js；sitemap 125 筆已交 GSC） |
+| **P1 遷移** | extract→content、模板、build、qa、deploy、GitHub Actions | 所有舊 URL 有去向；正文／圖片／表格／內連逐頁 diff 無遺失；可回滾（保留快照） | ✅ 10-04 上線：118 篇進 content/、migrate-diff 125/125 零差異；GitHub Actions 未做（用 scripts/deploy.mjs 手動） |
 | **P2 工具** | 3 彩種開獎＋冷熱號、lotto-fetch、cron、告警 | 資料正確；失敗不誤報；手機可用；DO 計數上線量使用 | |
 | **P3 內容** | 3 篇代表稿校準 → 30 篇重寫 + 25 篇新文 | 來源、數字、搜尋意圖、重複性逐篇驗收 | |
 | **P4 營運** | Threads 自動貼、開獎圖卡、月報 | 看實際流量再決定投入 | |
+
+## 3.5 P1 實作備註（2026-10-04）
+- 舊文正文**保留 HTML 原樣**放在 .md 的正文區（不轉 Markdown，零失真）；新文寫 Markdown（支援 :::david／:::tip／:::info／:::disclaimer）。build 以正文開頭是不是 HTML 標籤判斷。
+- 模板是 `templates/index.mjs`（JS 函式，不是 .html 檔）；header／麵包屑／作者／目錄／相關文章／側欄／頁尾／廣告全部伺服端產出，瀏覽器只跑 `assets/js/site.js`（GA、輪播、分頁、篩選）。
+- 閘門：legacy 舊文只做硬檢查（permalink 唯一、title／description 有、舊 URL 全有去向），其餘（1500 字、H2≥3、內連≥3、填充句）只進 `docs/BUILD-WARNINGS.md`；新文（沒有 legacy: true）全套嚴格＋sources／image 必填。
+- 一鍵部署：`node scripts/deploy.mjs`（build → migrate-diff → wrangler pages deploy → GSC 重交 sitemap）。wrangler 若 npx 快取被鎖，用 `WRANGLER=<路徑>` 指到可用的執行檔。
+- 轉址：`content/site.json.redirects` → `dist/_redirects`；主機名層級（rtp96.com→www）在 `functions/_middleware.js`。
+- 同名檔（guides/slot-myths-debunked 與 blog/posts/slot-myths-debunked）id 加前綴 `guides-`，permalink 不變。
 
 ## 4. 遷移驗收（P1）
 對每個舊 URL：title、H1、description、canonical、正文純文字（去空白）、圖片數、表格數、內連數、外連數 新舊一致；差異清單人工看過。工具：`scripts/migrate-diff.mjs`，輸入 live 快照目錄與 dist。
