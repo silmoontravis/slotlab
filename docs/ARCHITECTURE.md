@@ -128,9 +128,16 @@ title ≤60、description 40～160、H1 唯一、H2 ≥3 且自動 id、內文 �
 | **P0 基準** | GSC／URL 清冊／關鍵字對照／live 快照 | 清楚現況與第一批目標頁 | 完成（GA4 待開 API） |
 | **P0.5 速修** | 38 頁補 sitemap、canonical 改無副檔名、apex→www 301、og:image、提交 sitemap | 兩週後 GSC 收錄數上升 | ✅ 10-04 上線（apex 301 用 functions/_middleware.js；sitemap 125 筆已交 GSC） |
 | **P1 遷移** | extract→content、模板、build、qa、deploy、GitHub Actions | 所有舊 URL 有去向；正文／圖片／表格／內連逐頁 diff 無遺失；可回滾（保留快照） | ✅ 10-04 上線：118 篇進 content/、migrate-diff 125/125 零差異；GitHub Actions 未做（用 scripts/deploy.mjs 手動） |
-| **P2 工具** | 3 彩種開獎＋冷熱號、lotto-fetch、cron、告警 | 資料正確；失敗不誤報；手機可用；DO 計數上線量使用 | |
+| **P2 工具** | 3 彩種開獎＋冷熱號、lotto-fetch、cron、告警 | 資料正確；失敗不誤報；手機可用；DO 計數上線量使用 | ✅ 10-04 上線：`/lotto/{lotto649,superlotto638,daily539}-results`＋`/lotto/lotto-wheel-calculator`＋`/lotto/`；data/lotto 2014 起全量；GitHub Actions `lotto-update.yml` 每天 21:30／22:30 抓→commit→build→deploy；qa-lotto 33 項。**DO 閱讀計數還沒做**（P4） |
 | **P3 內容** | 3 篇代表稿校準 → 30 篇重寫 + 25 篇新文 | 來源、數字、搜尋意圖、重複性逐篇驗收 | |
 | **P4 營運** | Threads 自動貼、開獎圖卡、月報 | 看實際流量再決定投入 | |
+
+## 3.6 P2 實作備註（2026-10-04）
+- 工具頁模板 `templates/lotto.mjs`（stats／freshness／toolPage／calculatorPage／hubCards），瀏覽器端 `assets/js/lotto.js`（頁籤、對獎器、四個計算機）。統計全部 build 時算；對獎器內嵌最近 30 期，全量歷史在 `/data/lotto/<game>.min.json`。
+- 更新狀態：`freshness()` 依各彩種開獎日算「應有的最近一期」，22:30 後還沒有就標「延遲」；下次開獎日也算出來顯示。
+- 排程：GitHub Actions（repo silmoontravis/slotlab，secrets CF_API_TOKEN／CF_ACCOUNT_ID 四月已設）。push main 也會部署；`docs/**` 與 `*.md` 改動不觸發。抓取失敗不擋部署（保留上一筆）。沒新資料不改 data 檔（避免空 commit）；最後檢查時間在 `data/lotto/status.json`（gitignore）。
+- 本機部署仍可 `node scripts/deploy.mjs`；兩邊都 push／deploy 時，CI 可能在你 push 後又 commit 資料，push 前先 `git pull`。
+- 舊的 GitHub workflow（auto-publish、daily-blog-publish）已刪；repo 是公開的，不要放任何金鑰。
 
 ## 3.5 P1 實作備註（2026-10-04）
 - 舊文正文**保留 HTML 原樣**放在 .md 的正文區（不轉 Markdown，零失真）；新文寫 Markdown（支援 :::david／:::tip／:::info／:::disclaimer）。build 以正文開頭是不是 HTML 標籤判斷。

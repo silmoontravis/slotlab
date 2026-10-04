@@ -107,6 +107,7 @@ ${html}
   const inner = `<div class="ad-header">${T.adSlot('A', 'banner', code)}</div>
 <div class="blog-intro"><div class="intro-greeting"><img class="intro-avatar" src="/images/david-avatar.png" alt="大衛" width="96" height="96"><div class="intro-text"><h1>${esc(site.home.h1)}</h1><p>${esc(site.home.intro)}<span class="typing-cursor"></span></p></div></div></div>
 <div class="content-grid"><main class="main-content">
+  ${games.length ? `<section class="section"><div class="section-header"><h2 class="section-title">樂透最新開獎</h2><a href="/lotto/" class="section-link">樂透專區 →</a></div>${L.hubCards(games)}</section>` : ''}
   <section class="section"><div class="section-header"><h2 class="section-title">最新文章</h2><a href="/blog/" class="section-link">all posts →</a></div><div class="post-list" data-page-size="5">${latest.map(p => T.postItem(site, p)).join('')}</div></section>
   <div class="ad-inline">${T.adSlot('C1', 'banner', code)}</div>
   ${featured.length ? `<section class="section"><div class="section-header"><h2 class="section-title">熱門研究</h2></div><div class="post-list">${featured.map(p => T.postItem(site, p)).join('')}</div></section>` : ''}
