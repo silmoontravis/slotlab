@@ -185,7 +185,7 @@ fs.mkdirSync(path.join(DIST, 'blog'), { recursive: true });
 fs.writeFileSync(path.join(DIST, 'blog/rss.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel><title>${esc(site.name)}</title><link>${site.url}/</link><description>${esc(site.home.description)}</description><language>zh-TW</language>\n${rss}\n</channel></rss>\n`);
 // 舊 URL 全有去向（docs/url-inventory.json）
 const inv = JSON.parse(fs.readFileSync(path.join(ROOT, 'docs/url-inventory.json'), 'utf8'));
-for (const u of inv) { const f = path.join(DIST, u.url.endsWith('/') ? u.url + 'index.html' : u.url + '.html'); if (!fs.existsSync(f)) fail(`舊 URL 沒有去向 ${u.url}`); }
+for (const u of inv) { if (/^\/blog\/drafts\//.test(u.url)) continue;   /* 草稿路徑從來不是公開網址（07-17 已以 /blog/posts/ 發布） */ const f = path.join(DIST, u.url.endsWith('/') ? u.url + 'index.html' : u.url + '.html'); if (!fs.existsSync(f)) fail(`舊 URL 沒有去向 ${u.url}`); }
 // 內連目標存在
 const exists = (p) => fs.existsSync(path.join(DIST, p.endsWith('/') ? p + 'index.html' : p + '.html')) || fs.existsSync(path.join(DIST, p));
 let broken = 0; for (const p of posts) for (const m of render(p).matchAll(/href="(\/[^"#?]*)/g)) if (!exists(m[1])) { broken++; warn(`${p.permalink} 內連找不到 ${m[1]}`); }
