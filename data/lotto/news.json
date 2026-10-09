@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-09T18:56:18.369Z",
+ "updatedAt": "2026-10-09T19:35:59.309Z",
  "items": [
   {
    "title": "大樂透再槓下期飆3.5億！ 百萬紅包送10組「這間彩券行包了7組」",
@@ -118,7 +118,7 @@
    "link": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE01dlZ3cU1RLXRXcmxEWk14Mk8zaWlqSVdXbWdkczQxdElDS2Y5Tzdjd2lTdTlBeWVmTjdqOXRUUjYzMzkxN1VXZ200RWQ?oc=5",
    "source": "聚財網",
    "date": "2026-10-09T13:14:22.000Z",
-   "q": "樂透 頭獎"
+   "q": "大樂透"
   },
   {
    "title": "#最新快訊 大樂透頭獎3.1億號碼 100萬紅包剩40組快來搶",
@@ -136,7 +136,7 @@
   },
   {
    "title": "今彩539第115245期開獎",
-   "link": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFB3ZUJpU2gtWkVhVHRXRE5ldF90OXpnTW8xV3hnZGRaS1hXR3Jta0ZReW5yU3pTSFlqRkJSajFFcE5XbEVPaGw2R3RBZVZmRjhtYVVpX2o2U19uOWdF0gFiQVVfeXFMTUhFdzNyYzlQUzZVZ1Z2RmZITE5IbDRTRnhrLV91ZXE5MXFmYWF6aXpYalFLcGxjeXpTWjhCaklLZGtFS2ZkaXdmZS1FdnNoR282UE9CVGc0MGpYUnJsNDFQOXc?oc=5",
+   "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9kc3RPWFpJSlBTNzRRNEVCTEVsOVZ2OEJfclBRRXlWTW5BMHhhdGwxVEE0T3czWFBKUTlSTndhaDJ4VzdNblZjMC1VeG5vLUE5WkF3ejF4aGZJd9IBX0FVX3lxTE5WMC1ZS3c5WmQ2Qkhuc3R5c3NQUExUT2JUUFd4M3UwNTdCRjZjNUZCeU5zN3RpTVZUZzl1eHhOX1VMUUlld1BaTFBkRk1mNWRzWHVoR0l2S1diOEhhZlRj?oc=5",
    "source": "經濟日報",
    "date": "2026-10-09T13:00:24.000Z",
    "q": "今彩539"
@@ -226,13 +226,6 @@
    "q": "威力彩"
   },
   {
-   "title": "再接再厲！10/8威力彩、今彩539頭獎均摃龜- 股市爆料同學會",
-   "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1jMFFqMlhNM1o2ekFrX2x5WlRTcWxyYzdZTUUxYzh5VXNyR3hncUg4TC15S0hUUmNZc0QwY0JEV3RqX3ZrMFdZVGU2MXl5UTVmcnNyeENxQks?oc=5",
-   "source": "CMoney",
-   "date": "2026-10-08T14:29:43.000Z",
-   "q": "威力彩"
-  },
-  {
    "title": "2億沒送出！威力彩頭獎、貳獎雙槓龜",
    "link": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5fVk04YzVIWm4zYkFVUm5DMHVST3Y2ZHNuRkNGcjVrNlIzTmM1aWNGR3F6ODh2UWJtc2RmLURsZE01R1dMMUwxOGxoMzZLUQ?oc=5",
    "source": "TVBS新聞網",
@@ -251,7 +244,7 @@
    "link": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1yeGxkQ0lQMXpXWVdWMndMTVIxSVRWOGZRc01RMy1fS1YweUhudFNoMDU0bExnUWFMVlBZLWtmWXplZGMzOHdyX3J6bk04c1RDaTczeGlCM3FuV0py0gFiQVVfeXFMT19oQ25mYVY4a0RMWkE1YkluSW96b3Z4WkJDaUhGdFNVa0xfd3NLUnBKQS1MY2pWR2NwcHNHZ0Z3bDZXQlV2OWNEaTdWYUtydkxLN1dBcVdZVndoWlh0elByTEE?oc=5",
    "source": "經濟日報",
    "date": "2026-10-08T14:23:39.000Z",
-   "q": "今彩539"
+   "q": "威力彩"
   },
   {
    "title": "再接再厲！10/8威力彩、今彩539頭獎均摃龜",
@@ -279,6 +272,13 @@
    "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE0tX1g3a2h6MllSTmZ6d2RmOEtXWEZpeW1Lcnl2RGthaGNzTEFzQnR3QmF6MGIzRy1jX016OWFYWmdLNWdmUmx4U3J2MzRwcDZVYVpPbzRHQjZSZnFLQWN5dV9YbEJpcWND0gFuQVVfeXFMUEtvT1hobGhZcThkYlluaFFES24tdi1tNUpPemxNczNfekNULS1rNzlEaDNwSUpNSHZQTjVrZjNyOERYVTk1cl9KdVlOMFlTcS1QSU1STEtlX3Z4N25mZTl2Wno4TGtfWFY4RHVleUE?oc=5",
    "source": "自由時報",
    "date": "2026-10-08T13:00:09.000Z",
+   "q": "威力彩"
+  },
+  {
+   "title": "快訊／威力彩頭獎2億！10／8開獎號碼、怎麼玩一次看",
+   "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE40ZU80REhXeFBRYkIzbWg1QnNWYTBCT1lrUk84dkM4Q0w1aEh5dnZ3WWhJMmlqTmFQa2NWZWxocEJ5Zi1wNU9VWlZFZw?oc=5",
+   "source": "三立新聞",
+   "date": "2026-10-08T12:55:52.000Z",
    "q": "威力彩"
   }
  ]
